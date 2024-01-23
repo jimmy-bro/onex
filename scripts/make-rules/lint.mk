@@ -32,3 +32,11 @@ lint.dockerfiles: image.verify go.build.verify ## Lint dockerfiles.
 .PHONY: lint.charts
 lint.charts: tools.verify.helm ## Lint helm charts.
 	$(MAKE) chart.lint
+
+# In actual development, many logs are difficult to follow the logcheck specifications and also do not 
+# need to. Here we only have a basic understanding, and it is not recommended to use lint.logcheck rule.
+.PHONY: lint.logcheck
+lint.logcheck: tools.verify.logcheck ## Tool to check logging calls.
+	@logcheck -check-contextual $(ONEX_ROOT)/...
+	@logcheck -check-structured $(ONEX_ROOT)/...
+

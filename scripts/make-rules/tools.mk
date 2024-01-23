@@ -232,3 +232,7 @@ _install.gofumpt:
 .PHONY: _install.grpcurl
 _install.grpcurl:
 	@$(GO) install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
+
+.PHONY: _install.logcheck
+_install.logcheck:
+	@$(GO) install sigs.k8s.io/logtools/logcheck@latest
