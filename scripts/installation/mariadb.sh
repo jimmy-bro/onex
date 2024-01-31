@@ -21,7 +21,9 @@ function onex::mariadb::docker::install()
 {
   onex::mariadb::pre_install
 
+  onex::common::network
   docker run -d --name onex-mariadb \
+    --network onex \
     -v ${ONEX_THIRDPARTY_INSTALL_DIR}/mariadb:/var/lib/mysql \
     -p ${ONEX_ACCESS_HOST}:${ONEX_MYSQL_PORT}:3306 \
     -e MYSQL_ROOT_PASSWORD=${ONEX_PASSWORD} \

@@ -21,7 +21,9 @@ function onex::redis::docker::install()
 {
   onex::redis::pre_install
 
+  onex::common::network
   docker run -d --name onex-redis \
+    --network onex \
     -v ${ONEX_THIRDPARTY_INSTALL_DIR}/redis:/data \
     -p ${ONEX_ACCESS_HOST}:${ONEX_REDIS_PORT}:6379 \
     redis:7.2.3 \

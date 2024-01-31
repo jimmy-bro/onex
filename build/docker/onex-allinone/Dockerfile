@@ -12,7 +12,7 @@
 # Default <prod_image> is systemd-debian:12
 # jrei/systemd-debian:12 因为镜像内置的 Linux 工具太少，不方便排障，所以不适用
 # 使用 centos 镜像，也可以使你有途径了解另一个知名的 Linux 发行版：CentOS
-ARG prod_image=centos/systemd:latest
+ARG prod_image=centos:centos8
 
 FROM ${prod_image}
 LABEL maintainer="<colin404@foxmail.com>"
@@ -46,4 +46,4 @@ RUN systemctl enable onex-cacheserver
 # 将 OneX 二进制文件加入到 Linux 的搜索路径中
 ENV PATH=/opt/onex/bin:${PATH}
 
-ENTRYPOINT ["/lib/systemd/systemd"]
+ENTRYPOINT ["/usr/sbin/init"]

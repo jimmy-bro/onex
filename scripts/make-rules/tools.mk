@@ -54,7 +54,7 @@ _install.code-generator.%: ## Install specified code-generator tool.
 
 .PHONY: _install.swagger
 _install.swagger:
-	@$(GO) install github.com/go-swagger/go-swagger/cmd/swagger@latest
+	@$(GO) install github.com/go-swagger/go-swagger/cmd/swagger@$(GO_SWAGGER_VERSION)
 
 .PHONY: _install.golangci-lint
 _install.golangci-lint: ## Install golangci-lint.
@@ -63,7 +63,7 @@ _install.golangci-lint: ## Install golangci-lint.
 
 .PHONY: _install.go-junit-report
 _install.go-junit-report:
-	@$(GO) install github.com/jstemmer/go-junit-report@latest
+	@$(GO) install  github.com/jstemmer/go-junit-report/v2@$(GO_JUNIT_REPORT_VERSION)
 
 .PHONY: _install.wire
 _install.wire: ## Install wire.
@@ -75,19 +75,19 @@ _install.mockgen: ## Install mockgen.
 
 .PHONY: _install.gotests
 _install.gotests: ## Install gotests.
-	@$(GO) install github.com/cweill/gotests/gotests@latest
+	@$(GO) install github.com/cweill/gotests/gotests@$(GO_TESTS_VERSION)
 
 .PHONY: _install.goimports
 _install.goimports: ## Install goimports.
-	@$(GO) install golang.org/x/tools/cmd/goimports@latest
+	@$(GO) install golang.org/x/tools/cmd/goimports@$(GO_IMPORTS_VERSION)
 
 .PHONY: _install.go-gitlint
 _install.go-gitlint: ## Install go-gitlint.
-	@$(GO) install github.com/marmotedu/go-gitlint/cmd/go-gitlint@latest
+	@$(GO) install github.com/marmotedu/go-gitlint/cmd/go-gitlint@$(GO_GIT_LINT_VERSION)
 
 .PHONY: _install.gsemver
 _install.gsemver: ## Install gsemver.
-	@$(GO) install github.com/arnaud-deprez/gsemver@latest
+	@$(GO) install github.com/arnaud-deprez/gsemver@$(GSEMVER_VERSION)
 	@$(SCRIPTS_DIR)/add-completion.sh gsemver bash
 
 .PHONY: _install.uplift
@@ -98,7 +98,7 @@ _install.uplift: ## Install uplift.
 
 .PHONY: _install.git-chglog
 _install.git-chglog: ## Install git-chglog tool which is used to generate CHANGELOG.
-	@$(GO) install github.com/git-chglog/git-chglog/cmd/git-chglog@latest
+	@$(GO) install github.com/git-chglog/git-chglog/cmd/git-chglog@$(GIT_CHGLOG_VERSION)
 
 .PHONY: _install.cfssl
 _install.cfssl: ## Install cfssl toolkit.
@@ -106,11 +106,11 @@ _install.cfssl: ## Install cfssl toolkit.
 
 .PHONY: _install.addlicense
 _install.addlicense: ## Install addlicense.
-	@$(GO) install github.com/superproj/addlicense@latest
+	@$(GO) install github.com/superproj/addlicense@$(ADDLICENSE_VERSION)
 
 .PHONY: _install.kustomize
 _install.kustomize: ## Install kustomize.
-	@$(GO) install sigs.k8s.io/kustomize/kustomize/v5@latest
+	@$(GO) install sigs.k8s.io/kustomize/kustomize/v5@$(KUSTOMIZE_VERSION)
 	@$(SCRIPTS_DIR)/add-completion.sh kustomize bash
 
 .PHONY: _install.controller-gen
@@ -124,7 +124,7 @@ _install.kind: ## Install kind cluster command line tool.
 
 .PHONY: _install.go-apidiff
 _install.go-apidiff: ## Install go-apidiff.
-	@$(GO) install github.com/joelanford/go-apidiff@latest
+	@$(GO) install github.com/joelanford/go-apidiff@$(GO_APIDIFF_VERSION)
 
 .PHONY: _install.helm
 _install.helm: ## Install helm command line tool.
@@ -143,9 +143,9 @@ _install.grpc:
 
 .PHONY: _install.kratos
 _install.kratos: _install.grpc ## Install kratos toolkit, includes multiple protoc plugins.
-	@$(GO) install github.com/joelanford/go-apidiff@latest
+	@$(GO) install github.com/joelanford/go-apidiff@$(GO_APIDIFF_VERSION)
 	@$(GO) install github.com/envoyproxy/protoc-gen-validate@$(PROTOC_GEN_VALIDATE_VERSION)
-	@$(GO) install github.com/google/gnostic/cmd/protoc-gen-openapi@latest
+	@$(GO) install github.com/google/gnostic/cmd/protoc-gen-openapi@$(PROTOC_GEN_OPENAPI_VERSION)
 	@$(GO) install github.com/go-kratos/kratos/cmd/kratos/v2@$(KRATOS_VERSION)
 	@$(GO) install github.com/go-kratos/kratos/cmd/protoc-gen-go-http/v2@$(KRATOS_VERSION)
 	@$(GO) install github.com/go-kratos/kratos/cmd/protoc-gen-go-errors/v2@$(KRATOS_VERSION)
@@ -153,22 +153,22 @@ _install.kratos: _install.grpc ## Install kratos toolkit, includes multiple prot
 
 .PHONY: _install.buf
 _install.buf: ## Install buf command line tool.
-	@$(GO) install github.com/bufbuild/buf/cmd/buf@latest
+	@$(GO) install github.com/bufbuild/buf/cmd/buf@$(BUF_VERSION)
 
 .PHONY: _install.kafkactl
 _install.kafkactl: ## Install kafkactl command line tool.
-	@$(GO) install github.com/deviceinsight/kafkactl@latest
+	@$(GO) install github.com/deviceinsight/kafkactl@$(KAFKACTL_VERSION)
 	@$(SCRIPTS_DIR)/add-completion.sh kafkactl bash
 
 # kube-linter reference: https://docs.kubelinter.io/#/
 .PHONY: _install.kube-linter
 _install.kube-linter: ## Install kube-linter command line tool.
-	@$(GO) install golang.stackrox.io/kube-linter/cmd/kube-linter@latest
+	@$(GO) install golang.stackrox.io/kube-linter/cmd/kube-linter@$(KUBE_LINTER_VERSION)
 	@$(SCRIPTS_DIR)/add-completion.sh kube-linter bash
 
 .PHONY: _install.kubeconform
 _install.kubeconform: ## Install kubeconform command line tool.
-	@$(GO) install github.com/yannh/kubeconform/cmd/kubeconform@latest
+	@$(GO) install github.com/yannh/kubeconform/cmd/kubeconform@$(KUBE_CONFORM_VERSION)
 
 .PHONY: _install.kubectl
 _install.kubectl: ## Install kubectl command line tool.
@@ -178,32 +178,32 @@ _install.kubectl: ## Install kubectl command line tool.
 
 .PHONY: _install.helm-docs
 _install.helm-docs: ## Install helm-docs which is a tool to generating markdown documentation for helm charts.
-	@$(GO) install github.com/norwoodj/helm-docs/cmd/helm-docs@latest
+	@$(GO) install github.com/norwoodj/helm-docs/cmd/helm-docs@$(HELM_DOCS_VERSION)
 
 .PHONY: _install.gentool
 _install.gentool: ## Install gentool which is a tool used to generate gorm model and query code.
-	@$(GO) install gorm.io/gen/tools/gentool@latest
+	@$(GO) install gorm.io/gen/tools/gentool@$(GEN_TOOL_VERSION)
 
 # db2struct --gorm --json -H 127.0.0.1 -d onex -t secret --package model --struct SecretM -u gateway -p 'proj(#)666' --target=secret.go
 .PHONY: _install.db2struct
 _install.db2struct: ## Install db2struct which is a tool used to converts a mysql table into a golang struct.
-	@$(GO) install github.com/Shelnutt2/db2struct/cmd/db2struct@latest
+	@$(GO) install github.com/Shelnutt2/db2struct/cmd/db2struct@$(DB_TO_STRUCT_VERSION)
 
 .PHONY: _install.protoc-go-inject-tag
 _install.protoc-go-inject-tag:
-	@$(GO) install github.com/favadi/protoc-go-inject-tag@latest
+	@$(GO) install github.com/favadi/protoc-go-inject-tag@$(PROTOC_GO_INJECT_TAG_VERSION)
 
 .PHONY: _install.air
 _install.air: ## Install air tool which is used to live reload your go apps.
-	@$(GO) install github.com/cosmtrek/air@latest
+	@$(GO) install github.com/cosmtrek/air@$(AIR_VERSION)
 
 .PHONY: _install.license 
 _install.license : ## Install license tool which is used to generate LICENSE file as you want.
-	@$(GO) install github.com/nishanths/license/v5@latest
+	@$(GO) install github.com/nishanths/license/v5@$(LICENSE_VERSION)
 
 .PHONY: _install.gothanks
 _install.gothanks: ## Install gothanks tool which is used to automatically stars your go.mod github dependencies.
-	@$(GO) install github.com/psampaz/gothanks@latest
+	@$(GO) install github.com/psampaz/gothanks@$(GO_THANKS_VERSION)
 
 .PHONY: _install.kubebuilder
 _install.kubebuilder : ## Install kubebuilder tool which is used to building Kubernetes APIs using CRDs.
@@ -215,7 +215,7 @@ _install.kubebuilder : ## Install kubebuilder tool which is used to building Kub
 # gomodifytags -all -add-tags json -w -transform camelcase --skip-unexported -file *.go
 .PHONY: _install.gomodifytags
 _install.gomodifytags: ## Install gomodifytags tool which is used to modify struct field tags.
-	@$(GO) install github.com/fatih/gomodifytags@latest
+	@$(GO) install github.com/fatih/gomodifytags@$(GO_MODIFY_TAGS_VERSION)
 
 .PHONY: _install.yq
 _install.yq:
@@ -227,12 +227,12 @@ _install.gotestsum:
 
 .PHONY: _install.gofumpt
 _install.gofumpt:
-	@$(GO) install mvdan.cc/gofumpt@latest
+	@$(GO) install mvdan.cc/gofumpt@$(GO_FUMPT_VERSION)
 
 .PHONY: _install.grpcurl
 _install.grpcurl:
-	@$(GO) install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
+	@$(GO) install github.com/fullstorydev/grpcurl/cmd/grpcurl@$(GRPCURL_VERSION)
 
 .PHONY: _install.logcheck
 _install.logcheck:
-	@$(GO) install sigs.k8s.io/logtools/logcheck@latest
+	@$(GO) install sigs.k8s.io/logtools/logcheck@$(LOGCHECK_VERSION)

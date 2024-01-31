@@ -49,7 +49,7 @@ function onex::install::pre_install()
 
   # 配置 hosts
   if ! egrep -q 'onex.*.superproj.com' /etc/hosts; then
-    echo ${LINUX_PASSWORD} | sudo -S cat << EOF | tee -a /etc/hosts
+    echo ${LINUX_PASSWORD} | sudo -S cat << EOF | sudo tee -a /etc/hosts
 
 # host configs for onex project
 ${ONEX_ACCESS_HOST} onex.usercenter.superproj.com

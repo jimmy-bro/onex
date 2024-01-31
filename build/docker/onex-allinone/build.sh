@@ -43,6 +43,14 @@ eval \$*
 EOF
 }
 
+# 设置一些环境变量
+export ONEX_MYSQL_HOST=onex-mariadb
+export ONEX_REDIS_HOST=onex-redis
+export ONEX_ETCD_HOST=onex-etcd
+export ONEX_MONGO_HOST=onex-mongo
+export ONEX_KAFKA_HOST=onex-kafka
+export ONEX_JAEGER_HOST=onex-jaeger
+
 # 生成构建Dockerfile需要的构建产物
 onex::onex::build_artifacts
 

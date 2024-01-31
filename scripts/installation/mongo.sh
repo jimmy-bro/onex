@@ -26,7 +26,9 @@ function onex::mongo::docker::install()
 {
   onex::mongo::pre_install
 
+  onex::common::network
   docker run -d --name onex-mongo \
+    --network onex \
     -v ${ONEX_THIRDPARTY_INSTALL_DIR}/mongo:/data \
     -p ${ONEX_ACCESS_HOST}:${ONEX_MONGO_PORT}:27017 \
     -e MONGO_INITDB_ROOT_USERNAME=${ONEX_MONGO_ADMIN_USERNAME} \

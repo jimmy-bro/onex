@@ -35,11 +35,12 @@ function onex::onex::docker::install()
 
   echo "Create onex using ccr.ccs.tencentyun.com/superproj/onex-allinone-amd64:${ONEX_IMAGE_VERSION}"
   # 启动 onex 容器
+  # 注意：启动时需要通过 --privileged 容器 root 权限，否则可能会报以下错误：
+  # "Failed to get D-Bus connection: Operation not permitted"
+  onex::common::network
   docker run -d --name onex \
-    --tmpfs /tmp \
-    --tmpfs /run \
-    --tmpfs /run/lock \
-    -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
+    --network onex \
+    --privileged \
     -v onex-volume:${ONEX_INSTALL_DIR}:rw \
     -p ${ONEX_ACCESS_HOST}:${ONEX_FAKESERVER_HTTP_PORT}:${ONEX_FAKESERVER_HTTP_PORT} \
     -p ${ONEX_ACCESS_HOST}:${ONEX_FAKESERVER_GRPC_PORT}:${ONEX_FAKESERVER_GRPC_PORT} \

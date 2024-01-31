@@ -106,11 +106,11 @@ push.multiarch: ## Build docker images for multiple platforms and push images to
 deploy: ## Build docker images for host arch, and deploy it in kind cluster.
 	$(MAKE) deploy.kind
 
-.PHONY: quick-install
+.PHONY: docker-install
 docker-install: ## Deploy onex with docker.
 	$(MAKE) deploy.docker
 
-.PHONY: quick-uninstall
+.PHONY: docker-uninstall
 docker-uninstall: ## Deploy onex with docker.
 	$(MAKE) deploy.docker.uninstall
 

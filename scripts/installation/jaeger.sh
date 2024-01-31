@@ -19,7 +19,9 @@ ONEX_JAEGER_PORT=${ONEX_JAEGER_PORT:-4317}
 # Install Jaeger using containerization.
 function onex::jaeger::docker::install()
 {
+  onex::common::network
   docker run -d --name onex-jaeger \
+    --network onex \
     -e COLLECTOR_ZIPKIN_HOST_PORT=:9411 \
     -p ${ONEX_ACCESS_HOST}:6831:6831/udp \
     -p ${ONEX_ACCESS_HOST}:6832:6832/udp \

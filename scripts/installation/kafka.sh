@@ -19,9 +19,10 @@ ONEX_KAFKA_PORT=${ONEX_KAFKA_PORT:-4317}
 # Refer to https://www.baeldung.com/ops/kafka-docker-setup
 function onex::kafka::docker::install()
 {
-  docker run -d --name onex-zookeeper -p 2181:2181 -t wurstmeister/zookeeper
-
+  onex::common::network
+  docker run -d --name onex-zookeeper --network onex -p 2181:2181 -t wurstmeister/zookeeper
   docker run -d --name onex-kafka --link onex-zookeeper:zookeeper \
+    --network onex \
     --restart=always \
     -v /etc/localtime:/etc/localtime \
     -p ${ONEX_KAFKA_HOST}:${ONEX_KAFKA_PORT}:9092 \

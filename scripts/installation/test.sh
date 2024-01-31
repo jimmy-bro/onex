@@ -28,6 +28,11 @@ DCURL="curl ${CURLARGS} -XDELETE" # Delete
 # 重要：kubectl 访问 onex-apiserver，需要正确设置 KUBECONFIG 环境变量
 export KUBECONFIG=${ONEX_ADMIN_KUBECONFIG}
 
+# 确保 kubectl 命令被安装
+if [[ "$(command -v kubectl)" == "" ]];then
+  make -C ${ONEX_ROOT} tools.install.kubectl
+fi
+
 function onex::test::test()
 {
   onex::test::usercenter

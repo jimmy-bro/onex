@@ -21,7 +21,9 @@ ONEX_ETCD_DIR=${ONEX_ETCD_DIR:-${ONEX_THIRDPARTY_INSTALL_DIR}/etcd}
 # Install etcd using containerization.
 function onex::etcd::docker::install()
 {
+  onex::common::network
   docker run -d --name onex-etcd \
+    --network onex \
     -v ${ONEX_ETCD_DIR}:/etcd-data \
     -p ${ONEX_ACCESS_HOST}:${ONEX_ETCD_CLIENT_PORT}:2379 \
     -p ${ONEX_ACCESS_HOST}:${ONEX_ETCD_PEER_PORT}:2380 \

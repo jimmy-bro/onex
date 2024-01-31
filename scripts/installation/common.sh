@@ -28,3 +28,10 @@ export ONEX_MINERSET_CONTROLLER_HEALTHZ_PORT=60082
 export ONEX_MINER_CONTROLLER_METRICS_PORT=61081
 export ONEX_MINER_CONTROLLER_HEALTHZ_PORT=61082
 export KUBE_CONFIG_FILE=${ONEX_CONFIG_DIR}/config
+
+# 确保 onex docker 网络存在
+# 在 uninstall 时，可不删除 onex docker 网络，可以作为一个无害的无用数据
+function onex::common::network()
+{
+  docker network ls |grep -q onex || docker network create onex
+}
