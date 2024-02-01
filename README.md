@@ -61,7 +61,7 @@ OneX 实战项目同时还具有以下特点：
 
 ![OneX 架构图](./docs/images/onex-arch.png)
 
-架构图介绍见：[OneX 架构介绍](./docs/devel/zh-CN/architecture.md)
+架构介绍见：[OneX 架构介绍](http://konglingfei.com/onex/intro/intro.html)
 
 ## Installation
 
@@ -70,8 +70,10 @@ OneX 实战项目同时还具有以下特点：
 ```bash
 $ git clone https://github.com/superproj/onex.git
 $ cd onex
-$ make quick-install # 本地快速搭建 OneX（容器化）
+$ make docker-install # 本地快速搭建 OneX（容器化），最好用全新安装的 Debian 12 Linux 发行版
 ```
+
+安装文档见：[OneX 容器部署](http://konglingfei.com/onex/installation/docker.html)
 
 其他常用操作如下：
 
@@ -106,14 +108,16 @@ $ make push # 构建并推送镜像
 ## Usage/Examples
 
 ```bash
-$ onexctl user list
+$ kubectl create -f ${ONEX_ROOT}/manifests/sample/onex/minerset.yaml
+$ onexctl --config ${ONEX_CONFIG_DIR}/onexctl.yaml minerset list
 ```
 
-更多使用方法，请参考：[]()
+更多使用方法，请参考：[OneX 项目测试](http://konglingfei.com/onex/installation/test.html)
 
 ## Documentation
 
-[Documentation](http://http://konglingfei.com)
+- [OneX 项目文档](http://konglingfei.com/onex)
+- [OneX 项目开发指南](http://konglingfei.com/onex/devel/devel.html)
 
 ## Feedback
 

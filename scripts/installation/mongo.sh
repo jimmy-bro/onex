@@ -70,6 +70,11 @@ function onex::mongo::sbs::install()
   # 添加 MongoDB APT 源
   echo ${LINUX_PASSWORD} | sudo -S echo "deb [arch=amd64,arm64] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
 
+  # 安装libssl1.1，否则安装 mongo 时会报以下错误：
+  # mongodb-org-mongos : Depends: libssl1.1 (>= 1.1.1) but it is not installable
+  wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb -P /tmp/
+  echo ${LINUX_PASSWORD} | sudo -S -i dpkg -i /tmp/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+
   onex::util::sudo "apt update"
 
   # 安装 MongoDB 服务端

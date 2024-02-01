@@ -67,8 +67,13 @@ function onex::install::docker::uninstall()
   onex::onex::docker::uninstall || true
   onex::install::middleware::docker::uninstall || true
   onex::install::storage::docker::uninstall || true
+
+  # 删除安装目录
   onex::util::sudo "rm -rf ${ONEX_INSTALL_DIR}"
   onex::util::sudo "rm -rf ${ONEX_THIRDPARTY_INSTALL_DIR}"
+
+  # 卸载 onex 网络，始终返回成功
+  docker network rm onex &>/dev/null || true
 }
 
 # 安装所有的存储组件
