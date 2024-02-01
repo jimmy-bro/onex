@@ -68,6 +68,8 @@ function onex::etcd::sbs::install()
 
   # 创建 Etcd 配置文件
   onex::util::sudo "mkdir -p /etc/etcd"
+  # Etcd 会输出日志到 ${ONEX_LOG_DIR}，所以需要先创建该目录
+  onex::util::sudo "mkdir -p ${ONEX_LOG_DIR}"
 
   echo ${LINUX_PASSWORD} | sudo -S cat << EOF | sudo tee /etc/etcd/config.yaml
 name: onex
@@ -84,20 +86,20 @@ EOF
 # Etcd systemd unit template from
 # https://github.com/etcd-io/etcd/blob/main/contrib/systemd/etcd.service
 [Unit]
-Description=etcd key-value store
-Documentation=https://github.com/etcd-io/etcd
-After=network-online.target local-fs.target remote-fs.target time-sync.target
-Wants=network-online.target local-fs.target remote-fs.target time-sync.target
+Description=etcd key-value store # 指定了单元的描述，即 etcd 键值存储
+Documentation=https://github.com/etcd-io/etcd # 提供了指向 etcd 项目文档的链接
+After=network-online.target local-fs.target remote-fs.target time-sync.target # 指定了服务的启动顺序
+Wants=network-online.target local-fs.target remote-fs.target time-sync.target # 指定了服务的启动依赖
 
 [Service]
-Type=notify
-ExecStart=/usr/bin/etcd --config-file=/etc/etcd/config.yaml
-Restart=always
-RestartSec=10s
-LimitNOFILE=40000
+Type=notify # 指定了服务的类型。notify 类型表示服务会在准备就绪时发送通知
+ExecStart=/usr/bin/etcd --config-file=/etc/etcd/config.yaml # 指定了服务启动时要执行的命令，这里是使用指定的配置文件启动 etcd
+Restart=always # 指定了服务的重启行为。always 表示服务会在退出时总是被重启
+RestartSec=10s # 指定了重启的间隔时间
+LimitNOFILE=40000 # 指定了服务的文件描述符限制，这里设置为 40000
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-user.target # 指定了服务的安装目标，这里表示服务会被添加到 multi-user.target，以便在多用户模式下启动
 EOF
 
   onex::util::sudo "systemctl daemon-reload"

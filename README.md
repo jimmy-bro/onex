@@ -39,15 +39,15 @@
 
 # OneX 云原生实战平台
 
-OneX 云原生实战平台是一个 Go 语言 + 云原生实战平台，也是一个企业级的云平台，具备超越一线大厂企业级应用的能力。
+OneX 云原生实战平台是一个 Go 语言 + 云原生实战平台，也是一个企业级的云平台，整个项目遵循最佳实践的思路去构建。
 
-OneX 项目通过提供功能完备、规范、高质量的 Go 源码来实现代码即学习的理念，通过配套的 Go 开发课程，来降低学习难度、扩展学习深度和广度。通过专有的云原生开发社群：[孔令飞的云原生实战营](http://konglingfei.com)，来提高云原生技术学习的积极性和效率。
+OneX 项目通过提供功能完备、规范、高质量的 Go 源码来实现代码即学习的理念，通过配套的 Go 开发课程，来降低学习难度、扩展学习深度和广度。通过配套的云原生开发社群 [孔令飞的云原生实战营](http://konglingfei.com)，来提高云原生技术学习的效果。
 
 > 为什么起名 OneX：OneX 寓意该实战项目具有功能全、扩展性强、灵活性高等特点。
 
 ## Features
 
-OneX 项目实现了企业级应用需要的绝大部分技能点，详细请参考：[OneX 功能列表]()
+OneX 项目实现了企业级应用需要的绝大部分技能点，详细请参考：[OneX 功能列表](http://konglingfei.com/onex/intro/feature.html)
 
 OneX 实战项目同时还具有以下特点：
 - 功能全：课程包含了 Go 开发生涯中几乎用到的所有及实战，包括但不限于以下 4 大技术栈：
@@ -57,7 +57,8 @@ OneX 实战项目同时还具有以下特点：
   - 微服务技术栈：分布式日志、监控告警、服务编排、调用链、负载均衡、服务治理、配置中心等。
 - 代码质量高：整个项目具有很高的代码质量，包括但不限于：遵循简洁架构、代码简洁健壮、接口性能高、高可维护性、高可扩展性等；
 - 项目规范：规范先行。整个实战项目具有目录规范、代码规范、日志规范、错误码规范、文档规范、提交规范、版本规范等规范项；
-- 生态闭环：整个项目用到了 Go 开发中的绝大部分功能点、技术栈和实现方式，完全可以通过一个实战项目闭环学习整个 Go 开发技术栈。
+- 生态闭环：整个项目用到了 Go 开发中的绝大部分功能点、技术栈和实现方式，完全可以通过一个实战项目闭环学习整个 Go 开发技术栈；
+- 微型 Kubernetes 架构：OneX 还是一个微型的 Kubernetes，onex-apiserver、onex-controller-manager 代码实现和架构，跟原生 k8s 基本保持一致；
 
 ## Architecture
 
@@ -119,7 +120,12 @@ $ onexctl --config ${ONEX_CONFIG_DIR}/onexctl.yaml minerset list
 ## Documentation
 
 - [OneX 项目文档](http://konglingfei.com/onex)
+
+重点文档：
+
 - [OneX 项目开发指南](http://konglingfei.com/onex/devel/devel.html)
+- [OneX 项目开发规范](http://konglingfei.com/onex/devel/devel.html)
+- [OneX 项目开发流程](http://konglingfei.com/onex/devel/devel.html)
 
 ## Feedback
 

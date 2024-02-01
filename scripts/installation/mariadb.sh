@@ -19,6 +19,9 @@ ONEX_PASSWORD=${ONEX_PASSWORD:-onex(#)666}
 # Install mariadb using containerization.
 function onex::mariadb::docker::install()
 {
+  # 安装客户端工具，访问 MariaDB
+  onex::util::sudo "apt install -y mariadb-client"
+
   onex::common::network
   docker run -d --name onex-mariadb \
     --network onex \
@@ -26,8 +29,6 @@ function onex::mariadb::docker::install()
     -p ${ONEX_ACCESS_HOST}:${ONEX_MYSQL_PORT}:3306 \
     -e MYSQL_ROOT_PASSWORD=${ONEX_PASSWORD} \
     mariadb:11.2.2
-
-  onex::mariadb::post_install
 
   echo "Sleeping to wait for all onex-mariadb container to complete startup ..."
   sleep 10
@@ -43,11 +44,6 @@ function onex::mariadb::docker::uninstall()
   docker rm -f onex-mariadb &>/dev/null
   onex::util::sudo "rm -rf ${ONEX_THIRDPARTY_INSTALL_DIR}/mariadb"
   onex::log::info "uninstall mariadb successfully"
-}
-
-function onex::mariadb::post_install()
-{
-  onex::util::sudo "apt install -y mariadb-client"
 }
 
 # Install the mariadb step by step.
@@ -84,8 +80,6 @@ function onex::mariadb::sbs::install()
 
   #  设置 root 初始密码
   onex::util::sudo "mysqladmin -u${ONEX_MYSQL_ADMIN_USERNAME} password ${ONEX_MYSQL_ADMIN_PASSWORD}"
-
-  onex::mariadb::post_install
 
   onex::mariadb::status || return 1
   onex::mariadb::info

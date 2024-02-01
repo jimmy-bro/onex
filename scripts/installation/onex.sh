@@ -12,6 +12,8 @@ ONEX_ROOT=$(dirname "${BASH_SOURCE[0]}")/../..
 [[ -z ${COMMON_SOURCED} ]] && source ${ONEX_ROOT}/scripts/installation/common.sh
 # Set some environment variables.
 
+source ${INSTALL_DIR}/man.sh
+
 # Install onex using containerization.
 function onex::onex::docker::install()
 {
@@ -81,6 +83,7 @@ function onex::onex::build_artifacts()
 
   # 构建需要的产物
   # 构建服务二进制文件
+  echo "Building onex artifacts, this may take a while as it requires download go packages ..."
   make build
 
   # 生成 Systemd Unit 文件
