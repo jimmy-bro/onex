@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v0.1.0](https://github.com/superproj/onex/releases/tag/v0.1.0) - 2024-02-02
+
+- [`0ec2ba8`](https://github.com/superproj/onex/commit/0ec2ba80112de6850639cb78e8ae584981601fbe) feat: first commit
+- [`62a1086`](https://github.com/superproj/onex/commit/62a10869ffc45372c82658d4af17bf769d1ce1b3) feat: commit at 20240123201128
+- [`a89858b`](https://github.com/superproj/onex/commit/a89858b47aa59d2e5643e0a90338955d923fdd0d) feat: 111
+- [`0516a70`](https://github.com/superproj/onex/commit/0516a70d0cd5e54bb0d382ebd9003e749f925e0e) feat: commit at 20240201164423
+- [`a4b521e`](https://github.com/superproj/onex/commit/a4b521e3f062076f7d5abf64d568eb9f2a843108) feat: commit at 20240201164559
+- [`54acc02`](https://github.com/superproj/onex/commit/54acc0226957e624eb65f59f3cf7fd37b651c4eb) feat: commit at 20240202041644
+
 ## [v0.18.0](https://github.com/superproj/onex/releases/tag/v0.18.0) - 2023-09-29
 
 - [`79eded9`](https://github.com/superproj/onex/commit/79eded943ea2ee431ad214f272bc39bb61c0d9b3) feat: 111
