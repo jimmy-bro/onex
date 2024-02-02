@@ -139,8 +139,3 @@ $ onexctl --config ${ONEX_CONFIG_DIR}/onexctl.yaml minerset list
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
-## Related
-
-以下是一些相关项目：
-- [B 站 Go 语言开发实战免费课]()
