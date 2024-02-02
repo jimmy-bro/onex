@@ -119,7 +119,6 @@ function onex::mariadb::status()
 {
   sleep 20
   # 基础检查：检查端口，基础检查
-  echo ${ONEX_MYSQL_HOST} ${ONEX_MYSQL_PORT}
   onex::util::telnet ${ONEX_MYSQL_HOST} ${ONEX_MYSQL_PORT} || return 1
 
   # 终态检查：检查 MySQL 是否成功运行
