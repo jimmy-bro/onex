@@ -120,12 +120,9 @@ $ onexctl --config ${ONEX_CONFIG_DIR}/onexctl.yaml minerset list
 ## Documentation
 
 - [OneX 项目文档](http://konglingfei.com/onex)
-
-重点文档：
-
-- [OneX 项目开发指南](http://konglingfei.com/onex/devel/devel.html)
-- [OneX 项目开发规范](http://konglingfei.com/onex/devel/devel.html)
-- [OneX 项目开发流程](http://konglingfei.com/onex/devel/devel.html)
+  - [OneX 项目开发指南](http://konglingfei.com/onex/devel/devel.html)
+  - [OneX 项目开发规范](http://konglingfei.com/onex/devel/devel.html)
+  - [OneX 项目开发流程](http://konglingfei.com/onex/devel/devel.html)
 
 ## Feedback
 
