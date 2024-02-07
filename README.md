@@ -1,7 +1,7 @@
-[website]: https://konglingfei.com
-[installation]: https://konglingfei.com/onex/installation/
-[documentation]: https://konglingfei.com/onex/
-[contributing]: CONTRIBUTING.md
+[项目网站]: https://konglingfei.com
+[项目文档]: https://konglingfei.com/onex/
+[安装指南]: https://konglingfei.com/onex/installation/
+[开发指南]: https://konglingfei.com/onex/devel/devel.html
 
 # OneX 云原生实战平台
 
@@ -38,7 +38,7 @@
 
 [简体中文](README.md) · [English](README.en.md)
 
-[项目网站] | [安装指南] | [项目文档] | [开发指南] <a rel="me" href="https://fosstodon.org/@gohugoio">Mastodon</a>
+[项目网站] | [安装指南] | [项目文档] | [开发指南]
 
 </samp>
 </strong>
