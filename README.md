@@ -11,33 +11,13 @@
 
 [![GoDoc](https://godoc.org/github.com/superproj/onex?status.svg)](https://godoc.org/github.com/superproj/onex)
 [![Go Report Card](https://goreportcard.com/badge/github.com/superproj/onex)](https://goreportcard.com/report/github.com/superproj/onex)
+[![GitHub](https://img.shields.io/github/license/superproj/onex)](https://github.com/superproj/onex/blob/master/LICENSE)
+[![](https://goreportcard.com/badge/github.com/superproj/onex)](https://goreportcard.com/report/github.com/superproj/onex)
+[![Go Reference](https://pkg.go.dev/badge/github.com/superproj/onex.svg)](https://pkg.go.dev/github.com/superproj/onex)
+[![CodeFactor](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/superproj/onex/issues)
+[![Build](https://img.shields.io/github/actions/workflow/status/superproj/onex/build-and-test.yml?branch=master&logo=Github)](https://github.com/superproj/onex/actions/workflows/build-and-test.yml)
+[![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/superproj/onex?include_prereleases&label=version)](https://github.com/superproj/onex/tags)
 
-
-<p align="center">
-  一个专为 Go + 云原生学习而生的企业级 Go 项目
-  <br/>
-  <a href="https://github.com/superproj/onex/blob/master/LICENSE">
-    <img alt="GitHub" src="https://img.shields.io/github/license/superproj/onex"/>
-  </a>
-  <a href="https://goreportcard.com/report/github.com/superproj/onex">
-    <img src="https://goreportcard.com/badge/github.com/superproj/onex" />
-  </a>
-  <a href="https://pkg.go.dev/github.com/superproj/onex">
-    <img src="https://pkg.go.dev/badge/github.com/superproj/onex.svg" alt="Go Reference"/>
-  </a>
-  <a href="https://github.com/superproj/onex/issues">
-    <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="CodeFactor" />
-  </a>
-  <br/>
-  <a href="https://github.com/superproj/onex/actions/workflows/build-and-test.yml" rel="nofollow">
-    <img src="https://img.shields.io/github/actions/workflow/status/superproj/onex/build-and-test.yml?branch=master&logo=Github" alt="Build" />
-  </a>
-  <a href="https://github.com/superproj/onex/tags" rel="nofollow">
-    <img alt="GitHub tag (latest SemVer pre-release)" src="https://img.shields.io/github/v/tag/superproj/onex?include_prereleases&label=version"/>
-  </a>
-</p>
-
-<div align="center">
 <strong>
 <samp>
 
