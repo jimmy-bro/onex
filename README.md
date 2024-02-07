@@ -1,4 +1,11 @@
-<a href="https://konglingfei.com/"><img align="right" src="./docs/images/onex-orange.svg" alt="awesome-go" title="awesome-go" /></a>
+[website]: https://konglingfei.com
+[installation]: https://konglingfei.com/onex/installation/
+[documentation]: https://konglingfei.com/onex/
+[contributing]: CONTRIBUTING.md
+
+# OneX 云原生实战平台
+
+<a href="http://konglingfei.com/"><img align="right" src="./docs/images/onex-orange.svg" alt="onex" title="onex"/></a>
 
 <p align="center">
   OneX 云原生实战平台，做最优秀的 Go + 云原生实战项目。
@@ -31,11 +38,11 @@
 
 [简体中文](README.md) · [English](README.en.md)
 
+[项目网站] | [安装指南] | [项目文档] | [开发指南] <a rel="me" href="https://fosstodon.org/@gohugoio">Mastodon</a>
+
 </samp>
 </strong>
 </div>
-
-# OneX 云原生实战平台
 
 OneX 云原生实战平台是一个 Go 语言 + 云原生实战平台，也是一个企业级的云平台，整个项目遵循最佳实践的思路去构建。
 
@@ -117,8 +124,7 @@ $ onexctl --config ${ONEX_CONFIG_DIR}/onexctl.yaml minerset list
 
 ## Documentation
 
-- [OneX 项目文档](http://konglingfei.com/onex)
-  - [OneX 项目开发指南](http://konglingfei.com/onex/devel/devel.html)
+OneX [项目文档] 包含了 OneX 项目介绍、OneX 部署、OneX 项目测试、OneX 功能列表、OneX 项目开发文档等。
 
 ## Feedback
 
