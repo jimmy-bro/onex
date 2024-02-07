@@ -8,8 +8,7 @@
 <a href="http://konglingfei.com/"><img align="right" src="./docs/images/onex-orange.svg" alt="onex" title="onex"/></a>
 
 <p align="center">
-  一个专为 Go + 云原生学习而生的企业级 Go 项目，做最优秀的 Go + 云原生实战项目。
-  <br/>
+  一个专为 Go + 云原生学习而生的企业级 Go 项目
   <br/>
   <a href="https://github.com/superproj/onex/blob/master/LICENSE">
     <img alt="GitHub" src="https://img.shields.io/github/license/superproj/onex"/>
