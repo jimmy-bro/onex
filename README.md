@@ -5,7 +5,7 @@
 
 # OneX 云原生实战平台
 
-<a href="http://konglingfei.com/"><img align="right" src="./docs/images/onex-orange.svg" alt="onex" title="onex" width="150"></a>
+<a href="https://konglingfei.com/"><img align="right" src="./docs/images/onex-orange.svg" alt="onex" title="onex" width="150"></a>
 
 <div align="center">一个专为 Go + 云原生学习而生的企业级 Go 项目</div>
 <br/>
@@ -15,6 +15,7 @@
 [![GitHub](https://img.shields.io/github/license/superproj/onex)](https://github.com/superproj/onex/blob/master/LICENSE)
 [![](https://goreportcard.com/badge/github.com/superproj/onex)](https://goreportcard.com/report/github.com/superproj/onex)
 [![Go Reference](https://pkg.go.dev/badge/github.com/superproj/onex.svg)](https://pkg.go.dev/github.com/superproj/onex)
+<br/>
 [![CodeFactor](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/superproj/onex/issues)
 [![Build](https://img.shields.io/github/actions/workflow/status/superproj/onex/build-and-test.yml?branch=master&logo=Github)](https://github.com/superproj/onex/actions/workflows/build-and-test.yml)
 [![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/superproj/onex?include_prereleases&label=version)](https://github.com/superproj/onex/tags)
@@ -35,13 +36,13 @@
 
 OneX 云原生实战平台是一个 Go 语言 + 云原生实战平台，也是一个企业级的云平台，整个项目遵循最佳实践的思路去构建。
 
-OneX 项目通过提供功能完备、规范、高质量的 Go 源码来实现代码即学习的理念，通过配套的 Go 开发课程，来降低学习难度、扩展学习深度和广度。通过配套的云原生开发社群 [孔令飞的云原生实战营](http://konglingfei.com)，来提高云原生技术学习的效果。
+OneX 项目通过提供功能完备、规范、高质量的 Go 源码来实现代码即学习的理念，通过配套的 Go 开发课程，来降低学习难度、扩展学习深度和广度。通过配套的云原生开发社群 [孔令飞的云原生实战营](https://konglingfei.com)，来提高云原生技术学习的效果。
 
 > 为什么起名 OneX：OneX 寓意该实战项目具有功能全、扩展性强、灵活性高等特点。
 
 ## Features
 
-OneX 项目实现了企业级应用需要的绝大部分技能点，详细请参考：[OneX 功能列表](http://konglingfei.com/onex/intro/feature.html)
+OneX 项目实现了企业级应用需要的绝大部分技能点，详细请参考：[OneX 功能列表](https://konglingfei.com/onex/intro/feature.html)
 
 OneX 实战项目同时还具有以下特点：
 - 功能全：课程包含了 Go 开发生涯中几乎用到的所有及实战，包括但不限于以下 4 大技术栈：
@@ -58,7 +59,7 @@ OneX 实战项目同时还具有以下特点：
 
 ![OneX 架构图](./docs/images/onex-arch.png)
 
-架构介绍见：[OneX 架构介绍](http://konglingfei.com/onex/intro/intro.html)
+架构介绍见：[OneX 架构介绍](https://konglingfei.com/onex/intro/intro.html)
 
 ## Installation
 
@@ -70,7 +71,7 @@ $ cd onex
 $ make docker-install # 本地快速搭建 OneX（容器化），最好用全新安装的 Debian 12 Linux 发行版
 ```
 
-安装文档见：[OneX 容器部署](http://konglingfei.com/onex/installation/docker.html)
+安装文档见：[OneX 容器部署](https://konglingfei.com/onex/installation/docker.html)
 
 其他常用操作如下：
 
@@ -109,7 +110,7 @@ $ kubectl create -f ${ONEX_ROOT}/manifests/sample/onex/minerset.yaml
 $ onexctl --config ${ONEX_CONFIG_DIR}/onexctl.yaml minerset list
 ```
 
-更多使用方法，请参考：[OneX 项目测试](http://konglingfei.com/onex/installation/test.html)
+更多使用方法，请参考：[OneX 项目测试](https://konglingfei.com/onex/installation/test.html)
 
 ## Documentation
 
@@ -127,7 +128,7 @@ OneX [项目文档] 包含了 OneX 项目介绍、OneX 部署、OneX 项目测�
 
 ## Authors
 
-- [@孔令飞](http://konglingfei.com)
+- [@孔令飞](https://konglingfei.com/intro.html)
 
 ## License
 
