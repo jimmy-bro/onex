@@ -1,4 +1,4 @@
-<p align="center" style="text-align: center">
+<p align="center" style="text-align: right">
   <img src="./docs/images/onex-orange.svg" width="55%"><br/>
 </p>
 
