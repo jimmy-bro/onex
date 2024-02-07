@@ -5,7 +5,7 @@
 
 # OneX 云原生实战平台
 
-<a href="http://konglingfei.com/"><img align="right" src="./docs/images/onex-orange.svg" alt="onex" title="onex" width="100"></a>
+<a href="http://konglingfei.com/"><img align="right" src="./docs/images/onex-orange.svg" alt="onex" title="onex" width="150"></a>
 
 <div align="center">一个专为 Go + 云原生学习而生的企业级 Go 项目</div>
 <br/>
