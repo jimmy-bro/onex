@@ -10,14 +10,14 @@ ONEX_ROOT=$(dirname "${BASH_SOURCE[0]}")/../..
 [[ -z ${COMMON_SOURCED} ]] && source ${ONEX_ROOT}/scripts/installation/common.sh
 
 # 安装后打印必要的信息
-function onex::man::info() {
+onex::man::info() {
 cat << EOF
 use: man onex-xxx to see onex-xxx help.
 EOF
 }
 
 # 安装
-function onex::man::install()
+onex::man::install()
 {
   pushd ${ONEX_ROOT}
 
@@ -32,14 +32,14 @@ function onex::man::install()
 }
 
 # 卸载
-function onex::man::uninstall()
+onex::man::uninstall()
 {
   onex::util::sudo "rm -f /usr/share/man/man1/onex-*"
   onex::log::info "uninstall onex man pages successfully"
 }
 
 # 状态检查
-function onex::man::status()
+onex::man::status()
 {
   ls /usr/share/man/man1/onex-* &>/dev/null || {
     onex::log::error "onex man files not exist, maybe not installed properly"
@@ -47,6 +47,4 @@ function onex::man::status()
   }
 }
 
-if [[ "$*" =~ onex::man:: ]];then
-  eval $*
-fi
+[[ "$*" =~ onex::man:: ]] && eval $*

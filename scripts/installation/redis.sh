@@ -17,7 +17,7 @@ ONEX_REDIS_PORT=${ONEX_REDIS_PORT:-6379}
 ONEX_PASSWORD=${ONEX_PASSWORD:-onex(#)666}
 
 # Install redis using containerization.
-function onex::redis::docker::install()
+onex::redis::docker::install()
 {
   onex::redis::pre_install
 
@@ -41,7 +41,7 @@ function onex::redis::docker::install()
 }
 
 # Uninstall the docker container.
-function onex::redis::docker::uninstall()
+onex::redis::docker::uninstall()
 {
   docker rm -f onex-redis &>/dev/null
   onex::util::sudo "rm -rf ${ONEX_THIRDPARTY_INSTALL_DIR}/redis"
@@ -50,7 +50,7 @@ function onex::redis::docker::uninstall()
 
 # Install the redis step by step.
 # sbs is the abbreviation for "step by step".
-function onex::redis::sbs::install()
+onex::redis::sbs::install()
 {
   onex::redis::pre_install
 
@@ -96,19 +96,17 @@ function onex::redis::sbs::install()
   onex::log::info "install redis successfully"
 }
 
-function onex::redis::pre_install()
+onex::redis::pre_install()
 {
   onex::util::sudo "apt install -y redis-tools"
 }
 
 # Uninstall the redis step by step.
-function onex::redis::sbs::uninstall()
+onex::redis::sbs::uninstall()
 {
   # 先删除 redis-server 进程，否则 `systemctl stop redis-server` 可能会卡主
   redis_pid=$(pgrep -f redis-server)
-  if [[ ${redis_pid} != "" ]];then
-    onex::util::sudo "kill -9 ${redis_pid}"
-  fi
+  [[ ${redis_pid} != "" ]] && onex::util::sudo "kill -9 ${redis_pid}"
 
   set +o errexit
   onex::util::sudo "systemctl stop redis-server"
@@ -120,7 +118,7 @@ function onex::redis::sbs::uninstall()
 }
 
 # Print necessary information after docker or sbs installation.
-function onex::redis::info()
+onex::redis::info()
 {
   echo -e ${C_GREEN}redis has been installed, here are some useful information:${C_NORMAL}
   cat << EOF | sed 's/^/  /'
@@ -131,7 +129,7 @@ EOF
 }
 
 # Status check after docker or sbs installation.
-function onex::redis::status()
+onex::redis::status()
 {
   onex::util::telnet ${ONEX_REDIS_HOST} ${ONEX_REDIS_PORT} || return 1
   redis-cli --no-auth-warning -h ${ONEX_REDIS_HOST} -p ${ONEX_REDIS_PORT} -a "${ONEX_REDIS_PASSWORD}" --hotkeys || {
@@ -140,6 +138,4 @@ function onex::redis::status()
   }
 }
 
-if [[ "$*" =~ onex::redis:: ]];then
-  eval $*
-fi
+[[ "$*" =~ onex::redis:: ]] && eval $*

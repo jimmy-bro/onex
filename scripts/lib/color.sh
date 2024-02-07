@@ -24,7 +24,7 @@ C_BBLUE='\033[44m';C_BMAGENTA='\033[45m';
 C_BCYAN='\033[46m';C_BWHITE='\033[47m';
 
 # Print colors you can use
-function onex::color::print_color()
+onex::color::print_color()
 {
   echo
   echo -e ${bmagenta}--back-color:${normal}
@@ -37,4 +37,27 @@ function onex::color::print_color()
   echo "normal; italic; reverse; nounder; bold; noitalic; conceal; noblink;
   dim; blink; nobold; under"
   echo
+}
+
+onex::color::color_print() {
+  local color=$1
+  shift
+  # if stdout is a terminal, turn on color output.
+  #   '-t' check: is a terminal?
+  #   check isatty in bash https://stackoverflow.com/questions/10022323
+  if [ -t 1 ]; then
+    printf '\e[1;%sm%s\e[0m\n' "$color" "$*"
+  else
+    printf '%s\n' "$*"
+  fi
+}
+
+onex::color::red()
+{
+  onex::color::color_print 31 "$@"
+}
+
+onex::color::green()
+{
+  onex::color::color_print 32 "$@"
 }

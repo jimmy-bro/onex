@@ -33,7 +33,8 @@ if [[ "$(command -v kubectl)" == "" ]];then
   make -C ${ONEX_ROOT} tools.install.kubectl
 fi
 
-function onex::test::test()
+# 测试整个 OneX 项目
+onex::test::test()
 {
   onex::test::usercenter
   onex::test::apiserver
@@ -93,6 +94,7 @@ onex::test::access_token()
   ${CCURL} http://${ONEX_USERCENTER_ADDR}/v1/auth/login -d'{"username":"'$user'","password":"onex(#)666"}' | grep -Po 'accessToken[" :]+\K[^"]+'
 }
 
+# 测试 onex-usercenter 组件 user 资源
 onex::test::usercenter::user()
 {
   admin_token_header="-HAuthorization: Bearer $(onex::test::refresh_token)"
@@ -126,6 +128,7 @@ onex::test::usercenter::user()
   onex::log::info "$(echo -e ${C_GREEN}===========\> /v1/user test passed!${C_NORMAL})"
 }
 
+# 测试 onex-usercenter auth 资源
 onex::test::usercenter::auth()
 {
   # Login
@@ -155,6 +158,7 @@ onex::test::usercenter::auth()
   onex::log::info "$(echo -e ${C_GREEN}===========\> /v1/auth test passed!${C_NORMAL})"
 }
 
+# 测试 onex-usercenter secret 资源
 onex::test::usercenter::secret()
 {
   admin_token_header="-HAuthorization: Bearer $(onex::test::refresh_token admin)"
@@ -218,11 +222,13 @@ onex::test::controller()
   onex::log::info "$(echo -e ${C_GREEN}===========\> onex controller test passed!${C_NORMAL})"
 }
 
+# 测试 onex-apiserver 组件
 onex::test::apiserver()
 {
   kubectl api-resources | egrep -q 'apps.onex.io'
 }
 
+# 测试 onex-gateway 组件
 onex::test::gateway()
 {
 
@@ -234,12 +240,14 @@ onex::test::gateway()
 }
 
 
+# 确保创世区块存在
 onex::test::gateway::ensure_genesis_chain()
 {
   kubectl create -f ${ONEX_ROOT}/manifests/sample/onex/chain.yaml || true
   kubectl -n kube-system get chain genesis
 }
 
+# 测试 onex-gateway chacin 资源
 onex::test::gateway::chain()
 {
   # 创建一个创世区块链
@@ -249,16 +257,21 @@ onex::test::gateway::chain()
   onex::log::info "$(echo -e ${C_GREEN}===========\> /v1/chains test passed!${C_NORMAL})"
 }
 
+# 测试 onex-fakeserver
 onex::test::fakeserver()
 {
+  # Leave to you to implement it.
   onex::log::info "$(echo -e ${C_GREEN}===========\> onex-fakeserver test passed!${C_NORMAL})"
 }
 
+# 测试 onex-cacheserver 组件
 onex::test::cacheserver()
 {
+  # Leave to you to implement it.
   onex::log::info "$(echo -e ${C_GREEN}===========\> onex-cacheserver test passed!${C_NORMAL})"
 }
 
+# 测试 onex-gateway 组件
 onex::test::gateway::minerset()
 {
   # 确保依赖的创世链存在
@@ -297,6 +310,7 @@ onex::test::gateway::minerset()
   onex::log::info "$(echo -e ${C_GREEN}===========\> /v1/minersets test passed!${C_NORMAL})"
 }
 
+# 测试 onex-miner-controller
 onex::test::gateway::miner()
 {
   # 确保依赖的创世链存在
@@ -331,6 +345,7 @@ onex::test::gateway::miner()
   onex::log::info "$(echo -e ${C_GREEN}===========\> /v1/miners test passed!${C_NORMAL})"
 }
 
+# 测试 onex-usercenter 组件
 onex::test::usercenter()
 {
   onex::test::usercenter::user
@@ -339,18 +354,21 @@ onex::test::usercenter()
   onex::log::info "$(echo -e ${C_GREEN}===========\> onex-usercenter test passed!${C_NORMAL})"
 }
 
+# 测试 onex-pump 组件
 onex::test::pump()
 {
   ${RCURL} http://${ONEX_PUMP_ADDR}${ONEX_PUMP_HEALTH_CHECK_PATH} | egrep 'status.*ok'
   onex::log::info "$(echo -e ${C_GREEN}===========\> onex-pump test passed!${C_NORMAL})"
 }
 
+# 测试 onex-nightwatch 组件
 onex::test::nightwatch()
 {
   ${RCURL} http://${ONEX_NIGHTWATCH_ADDR}${ONEX_NIGHTWATCH_HEALTH_CHECK_PATH} | egrep 'status.*ok'
   onex::log::info "$(echo -e ${C_GREEN}===========\> onex-nightwatch test passed!${C_NORMAL})"
 }
 
+# 测试 onex-toyblc 组件
 onex::test::toyblc()
 {
   ${RCURL} -u${ONEX_TOYBLC_USERNAME}:${ONEX_TOYBLC_PASSWORD} http://${ONEX_TOYBLC_ADDR}/v1/blocks; echo
@@ -359,6 +377,7 @@ onex::test::toyblc()
   onex::log::info "$(echo -e ${C_GREEN}===========\> onex-toyblc test passed!${C_NORMAL})"
 }
 
+# 测试 onexctl 组件
 onex::test::onexctl()
 {
   # 创建一个测试矿机池
@@ -369,6 +388,4 @@ onex::test::onexctl()
   onex::log::info "$(echo -e ${C_GREEN}===========\> onexctl test passed!${C_NORMAL})"
 }
 
-if [[ "$*" =~ onex::test:: ]];then
-  eval $*
-fi
+[[ "$*" =~ onex::test:: ]] && eval $*

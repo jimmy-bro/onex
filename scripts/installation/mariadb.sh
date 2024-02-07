@@ -17,7 +17,7 @@ ONEX_MYSQL_PORT=${ONEX_MYSQL_PORT:-6379}
 ONEX_PASSWORD=${ONEX_PASSWORD:-onex(#)666}
 
 # Install mariadb using containerization.
-function onex::mariadb::docker::install()
+onex::mariadb::docker::install()
 {
   # 安装客户端工具，访问 MariaDB
   onex::util::sudo "apt install -y mariadb-client"
@@ -39,7 +39,7 @@ function onex::mariadb::docker::install()
 }
 
 # Uninstall the docker container.
-function onex::mariadb::docker::uninstall()
+onex::mariadb::docker::uninstall()
 {
   docker rm -f onex-mariadb &>/dev/null
   onex::util::sudo "rm -rf ${ONEX_THIRDPARTY_INSTALL_DIR}/mariadb"
@@ -48,7 +48,7 @@ function onex::mariadb::docker::uninstall()
 
 # Install the mariadb step by step.
 # sbs is the abbreviation for "step by step".
-function onex::mariadb::sbs::install()
+onex::mariadb::sbs::install()
 {
   # 本机 apt 安装后 MySQL 端口固定位 3306
   export ONEX_MYSQL_PORT=3306
@@ -59,14 +59,13 @@ function onex::mariadb::sbs::install()
   # 配置 MariaDB 11.2.2 apt 源（docker install 和 sbs install 版本都要保持一致）
   echo ${LINUX_PASSWORD} | sudo -S echo "deb [arch=amd64,arm64] https://mirrors.aliyun.com/mariadb/repo/11.2.2/debian/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/mariadb-11.2.2.list
 
-  # 执行以下命令，防止uninstall后，出现：`update-alternatives: error: alternative path /etc/mysql/mariadb.cnf doesn't exist` 错误
-
   # 注意：一定要执行 `apt update`，否则可能安装的还是旧的软件包
   onex::util::sudo "apt update"
 
   # 需要先创建 /var/lib/mysql/ 目录，否则 `systemctl start mariadb` 时可能会报错
   onex::util::sudo "mkdir -p /var/lib/mysql"
 
+  # 执行以下命令，防止uninstall后，出现：`update-alternatives: error: alternative path /etc/mysql/mariadb.cnf doesn't exist` 错误
   # 安装 MariaDB 客户端和 MariaDB 服务端
   onex::util::sudo "apt install -y -o Dpkg::Options::="--force-confmiss" --reinstall mariadb-client mariadb-server"
 
@@ -87,7 +86,7 @@ function onex::mariadb::sbs::install()
 }
 
 # Uninstall the mariadb step by step.
-function onex::mariadb::sbs::uninstall()
+onex::mariadb::sbs::uninstall()
 {
   # `|| true` 实现幂等
   onex::util::sudo "systemctl stop mariadb" || true
@@ -103,9 +102,9 @@ function onex::mariadb::sbs::uninstall()
 }
 
 # Print necessary information after docker or sbs installation.
-function onex::mariadb::info()
+onex::mariadb::info()
 {
-  echo -e ${C_GREEN}mariadb has been installed, here are some useful information:${C_NORMAL}
+  onex::color::green "mariadb has been installed, here are some useful information:"
   cat << EOF | sed 's/^/  /'
 MySQL access endpoint is: ${ONEX_MYSQL_HOST}:${ONEX_MYSQL_PORT}
         root password is: ${ONEX_PASSWORD}
@@ -115,7 +114,7 @@ EOF
 }
 
 # Status check after docker or sbs installation.
-function onex::mariadb::status()
+onex::mariadb::status()
 {
   sleep 20
   # 基础检查：检查端口，基础检查
@@ -129,6 +128,4 @@ function onex::mariadb::status()
   }
 }
 
-if [[ "$*" =~ onex::mariadb:: ]];then
-    eval $*
-fi
+[[ "$*" =~ onex::mariadb:: ]] && eval $*

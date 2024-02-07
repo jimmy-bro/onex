@@ -17,7 +17,7 @@ ONEX_KAFKA_PORT=${ONEX_KAFKA_PORT:-4317}
 
 # Install kafka using containerization.
 # Refer to https://www.baeldung.com/ops/kafka-docker-setup
-function onex::kafka::docker::install()
+onex::kafka::docker::install()
 {
   onex::common::network
   docker run -d --name onex-zookeeper --network onex -p 2181:2181 -t wurstmeister/zookeeper
@@ -39,7 +39,7 @@ function onex::kafka::docker::install()
 }
 
 # Uninstall the docker container.
-function onex::kafka::docker::uninstall()
+onex::kafka::docker::uninstall()
 {
   docker rm -f onex-zookeeper &>/dev/null
   docker rm -f onex-kafka &>/dev/null
@@ -49,21 +49,21 @@ function onex::kafka::docker::uninstall()
 # Install the kafka step by step.
 # sbs is the abbreviation for "step by step".
 # Refer to https://kafka.apache.org/documentation/#quickstart
-function onex::kafka::sbs::install()
+onex::kafka::sbs::install()
 {
   onex::kafka::docker::install
   onex::log::info "install kafka successfully"
 }
 
 # Uninstall the kafka step by step.
-function onex::kafka::sbs::uninstall()
+onex::kafka::sbs::uninstall()
 {
   onex::kafka::docker::uninstall
   onex::log::info "uninstall kafka successfully"
 }
 
 # Print necessary information after docker or sbs installation.
-function onex::kafka::info()
+onex::kafka::info()
 {
   echo -e ${C_GREEN}kafka has been installed, here are some useful information:${C_NORMAL}
   cat << EOF | sed 's/^/  /'
@@ -72,11 +72,9 @@ EOF
 }
 
 # Status check after docker or sbs installation.
-function onex::kafka::status()
+onex::kafka::status()
 {
   onex::util::telnet ${ONEX_KAFKA_HOST} ${ONEX_KAFKA_PORT} || return 1
 }
 
-if [[ $* =~ onex::kafka:: ]];then
-    eval $*
-fi
+[[ $* =~ onex::kafka:: ]] && eval $*

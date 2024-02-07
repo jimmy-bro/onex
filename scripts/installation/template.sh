@@ -16,7 +16,7 @@ ONEX_TEMPLATE_HOST=${ONEX_TEMPLATE_HOST:-127.0.0.1}
 ONEX_TEMPLATE_PORT=${ONEX_TEMPLATE_PORT:-xxxx}
 
 # Install template using containerization.
-function onex::template::docker::install()
+onex::template::docker::install()
 {
   # docker run -d --name onex-xxx ...
   onex::template::status || return 1
@@ -25,7 +25,7 @@ function onex::template::docker::install()
 }
 
 # Uninstall the docker container.
-function onex::template::docker::uninstall()
+onex::template::docker::uninstall()
 {
   # docker rm -f onex-xxx &>/dev/null
   onex::log::info "uninstall template successfully"
@@ -33,19 +33,19 @@ function onex::template::docker::uninstall()
 
 # Install the template step by step.
 # sbs is the abbreviation for "step by step".
-function onex::template::sbs::install()
+onex::template::sbs::install()
 {
   onex::log::info "install template successfully"
 }
 
 # Uninstall the template step by step.
-function onex::template::sbs::uninstall()
+onex::template::sbs::uninstall()
 {
   onex::log::info "uninstall template successfully"
 }
 
 # Print necessary information after docker or sbs installation.
-function onex::template::info()
+onex::template::info()
 {
   echo -e ${C_GREEN}template has been installed, here are some useful information:${C_NORMAL}
   cat << EOF | sed 's/^/  /'
@@ -54,11 +54,9 @@ EOF
 }
 
 # Status check after docker or sbs installation.
-function onex::template::status()
+onex::template::status()
 {
   onex::util::telnet ${ONEX_TEMPLATE_HOST} ${ONEX_TEMPLATE_PORT} || return 1
 }
 
-if [[ "$*" =~ onex::template:: ]];then
-    eval $*
-fi
+[[ "$*" =~ onex::template:: ]] && eval $*

@@ -1,5 +1,5 @@
 <p align="center" style="text-align: center">
-  <img src="./docs/images/logo.png" width="55%"><br/>
+  <img src="./docs/images/onex-orange.svg" width="55%"><br/>
 </p>
 
 <p align="center">

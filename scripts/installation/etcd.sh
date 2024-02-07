@@ -19,7 +19,7 @@ ONEX_ETCD_VERSION=${ETCD_VERSION:-3.5.11}
 ONEX_ETCD_DIR=${ONEX_ETCD_DIR:-${ONEX_THIRDPARTY_INSTALL_DIR}/etcd}
 
 # Install etcd using containerization.
-function onex::etcd::docker::install()
+onex::etcd::docker::install()
 {
   onex::common::network
   docker run -d --name onex-etcd \
@@ -40,7 +40,7 @@ function onex::etcd::docker::install()
 }
 
 # Uninstall the docker container.
-function onex::etcd::docker::uninstall()
+onex::etcd::docker::uninstall()
 {
   docker rm -f onex-etcd &>/dev/null
   onex::util::sudo "rm -rf ${ONEX_ETCD_DIR}"
@@ -49,7 +49,7 @@ function onex::etcd::docker::uninstall()
 
 # Install the etcd step by step.
 # sbs is the abbreviation for "step by step".
-function onex::etcd::sbs::install()
+onex::etcd::sbs::install()
 {
   local os
   local arch
@@ -112,7 +112,7 @@ EOF
 }
 
 # Uninstall the etcd step by step.
-function onex::etcd::sbs::uninstall()
+onex::etcd::sbs::uninstall()
 {
   #set +o errexit
   #etcd_pids=$(pgrep -f $HOME/bin/etcd)
@@ -128,16 +128,16 @@ function onex::etcd::sbs::uninstall()
 }
 
 # Print necessary information after docker or sbs installation.
-function onex::etcd::info()
+onex::etcd::info()
 {
-  echo -e ${C_GREEN}etcd has been installed, here are some useful information:${C_NORMAL}
+  onex::color::green "etcd has been installed, here are some useful information:"
   cat << EOF | sed 's/^/  /'
 Etcd endpoint is: ${ONEX_ETCD_HOST}:${ONEX_ETCD_CLIENT_PORT}
 EOF
 }
 
 # Status check after docker or sbs installation.
-function onex::etcd::status()
+onex::etcd::status()
 {
   onex::util::telnet ${ONEX_ETCD_HOST} ${ONEX_ETCD_CLIENT_PORT} || return 1
 
@@ -145,6 +145,4 @@ function onex::etcd::status()
   #onex::util::wait_for_url "http://${ONEX_ETCD_HOST}:${ONEX_ETCD_CLIENT_PORT}/health" "etcd: " 0.25 80
 }
 
-if [[ "$*" =~ onex::etcd:: ]];then
-  eval $*
-fi
+[[ "$*" =~ onex::etcd:: ]] && eval $*

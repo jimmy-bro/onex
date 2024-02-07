@@ -10,9 +10,7 @@
 # shellcheck disable=SC2034 # Variables sourced in other scripts.
 
 # Common utilities, variables and checks for all build scripts.
-set -o errexit
-set +o nounset
-set -o pipefail
+set -eEuo pipefail
 
 # Unset CDPATH, having it set messes up with script import paths
 unset CDPATH

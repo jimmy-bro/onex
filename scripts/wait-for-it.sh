@@ -9,7 +9,7 @@
 
 #   Use this script to test if a given TCP host/port are available
 
-WAITFORIT_cmdname=${0##*/}
+WAITFORIT_CMDNAME=${0##*/}
 
 echoerr() { if [[ $WAITFORIT_QUIET -ne 1 ]]; then echo "$@" 1>&2; fi }
 
@@ -17,7 +17,7 @@ usage()
 {
     cat << USAGE >&2
 Usage:
-    $WAITFORIT_cmdname host:port [-s] [-t timeout] [-- command args]
+    $WAITFORIT_CMDNAME host:port [-s] [-t timeout] [-- command args]
     -h HOST | --host=HOST       Host or IP under test
     -p PORT | --port=PORT       TCP port under test
                                 Alternatively, you specify the host and port as host:port
@@ -33,9 +33,9 @@ USAGE
 wait_for()
 {
     if [[ $WAITFORIT_TIMEOUT -gt 0 ]]; then
-        echoerr "$WAITFORIT_cmdname: waiting $WAITFORIT_TIMEOUT seconds for $WAITFORIT_HOST:$WAITFORIT_PORT"
+        echoerr "$WAITFORIT_CMDNAME: waiting $WAITFORIT_TIMEOUT seconds for $WAITFORIT_HOST:$WAITFORIT_PORT"
     else
-        echoerr "$WAITFORIT_cmdname: waiting for $WAITFORIT_HOST:$WAITFORIT_PORT without a timeout"
+        echoerr "$WAITFORIT_CMDNAME: waiting for $WAITFORIT_HOST:$WAITFORIT_PORT without a timeout"
     fi
     WAITFORIT_start_ts=$(date +%s)
     while :
@@ -49,7 +49,7 @@ wait_for()
         fi
         if [[ $WAITFORIT_result -eq 0 ]]; then
             WAITFORIT_end_ts=$(date +%s)
-            echoerr "$WAITFORIT_cmdname: $WAITFORIT_HOST:$WAITFORIT_PORT is available after $((WAITFORIT_end_ts - WAITFORIT_start_ts)) seconds"
+            echoerr "$WAITFORIT_CMDNAME: $WAITFORIT_HOST:$WAITFORIT_PORT is available after $((WAITFORIT_end_ts - WAITFORIT_start_ts)) seconds"
             break
         fi
         sleep 1
@@ -70,7 +70,7 @@ wait_for_wrapper()
     wait $WAITFORIT_PID
     WAITFORIT_RESULT=$?
     if [[ $WAITFORIT_RESULT -ne 0 ]]; then
-        echoerr "$WAITFORIT_cmdname: timeout occurred after waiting $WAITFORIT_TIMEOUT seconds for $WAITFORIT_HOST:$WAITFORIT_PORT"
+        echoerr "$WAITFORIT_CMDNAME: timeout occurred after waiting $WAITFORIT_TIMEOUT seconds for $WAITFORIT_HOST:$WAITFORIT_PORT"
     fi
     return $WAITFORIT_RESULT
 }
@@ -177,7 +177,7 @@ fi
 
 if [[ $WAITFORIT_CLI != "" ]]; then
     if [[ $WAITFORIT_RESULT -ne 0 && $WAITFORIT_STRICT -eq 1 ]]; then
-        echoerr "$WAITFORIT_cmdname: strict mode, refusing to execute subprocess"
+        echoerr "$WAITFORIT_CMDNAME: strict mode, refusing to execute subprocess"
         exit $WAITFORIT_RESULT
     fi
     exec "${WAITFORIT_CLI[@]}"

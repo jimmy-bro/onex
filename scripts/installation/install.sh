@@ -23,22 +23,31 @@ source ${INSTALL_DIR}/onex.sh
 source ${INSTALL_DIR}/test.sh
 
 # OneX 容器化快速安装
-function onex::install::docker::install()
+onex::install::docker::install()
 {
 
 
+  # 安装前置依赖
   onex::install::pre_install
+
+  # 安装存储组件
   onex::install::storage::docker::install
+
+  # 安装中间件
   onex::install::middleware::docker::install
+
+  # 安装 OneX 各组件
   onex::onex::docker::install
 
   # 等待所有服务启动
   echo "Sleeping to wait for all onex container to complete startup ..."
   sleep 10
+  # 安装后测试
   onex::test::test
 }
 
-function onex::install::pre_install()
+# OneX 安装前的一些前置处理
+onex::install::pre_install()
 {
   # 为了确保 Debian 系统具有最新的安全补丁和软件，这里先更新系统软件包。
   # 如果你要做存量软件的版本升级，可以执行`sudo apt upgrade`，但不建议
@@ -62,7 +71,7 @@ EOF
 }
 
 # OneX 幂等卸载，注意卸载顺序
-function onex::install::docker::uninstall()
+onex::install::docker::uninstall()
 {
   onex::onex::docker::uninstall || true
   onex::install::middleware::docker::uninstall || true
@@ -77,7 +86,7 @@ function onex::install::docker::uninstall()
 }
 
 # 安装所有的存储组件
-function onex::install::storage::docker::install()
+onex::install::storage::docker::install()
 {
   onex::mariadb::docker::install
   onex::redis::docker::install
@@ -86,7 +95,7 @@ function onex::install::storage::docker::install()
 }
 
 # 卸载所有的存储组件
-function onex::install::storage::docker::uninstall()
+onex::install::storage::docker::uninstall()
 {
   onex::mariadb::docker::uninstall
   onex::redis::docker::uninstall
@@ -95,14 +104,14 @@ function onex::install::storage::docker::uninstall()
 }
 
 # 安装其他中间件
-function onex::install::middleware::docker::install()
+onex::install::middleware::docker::install()
 {
   onex::jaeger::docker::install
   onex::kafka::docker::install
 }
 
 # 卸载其他中间件
-function onex::install::middleware::docker::uninstall()
+onex::install::middleware::docker::uninstall()
 {
   onex::jaeger::docker::uninstall
   onex::kafka::docker::uninstall
@@ -111,7 +120,7 @@ function onex::install::middleware::docker::uninstall()
 # OneX 脚本自动化安装
 # 你可以直接阅读安装脚本，学习安装的所有细节
 # 有些组件本地化手动安装会比较复杂，仍然会采用容器化安装，比如：kafka。
-function onex::install::sbs::install()
+onex::install::sbs::install()
 {
   onex::install::pre_install
   onex::install::storage::sbs::install
@@ -125,7 +134,7 @@ function onex::install::sbs::install()
 }
 
 # OneX 幂等卸载，注意卸载顺序
-function onex::install::sbs::uninstall()
+onex::install::sbs::uninstall()
 {
   onex::onex::sbs::uninstall || true
   onex::install::middleware::sbs::uninstall || true
@@ -134,7 +143,7 @@ function onex::install::sbs::uninstall()
 }
 
 # 安装所有的存储组件
-function onex::install::storage::sbs::install()
+onex::install::storage::sbs::install()
 {
   onex::mariadb::sbs::install
   onex::redis::sbs::install
@@ -143,7 +152,7 @@ function onex::install::storage::sbs::install()
 }
 
 # 卸载所有的存储组件
-function onex::install::storage::sbs::uninstall()
+onex::install::storage::sbs::uninstall()
 {
   onex::mariadb::sbs::uninstall
   onex::redis::sbs::uninstall
@@ -153,19 +162,17 @@ function onex::install::storage::sbs::uninstall()
 
 # 安装其他中间件
 # 因为 jaeger 和 kafka 手动安装比较复杂，这里仍然采用 docker 安装
-function onex::install::middleware::sbs::install()
+onex::install::middleware::sbs::install()
 {
   onex::jaeger::docker::install
   onex::kafka::docker::install
 }
 
 # 卸载其他中间件
-function onex::install::middleware::sbs::uninstall()
+onex::install::middleware::sbs::uninstall()
 {
   onex::jaeger::sbs::uninstall
   onex::kafka::sbs::uninstall
 }
 
-if [[ "$*" =~ onex::install:: ]];then
-  eval $*
-fi
+[[ "$*" =~ onex::install:: ]] && eval $*

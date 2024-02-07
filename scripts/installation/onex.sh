@@ -15,7 +15,7 @@ ONEX_ROOT=$(dirname "${BASH_SOURCE[0]}")/../..
 source ${INSTALL_DIR}/man.sh
 
 # Install onex using containerization.
-function onex::onex::docker::install()
+onex::onex::docker::install()
 {
   onex::onex::prepare
 
@@ -66,14 +66,14 @@ function onex::onex::docker::install()
 }
 
 # Uninstall the docker container.
-function onex::onex::docker::uninstall()
+onex::onex::docker::uninstall()
 {
   docker rm -f onex &>/dev/null
   docker volume rm onex-volume &>/dev/null
   onex::log::info "uninstall onex successfully"
 }
 
-function onex::onex::build_artifacts()
+onex::onex::build_artifacts()
 {
   # 设置 Makefile 构建出产物的保存位置
   export OUTPUT_DIR=${LOCAL_OUTPUT_ROOT}
@@ -101,7 +101,7 @@ function onex::onex::build_artifacts()
 
 # Install the onex step by step.
 # sbs is the abbreviation for "step by step".
-function onex::onex::sbs::install()
+onex::onex::sbs::install()
 {
   onex::onex::prepare
 
@@ -159,7 +159,7 @@ function onex::onex::sbs::install()
 }
 
 # Uninstall the onex step by step.
-function onex::onex::sbs::uninstall()
+onex::onex::sbs::uninstall()
 {
   # 防止删除 / 目录
   [[ -z ${ONEX_INSTALL_DIR} ]] || [[ ${ONEX_INSTALL_DIR} == "/" ]] &&
@@ -183,7 +183,7 @@ function onex::onex::sbs::uninstall()
 }
 
 # Print necessary information after docker or sbs installation.
-function onex::onex::info()
+onex::onex::info()
 {
   echo -e ${C_GREEN}onex has been installed, here are some useful information:${C_NORMAL}
   cat << EOF | sed 's/^/  /'
@@ -224,7 +224,7 @@ EOF
 }
 
 # Status check after docker or sbs installation.
-function onex::onex::sbs::status()
+onex::onex::sbs::status()
 {
   has_failed=false
   for service in "${ONEX_SERVER_SIDE_COMPONENTS[@]}"
@@ -243,7 +243,7 @@ function onex::onex::sbs::status()
 }
 
 # 要实现幂等
-function onex::onex::prepare()
+onex::onex::prepare()
 {
   pushd "${ONEX_ROOT}" >/dev/null 2>&1
 
@@ -290,6 +290,4 @@ quit;
 EOF
 }
 
-if [[ "$*" =~ onex::onex:: ]];then
-  eval $*
-fi
+[[ "$*" =~ onex::onex:: ]] && eval $*

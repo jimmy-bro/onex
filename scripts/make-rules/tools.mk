@@ -11,7 +11,8 @@ CI_WORKFLOW_TOOLS := code-generator golangci-lint goimports wire
 # unused tools in this project: gentool
 OTHER_TOOLS := mockgen uplift git-chglog addlicense kratos kind go-apidiff gotests \
 			   cfssl go-gitlint kustomize kafkactl kube-linter kubeconform kubectl \
-			   helm-docs db2struct gentool air swagger license gothanks kubebuilder go-junit-report controller-gen
+			   helm-docs db2struct gentool air swagger license gothanks kubebuilder \
+			   go-junit-report controller-gen
 MANUAL_INSTALL_TOOLS := kafka
 
 .PHONY: tools.install

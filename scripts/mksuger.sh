@@ -22,14 +22,14 @@ LOAD=false
 ONEX_KIND_CLUSTER_NAME=${ONEX_KIND_CLUSTER_NAME:-onex}
 
 # Get file names from COMMAND LINE arguments
-function getcomponents() {
+getcomponents() {
   for f in "$@"; do
     COMPONENTS[${#COMPONENTS[*]}]=${ONEX_ALL_COMPONENTS[$1]:-$1}
   done
 }
 
 # Load docker images to kind cluster
-function load_docker_images() {
+load_docker_images() {
   NODES=${KIND_LOAD_NODES:-$(kubectl get nodes|awk '/Ready/ && !/SchedulingDisabled/{nodes=nodes$1","} END{gsub(/,$/,"",nodes);print nodes}')}
 
   for comp in "${COMPONENTS[@]}"
@@ -39,7 +39,7 @@ function load_docker_images() {
 }
 
 # Build docker images
-function build_image() {
+build_image() {
   local cmd=image
   [[ ${PUSH} == true ]] && cmd=push
 
@@ -54,7 +54,7 @@ function build_image() {
 }
 
 # Only build component
-function build() {
+build() {
   for comp in "${COMPONENTS[@]}"
   do
     make -C ${ONEX_ROOT} build BINS=${comp} VERSION=${OVERSION}
@@ -62,7 +62,7 @@ function build() {
 }
 
 # Build docker images and deploy them
-function deploy() {
+deploy() {
   for comp in "${COMPONENTS[@]}"
   do
     make -C ${ONEX_ROOT} deploy DEPLOYS=${comp} VERSION=${OVERSION}
@@ -72,11 +72,12 @@ function deploy() {
 }
 
 # Print usage infomation
-function usage()
+usage()
 {
+  readonly PROG=${0##*/}
   cat << EOF
 
-Usage: $0 [ OPTIONS ] SHORTNAME [-d]
+Usage: ${PROG} [ OPTIONS ] SHORTNAME [-d]
 build suger script.
 
   SHORTNAME              short name for onex component.
@@ -93,14 +94,14 @@ EOF
 }
 
 # Print message to standerr
-function die()
+die()
 {
   echo "$@" >&2
   exit 1
 }
 
 # Check the argument associate with a option
-function requiredarg()
+requiredarg()
 {
   [ -z "$2" -o "$(echo $2 | awk '$0~/^-/{print 1}')" == "1" ] && die "$0: option $1 requires an argument"
   ((args++))

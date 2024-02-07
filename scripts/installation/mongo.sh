@@ -22,7 +22,7 @@ ONEX_MONGO_ADMIN_PASSWORD=${ONEX_MONGO_ADMIN_PASSWORD:-'onex(#)666'}
 ONEX_MONGO_ADMIN_AUTH=${ONEX_MONGO_ADMIN_USERNAME}:${ONEX_MONGO_ADMIN_PASSWORD}
 
 # Install mongo using containerization.
-function onex::mongo::docker::install()
+onex::mongo::docker::install()
 {
   onex::mongo::pre_install
 
@@ -42,14 +42,14 @@ function onex::mongo::docker::install()
 }
 
 
-function onex::mongo::pre_install()
+onex::mongo::pre_install()
 {
   # 安装 MongoDB 客户端
   onex::util::sudo "apt install -y mongodb-mongosh"
 }
 
 # Uninstall the docker container.
-function onex::mongo::docker::uninstall()
+onex::mongo::docker::uninstall()
 {
   docker rm -f onex-mongo &>/dev/null
   onex::util::sudo "rm -rf ${ONEX_THIRDPARTY_INSTALL_DIR}/mongo"
@@ -58,7 +58,7 @@ function onex::mongo::docker::uninstall()
 
 # Install the mongo step by step.
 # sbs is the abbreviation for "step by step".
-function onex::mongo::sbs::install()
+onex::mongo::sbs::install()
 {
   onex::mongo::pre_install
 
@@ -113,7 +113,7 @@ EOF
 }
 
 # Uninstall the mongo step by step.
-function onex::mongo::sbs::uninstall()
+onex::mongo::sbs::uninstall()
 {
   set +o errexit
   onex::util::sudo "systemctl stop mongodb"
@@ -130,7 +130,7 @@ function onex::mongo::sbs::uninstall()
 }
 
 # Print necessary information after docker or sbs installation.
-function onex::mongo::info()
+onex::mongo::info()
 {
   echo -e ${C_GREEN}mongo has been installed, here are some useful information:${C_NORMAL}
   encoded=$(echo -n "${ONEX_MONGO_ADMIN_PASSWORD}"|jq -sRr @uri)
@@ -143,12 +143,10 @@ EOF
 }
 
 # Status check after docker or sbs installation.
-function onex::mongo::status()
+onex::mongo::status()
 {
   echo ${ONEX_MONGO_HOST} ${ONEX_MONGO_PORT}
   onex::util::telnet ${ONEX_MONGO_HOST} ${ONEX_MONGO_PORT} || return 1
 }
 
-if [[ "$*" =~ onex::mongo:: ]];then
-  eval $*
-fi
+[[ "$*" =~ onex::mongo:: ]] && eval $*
