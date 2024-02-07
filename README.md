@@ -1,6 +1,4 @@
-<p align="center" style="text-align: right">
-  <img src="./docs/images/onex-orange.svg" width="55%"><br/>
-</p>
+<a href="https://konglingfei.com/"><img align="right" src="./docs/images/onex-orange.svg" alt="awesome-go" title="awesome-go" /></a>
 
 <p align="center">
   OneX 云原生实战平台，做最优秀的 Go + 云原生实战项目。
