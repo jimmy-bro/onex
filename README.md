@@ -7,7 +7,7 @@
 
 <a href="http://konglingfei.com/"><img align="right" src="./docs/images/onex-orange.svg" alt="onex" title="onex" width="50"></a>
 
-一个专为 Go + 云原生学习而生的企业级 Go 项目
+<div align="center">一个专为 Go + 云原生学习而生的企业级 Go 项目</div>
 
 [![GoDoc](https://godoc.org/github.com/superproj/onex?status.svg)](https://godoc.org/github.com/superproj/onex)
 [![Go Report Card](https://goreportcard.com/badge/github.com/superproj/onex)](https://goreportcard.com/report/github.com/superproj/onex)
@@ -15,7 +15,6 @@
 [![](https://goreportcard.com/badge/github.com/superproj/onex)](https://goreportcard.com/report/github.com/superproj/onex)
 [![Go Reference](https://pkg.go.dev/badge/github.com/superproj/onex.svg)](https://pkg.go.dev/github.com/superproj/onex)
 [![CodeFactor](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/superproj/onex/issues)
-[![Sourcegraph](https://sourcegraph.com/github.com/superproj/onex/-/badge.svg)](https://sourcegraph.com/github.com/superproj/onex?badge)
 [![Build](https://img.shields.io/github/actions/workflow/status/superproj/onex/build-and-test.yml?branch=master&logo=Github)](https://github.com/superproj/onex/actions/workflows/build-and-test.yml)
 [![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/superproj/onex?include_prereleases&label=version)](https://github.com/superproj/onex/tags)
 [![Release](https://img.shields.io/github/release/superproj/onex.svg?style=flat-square)](https://github.com/superproj/onex/releases)
