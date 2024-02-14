@@ -145,7 +145,6 @@ EOF
 # Status check after docker or sbs installation.
 onex::mongo::status()
 {
-  echo ${ONEX_MONGO_HOST} ${ONEX_MONGO_PORT}
   onex::util::telnet ${ONEX_MONGO_HOST} ${ONEX_MONGO_PORT} || return 1
 }
 

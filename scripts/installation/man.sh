@@ -47,4 +47,6 @@ onex::man::status()
   }
 }
 
-[[ "$*" =~ onex::man:: ]] && eval $*
+if [[ $* =~ onex::man:: ]]; then
+  eval $*
+fi

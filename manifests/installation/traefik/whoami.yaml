@@ -8,6 +8,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: default
   name: whoami
 spec:
   replicas: 1
@@ -26,6 +27,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: default
   name: whoami
   labels:
     app: whoami
@@ -40,10 +42,11 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
+  namespace: default
   name: whoami
 spec:
   entryPoints:
-    - http
+    - web
   routes:
     - match:  Host(`whoami.com`) && PathPrefix(`/`)
       kind: Rule
@@ -55,11 +58,10 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
+  namespace: default
   name: client
 spec:
   containers:
     - name: client
       image: giantswarm/tiny-tools:3.9
-      command:
-        - "sleep"
-        - "36000"
+      command: ["sleep", "infinity"]

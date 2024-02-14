@@ -12,7 +12,7 @@ ONEX_ROOT=$(dirname "${BASH_SOURCE[0]}")/../..
 [[ -z ${COMMON_SOURCED} ]] && source ${ONEX_ROOT}/scripts/installation/common.sh
 # Set some environment variables.
 
-source ${INSTALL_DIR}/man.sh
+source $(dirname "${BASH_SOURCE[0]}")/man.sh
 
 # Install onex using containerization.
 onex::onex::docker::install()

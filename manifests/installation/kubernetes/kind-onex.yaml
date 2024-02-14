@@ -9,14 +9,18 @@ apiVersion: kind.x-k8s.io/v1alpha4
 name: onex
 networking:
   # 绑定到宿主机上的地址，如果需要外部访问请设置为宿主机 IP
-  apiServerAddress: "10.0.3.89"
+  apiServerAddress: 10.37.83.200
   # 绑定到宿主机上的端口，如果建多个集群或者宿主机已经占用需要修改为不同的端口
   apiServerPort: 16443
+  # 设置 Pod 子网
   podSubnet: "10.244.0.0/16"
+  # 设置 Kubernetes Service 子网
   serviceSubnet: "10.96.0.0/12"
-  # 是否使用默认的cni插件kindnet
+  # 设置集群网络模式为双栈
+  ipFamily: dual
+  # 是否使用默认的 cni 插件 kindnet
   disableDefaultCNI: false
-  # kube-proxy使用的网络模式，none表示不需要kube-proxy组件
+  # kube-proxy 使用的网络模式，none 表示不需要 kube-proxy 组件
   kubeProxyMode: "ipvs"
 # patch the generated kubeadm config with some extra settings
 kubeadmConfigPatches:
@@ -37,7 +41,7 @@ nodes:
   # master节点，写一项表示加一个节点
 - role: control-plane
   # 自定义节点使用的镜像及版本
-  image: kindest/node:v1.27.3
+  image: kindest/node:v1.28.0@sha256:dad5a6238c5e41d7cac405fae3b5eda2ad1de6f1190fa8bfc64ff5bb86173213
   kubeadmConfigPatches:
   - |
     kind: ClusterConfiguration
@@ -56,7 +60,7 @@ nodes:
     propagation: HostToContainer
     # 节点端口到宿主机端口映射
   extraPortMappings:
-    # 节点端口nodeport
+    # 节点端口 nodeport
   - containerPort: 32080 # 对应到 traefik web.nodePort
     # 宿主机端口
     hostPort: 18080
@@ -71,10 +75,34 @@ nodes:
     hostPort: 11090
     listenAddress: "0.0.0.0"
     protocol: TCP
- # worker节点，配置同master节点
+  - containerPort: 30001 # Redis 6379
+    hostPort: 30001
+    listenAddress: "0.0.0.0"
+    protocol: TCP
+  - containerPort: 30002 # Etcd 2379
+    hostPort: 30002 
+    listenAddress: "0.0.0.0"
+    protocol: TCP
+  - containerPort: 30003 # Etcd 2380
+    hostPort: 30003
+    listenAddress: "0.0.0.0"
+    protocol: TCP
+  - containerPort: 30004 # MongoDB 27017
+    hostPort: 30004
+    listenAddress: "0.0.0.0"
+    protocol: TCP
+  - containerPort: 30005 # Jaeger 4317
+    hostPort: 30005
+    listenAddress: "0.0.0.0"
+    protocol: TCP
+  - containerPort: 30006 # Kafka Port
+    hostPort: 30006
+    listenAddress: "0.0.0.0"
+    protocol: TCP
+ # worker 节点，配置同 master 节点
 - role: worker
-  image: kindest/node:v1.27.3
+  image: kindest/node:v1.28.0@sha256:dad5a6238c5e41d7cac405fae3b5eda2ad1de6f1190fa8bfc64ff5bb86173213
 - role: worker
-  image: kindest/node:v1.27.3
+  image: kindest/node:v1.28.0@sha256:dad5a6238c5e41d7cac405fae3b5eda2ad1de6f1190fa8bfc64ff5bb86173213
 - role: worker
-  image: kindest/node:v1.27.3
+  image: kindest/node:v1.28.0@sha256:dad5a6238c5e41d7cac405fae3b5eda2ad1de6f1190fa8bfc64ff5bb86173213

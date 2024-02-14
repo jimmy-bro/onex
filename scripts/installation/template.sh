@@ -59,4 +59,6 @@ onex::template::status()
   onex::util::telnet ${ONEX_TEMPLATE_HOST} ${ONEX_TEMPLATE_PORT} || return 1
 }
 
-[[ "$*" =~ onex::template:: ]] && eval $*
+if [[ "$*" =~ onex::template:: ]];then
+  eval $*
+fi

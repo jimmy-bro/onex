@@ -13,7 +13,6 @@ ONEX_ROOT=$(dirname "${BASH_SOURCE[0]}")/..
 source "${ONEX_ROOT}/scripts/common.sh"
 
 OVERSION=${OVERSION:-$(uplift tag --current --silent)+$(date +'%Y%m%d%H%M%S')}
-SHORTNAME=${SHORTNAME:=uc}
 COMPONENTS=()
 DEPLOY=false
 IMAGE=false
@@ -29,13 +28,12 @@ getcomponents() {
 }
 
 # Load docker images to kind cluster
-load_docker_images() {
+load_docker_image() {
   NODES=${KIND_LOAD_NODES:-$(kubectl get nodes|awk '/Ready/ && !/SchedulingDisabled/{nodes=nodes$1","} END{gsub(/,$/,"",nodes);print nodes}')}
 
-  for comp in "${COMPONENTS[@]}"
-  do
-    kind load docker-image --name ${ONEX_KIND_CLUSTER_NAME} --nodes ${NODES} ccr.ccs.tencentyun.com/superproj/${comp}-amd64:${OVERSION}
-  done
+  local comp="$1"
+
+  kind load docker-image --name ${ONEX_KIND_CLUSTER_NAME} --nodes ${NODES} ccr.ccs.tencentyun.com/superproj/${comp}-amd64:${OVERSION}
 }
 
 # Build docker images
@@ -49,7 +47,7 @@ build_image() {
     # 版本号"v0.18.0+20240121235656"，转换为 "v0.18.0-20240121235656" 作为容器标签名
     # 转换方式为：VERSION=$(echo ${OVERSION} | sed 's/+/-/')
     make -C ${ONEX_ROOT} ${cmd} IMAGES=${comp} VERSION=$(echo ${OVERSION} | sed 's/+/-/') MULTISTAGE=0
-    [[ "$LOAD" == true ]] && load_docker_images
+    [[ "$LOAD" == true ]] && load_docker_image ${comp}
   done
 }
 
@@ -66,7 +64,7 @@ deploy() {
   for comp in "${COMPONENTS[@]}"
   do
     make -C ${ONEX_ROOT} deploy DEPLOYS=${comp} VERSION=${OVERSION}
-    load_docker_images
+    load_docker_image ${comp}
     kubectl rollout restart deployment ${comp}
   done
 }

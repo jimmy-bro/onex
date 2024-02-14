@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+      - name: mongo
+        image: mongodb/mongodb-community-server:7.0.3-ubuntu2204
+        ports:
+        - containerPort: 27017
+          name: mongo
+        volumeMounts:
+        - name: mongo-persistent-storage
+          mountPath: /data
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: "onex"
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: "onex(#)666"
+  volumeClaimTemplates:
+  - metadata:
+      name: mongo-persistent-storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 200Mi

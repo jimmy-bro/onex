@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mariadb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mariadb
+  template:
+    metadata:
+      labels:
+        app: mariadb
+    spec:
+      containers:
+      - name: mariadb
+        image: mariadb:11.2.2
+        ports:
+        - containerPort: 3306
+          name: mariadb
+        volumeMounts:
+        - name: mariadb-persistent-storage
+          mountPath: /var/lib/mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "onex(#)666"
+        - name: MYSQL_DATABASE
+          value: "onex"
+        - name: MYSQL_USER
+          value: "onex"
+        - name: MYSQL_PASSWORD
+          value: "onex(#)666"
+  volumeClaimTemplates:
+  - metadata:
+      name: mariadb-persistent-storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 200Mi
