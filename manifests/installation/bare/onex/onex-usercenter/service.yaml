@@ -12,33 +12,16 @@ spec:
   ports:
   - name: http
     protocol: TCP
-    port: 8080
-    targetPort: 38443
+    port: 50080
+    targetPort: 50843
   - name: https
     protocol: TCP
-    port: 8443
-    targetPort: 38443
+    port: 50443
+    targetPort: 50843
   - name: grpc
     protocol: TCP
-    port: 9090
-    targetPort: 39090
-  selector:
-    app: onex-usercenter
-  sessionAffinity: None
-  type: ClusterIP
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: onex-usercenter
-  name: onex-usercenter-healthz
-spec:
-  ports:
-  - name: http
-    protocol: TCP
-    port: 8080
-    targetPort: 20250
+    port: 50090
+    targetPort: 50090
   selector:
     app: onex-usercenter
   sessionAffinity: None

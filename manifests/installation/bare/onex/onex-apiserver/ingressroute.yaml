@@ -17,6 +17,6 @@ spec:
       services:
         - kind: Service
           name: onex-apiserver
-          port: 8443
+          port: 52443
   tls:
     secretName: onex-apiserver

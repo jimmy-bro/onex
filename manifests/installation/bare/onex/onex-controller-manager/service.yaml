@@ -12,8 +12,8 @@ spec:
   ports:
   - name: http
     protocol: TCP
-    port: 8080
-    targetPort: 20250
+    port: 10256
+    targetPort: 10256
   selector:
     app: onex-controller-manager
   sessionAffinity: None

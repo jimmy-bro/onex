@@ -6,7 +6,6 @@
 # this file is https://github.com/superproj/onex.
 #
 
-
 # The root of the build/dist directory.
 ONEX_ROOT=$(dirname "${BASH_SOURCE[0]}")/../..
 # If common.sh has already been sourced, it will not be sourced again here.

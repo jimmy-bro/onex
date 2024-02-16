@@ -12,15 +12,9 @@ spec:
   entryPoints:
     - web
   routes:
-    - kind: Rule # 该规则需要放在第一个
-      match: Host(`onex.usercenter.superproj.com`) && PathPrefix(`/healthz`)
-      services:
-        - kind: Service
-          name: onex-usercenter-healthz
-          port: 20250
     - kind: Rule
       match: Host(`onex.usercenter.superproj.com`) && PathPrefix(`/`)
       services:
         - kind: Service
           name: onex-usercenter
-          port: 8080
+          port: 50080

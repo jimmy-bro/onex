@@ -7,14 +7,20 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: onex-minerset-controller-http
+  name: onex-gateway-http
 spec:
   entryPoints:
     - web
   routes:
     - kind: Rule
-      match: Host(`onex.minerset.superproj.com`) && PathPrefix(`/`)
+      match: Host(`onex.gateway.superproj.com`) && PathPrefix(`/healthz`)
       services:
         - kind: Service
-          name: onex-minerset-controller
-          port: 20250
+          name: onex-gateway-healthz
+          port: 8080
+    - kind: Rule
+      match: Host(`onex.gateway.superproj.com`) && PathPrefix(`/`)
+      services:
+        - kind: Service
+          name: onex-gateway
+          port: 8080

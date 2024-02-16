@@ -12,7 +12,7 @@ spec:
   ports:
   - name: http
     protocol: TCP
-    port: 8080
+    port: 20250
     targetPort: 20250
   selector:
     app: onex-minerset-controller

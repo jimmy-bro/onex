@@ -17,4 +17,4 @@ spec:
       services:
         - kind: Service
           name: onex-controller-manager
-          port: 8080
+          port: 10256

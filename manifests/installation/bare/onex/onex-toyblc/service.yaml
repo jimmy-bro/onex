@@ -12,25 +12,8 @@ spec:
   ports:
   - name: http
     protocol: TCP
-    port: 8080
-    targetPort: 38080
-  selector:
-    app: onex-toyblc
-  sessionAffinity: None
-  type: ClusterIP
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: onex-toyblc
-  name: onex-toyblc-healthz
-spec:
-  ports:
-  - name: http
-    protocol: TCP
-    port: 8080
-    targetPort: 20250
+    port: 56080
+    targetPort: 56080
   selector:
     app: onex-toyblc
   sessionAffinity: None

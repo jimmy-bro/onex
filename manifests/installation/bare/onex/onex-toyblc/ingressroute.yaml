@@ -13,14 +13,8 @@ spec:
     - web
   routes:
     - kind: Rule
-      match: Host(`onex.toyblc.superproj.com`) && PathPrefix(`/healthz`)
-      services:
-        - kind: Service
-          name: onex-toyblc-healthz
-          port: 8080
-    - kind: Rule
       match: Host(`onex.toyblc.superproj.com`) && PathPrefix(`/`)
       services:
         - kind: Service
           name: onex-toyblc
-          port: 8080
+          port: 56080

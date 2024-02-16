@@ -15,7 +15,7 @@ spec:
   - match: Host(`onex.usercenter.superproj.com`)
     services:
     - name: onex-usercenter
-      port: 9090
+      port: 50090
   tls:
     secretName: onex-traefik-tls
     passthrough: true

@@ -39,23 +39,23 @@ spec:
             weight: 100
       containers:
       - args:
-        - --secure-port=30443
+        - --secure-port=52443
         - --bind-address=0.0.0.0
-        - --etcd-servers=127.0.0.1:2379
-        - --client-ca-file=/opt/onex/cert/ca.pem
-        - --tls-cert-file=/opt/onex/cert/onex-apiserver.pem 
-        - --tls-private-key-file=/opt/onex/cert/onex-apiserver-key.pem
+        - --etcd-servers=etcd.infra.svc.onex.io:2379
+        - --client-ca-file=/opt/onex/etc/cert/ca.pem
+        - --tls-cert-file=/opt/onex/etc/cert/onex-apiserver.pem 
+        - --tls-private-key-file=/opt/onex/etc/cert/onex-apiserver-key.pem
         -  --enable-admission-plugins=NamespaceAutoProvision,NamespaceExists,NamespaceLifecycle
         - --v=10
         image: ccr.ccs.tencentyun.com/superproj/onex-apiserver-amd64:v0.1.0
         name: onex-apiserver
         ports:
-        - containerPort: 30443
+        - containerPort: 52443
           name: https
           protocol: TCP
         livenessProbe:
           tcpSocket:
-            port: 30443
+            port: 52443
           failureThreshold: 1
           initialDelaySeconds: 5
           periodSeconds: 10
@@ -63,7 +63,7 @@ spec:
           timeoutSeconds: 3
         readinessProbe:
           tcpSocket:
-            port: 30443
+            port: 52443
           failureThreshold: 1
           initialDelaySeconds: 5
           periodSeconds: 10
@@ -71,7 +71,7 @@ spec:
           timeoutSeconds: 3
         startupProbe:
           tcpSocket:
-            port: 30443
+            port: 52443
           failureThreshold: 10
           initialDelaySeconds: 5
           periodSeconds: 10
@@ -88,7 +88,7 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
-        - mountPath: /opt/onex/cert
+        - mountPath: /opt/onex/etc/cert
           name: onex-tls
       dnsPolicy: ClusterFirst
       restartPolicy: Always

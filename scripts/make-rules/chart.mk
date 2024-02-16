@@ -3,7 +3,7 @@
 #
 
 HELM := helm
-CHARTS_DIR=${ONEX_ROOT}/manifests/installation/onex/charts
+CHARTS_DIR=${ONEX_ROOT}/manifests/installation/charts
 CHARTS ?= $(foreach charts,$(filter-out %.md, $(wildcard $(CHARTS_DIR)/*)),$(notdir ${charts}))
 ifeq (${CHARTS},)
 	$(error Could not determine CHARTS, set ONEX_ROOT or run in source dir)

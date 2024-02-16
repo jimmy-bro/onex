@@ -23,7 +23,7 @@ spec:
           mountPath: /data
         env:
         - name: MONGO_INITDB_ROOT_USERNAME
-          value: "onex"
+          value: "root"
         - name: MONGO_INITDB_ROOT_PASSWORD
           value: "onex(#)666"
   volumeClaimTemplates:
@@ -33,4 +33,4 @@ spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
-          storage: 200Mi
+          storage: 1Gi

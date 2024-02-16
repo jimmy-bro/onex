@@ -12,16 +12,16 @@ spec:
   ports:
   - name: http
     protocol: TCP
-    port: 8080
-    targetPort: 38443
+    port: 51080
+    targetPort: 51843
   - name: https
     protocol: TCP
-    port: 8443
-    targetPort: 38443
+    port: 51443
+    targetPort: 51843
   - name: grpc
     protocol: TCP
-    port: 9090
-    targetPort: 39090
+    port: 51090
+    targetPort: 51090
   selector:
     app: onex-gateway
   sessionAffinity: None

@@ -39,17 +39,17 @@ spec:
             weight: 100
       containers:
       - args:
-        - --config=/opt/onex/conf/onex-nightwatch.yaml
+        - --config=/opt/onex/etc/onex-nightwatch.yaml
         image: ccr.ccs.tencentyun.com/superproj/onex-nightwatch-amd64:v0.1.0
         name: onex-nightwatch
         ports:
-        - containerPort: 20250
+        - containerPort: 54082
           name: http
           protocol: TCP
         livenessProbe:
           httpGet:
             path: /healthz
-            port: 20250
+            port: 54082
           failureThreshold: 1
           initialDelaySeconds: 5
           periodSeconds: 10
@@ -58,7 +58,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /healthz
-            port: 20250
+            port: 54082
           failureThreshold: 1
           initialDelaySeconds: 5
           periodSeconds: 10
@@ -67,7 +67,7 @@ spec:
         startupProbe:
           httpGet:
             path: /healthz
-            port: 20250
+            port: 54082
           failureThreshold: 10
           initialDelaySeconds: 5
           periodSeconds: 10
@@ -84,13 +84,13 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
-        - mountPath: /opt/onex/conf/onex-nightwatch.yaml
+        - mountPath: /opt/onex/etc/onex-nightwatch.yaml
           name: onex-nightwatch
           subPath: onex-nightwatch.yaml
-        - mountPath: /opt/onex/conf/config
+        - mountPath: /opt/onex/etc/config
           name: onex
           subPath: config
-        - mountPath: /opt/onex/cert
+        - mountPath: /opt/onex/etc/cert
           name: onex-tls
       dnsPolicy: ClusterFirst
       restartPolicy: Always

@@ -13,14 +13,8 @@ spec:
     - web
   routes:
     - kind: Rule
-      match: Host(`onex.gateway.superproj.com`) && PathPrefix(`/healthz`)
-      services:
-        - kind: Service
-          name: onex-gateway-healthz
-          port: 8080
-    - kind: Rule
       match: Host(`onex.gateway.superproj.com`) && PathPrefix(`/`)
       services:
         - kind: Service
           name: onex-gateway
-          port: 8080
+          port: 51080

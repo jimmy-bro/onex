@@ -39,38 +39,35 @@ spec:
             weight: 100
       containers:
       - args:
-        - --config=/opt/onex/conf/onex-toyblc.yaml
+        - --config=/opt/onex/etc/onex-toyblc.yaml
         image: ccr.ccs.tencentyun.com/superproj/onex-toyblc-amd64:v0.1.0
         name: onex-toyblc
         ports:
-        - containerPort: 38080
-          name: http
+        - containerPort: 6001
+          name: http-6001
           protocol: TCP
-        - containerPort: 20250
-          name: http
+        - containerPort: 56080
+          name: http-56080
           protocol: TCP
         livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 20250
+          tcpSocket:
+            port: 56080
           failureThreshold: 1
           initialDelaySeconds: 5
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 3
         readinessProbe:
-          httpGet:
-            path: /healthz
-            port: 20250
+          tcpSocket:
+            port: 56080
           failureThreshold: 1
           initialDelaySeconds: 5
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 3
         startupProbe:
-          httpGet:
-            path: /healthz
-            port: 20250
+          tcpSocket:
+            port: 56080
           failureThreshold: 10
           initialDelaySeconds: 5
           periodSeconds: 10
@@ -87,13 +84,13 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
-        - mountPath: /opt/onex/conf/onex-toyblc.yaml
+        - mountPath: /opt/onex/etc/onex-toyblc.yaml
           name: onex-toyblc
           subPath: onex-toyblc.yaml
-        - mountPath: /opt/onex/conf/config
+        - mountPath: /opt/onex/etc/config
           name: onex
           subPath: config
-        - mountPath: /opt/onex/cert
+        - mountPath: /opt/onex/etc/cert
           name: onex-tls
       dnsPolicy: ClusterFirst
       restartPolicy: Always

@@ -39,19 +39,19 @@ spec:
             weight: 100
       containers:
       - args:
-        - --config=/opt/onex/conf/onex-gateway.yaml
+        - --config=/opt/onex/etc/onex-gateway.yaml
         image: ccr.ccs.tencentyun.com/superproj/onex-gateway-amd64:v0.1.0
         name: onex-gateway
         ports:
-        - containerPort: 38443
+        - containerPort: 51843
           name: http-https
           protocol: TCP
-        - containerPort: 39090
+        - containerPort: 51090
           name: grpc 
           protocol: TCP
         livenessProbe:
           tcpSocket:
-            port: 38443
+            port: 51843
           failureThreshold: 1
           initialDelaySeconds: 5
           periodSeconds: 10
@@ -59,7 +59,7 @@ spec:
           timeoutSeconds: 3
         readinessProbe:
           tcpSocket:
-            port: 38443
+            port: 51843
           failureThreshold: 1
           initialDelaySeconds: 5
           periodSeconds: 10
@@ -67,7 +67,7 @@ spec:
           timeoutSeconds: 3
         startupProbe:
           tcpSocket:
-            port: 38443
+            port: 51843
           failureThreshold: 10
           initialDelaySeconds: 5
           periodSeconds: 10
@@ -84,13 +84,13 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
-        - mountPath: /opt/onex/conf/onex-gateway.yaml
+        - mountPath: /opt/onex/etc/onex-gateway.yaml
           name: onex-gateway
           subPath: onex-gateway.yaml
-        - mountPath: /opt/onex/conf/config
+        - mountPath: /opt/onex/etc/config
           name: onex
           subPath: config
-        - mountPath: /opt/onex/cert
+        - mountPath: /opt/onex/etc/cert
           name: onex-tls
       dnsPolicy: ClusterFirst
       restartPolicy: Always
