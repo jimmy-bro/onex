@@ -19,7 +19,7 @@ import (
 
 // Get retrieves a single user from the database.
 func (b *userBiz) Get(ctx context.Context, rq *v1.GetUserRequest) (*v1.UserReply, error) {
-	filters := map[string]interface{}{"username": rq.Username}
+	filters := map[string]any{"username": rq.Username}
 	if !validationutil.IsAdminUser(onexx.FromUserID(ctx)) {
 		filters["user_id"] = onexx.FromUserID(ctx)
 	}

@@ -7,10 +7,10 @@
 
 package v1beta1
 
-type ChainExpansion interface{}
+type ChainExpansion any
 
-type ChargeRequestExpansion interface{}
+type ChargeRequestExpansion any
 
-type MinerExpansion interface{}
+type MinerExpansion any
 
-type MinerSetExpansion interface{}
+type MinerSetExpansion any

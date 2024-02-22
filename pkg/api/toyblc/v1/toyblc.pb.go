@@ -150,7 +150,7 @@ func file_toyblc_v1_toyblc_proto_rawDescGZIP() []byte {
 }
 
 var file_toyblc_v1_toyblc_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_toyblc_v1_toyblc_proto_goTypes = []interface{}{
+var file_toyblc_v1_toyblc_proto_goTypes = []any{
 	(*CreateBlockRequest)(nil), // 0: usercenter.v1.CreateBlockRequest
 	(*CreatePeerRequest)(nil),  // 1: usercenter.v1.CreatePeerRequest
 }
@@ -168,7 +168,7 @@ func file_toyblc_v1_toyblc_proto_init() {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_toyblc_v1_toyblc_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_toyblc_v1_toyblc_proto_msgTypes[0].Exporter = func(v any, i int) any {
 			switch v := v.(*CreateBlockRequest); i {
 			case 0:
 				return &v.state
@@ -180,7 +180,7 @@ func file_toyblc_v1_toyblc_proto_init() {
 				return nil
 			}
 		}
-		file_toyblc_v1_toyblc_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_toyblc_v1_toyblc_proto_msgTypes[1].Exporter = func(v any, i int) any {
 			switch v := v.(*CreatePeerRequest); i {
 			case 0:
 				return &v.state

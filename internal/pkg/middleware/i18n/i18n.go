@@ -20,7 +20,7 @@ import (
 func Translator(options ...func(*i18n.Options)) middleware.Middleware {
 	i := i18n.New(options...)
 	return func(handler middleware.Handler) middleware.Handler {
-		return func(ctx context.Context, rq interface{}) (rp interface{}, err error) {
+		return func(ctx context.Context, rq any) (rp any, err error) {
 			var lang language.Tag
 			header := make(metadata.MD)
 			key := "Accept-Language"

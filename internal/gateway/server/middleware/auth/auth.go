@@ -24,7 +24,7 @@ import (
 // Auth is a authentication and authorization middleware.
 func Auth(a auth.AuthProvider) middleware.Middleware {
 	return func(handler middleware.Handler) middleware.Handler {
-		return func(ctx context.Context, rq interface{}) (reply interface{}, err error) {
+		return func(ctx context.Context, rq any) (reply any, err error) {
 			accessToken := jwtutil.TokenFromServerContext(ctx)
 			if tr, ok := transport.FromServerContext(ctx); ok {
 				userID, allowed, err := a.Auth(ctx, accessToken, "*", tr.Operation())

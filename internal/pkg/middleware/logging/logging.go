@@ -23,7 +23,7 @@ import (
 // Server is an server logging middleware.
 func Server(logger krtlog.Logger) middleware.Middleware {
 	return func(handler middleware.Handler) middleware.Handler {
-		return func(ctx context.Context, rq interface{}) (reply interface{}, err error) {
+		return func(ctx context.Context, rq any) (reply any, err error) {
 			var (
 				code      int32
 				reason    string
@@ -59,7 +59,7 @@ func Server(logger krtlog.Logger) middleware.Middleware {
 // Client is a client logging middleware.
 func Client(logger krtlog.Logger) middleware.Middleware {
 	return func(handler middleware.Handler) middleware.Handler {
-		return func(ctx context.Context, rq interface{}) (reply interface{}, err error) {
+		return func(ctx context.Context, rq any) (reply any, err error) {
 			var (
 				code      int32
 				reason    string
@@ -93,7 +93,7 @@ func Client(logger krtlog.Logger) middleware.Middleware {
 }
 
 // extractArgs returns the string of the rq.
-func extractArgs(rq interface{}) string {
+func extractArgs(rq any) string {
 	if stringer, ok := rq.(fmt.Stringer); ok {
 		return stringer.String()
 	}

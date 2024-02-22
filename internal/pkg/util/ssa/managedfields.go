@@ -54,8 +54,8 @@ func DropManagedFields(ctx context.Context, c client.Client, obj client.Object, 
 	for _, managedField := range originalManagedFields {
 		if managedField.Manager == classicManager &&
 			managedField.Operation == metav1.ManagedFieldsOperationUpdate {
-			// Unmarshal the managed fields into a map[string]interface{}
-			fieldsV1 := map[string]interface{}{}
+			// Unmarshal the managed fields into a map[string]any
+			fieldsV1 := map[string]any{}
 			if err := json.Unmarshal(managedField.FieldsV1.Raw, &fieldsV1); err != nil {
 				return errors.Wrap(err, "failed to unmarshal managed fields")
 			}
@@ -130,9 +130,9 @@ func CleanUpManagedFieldsForSSAAdoption(ctx context.Context, c client.Client, ob
 	// creates an entry with operation=Update (kind of guessing where the object comes from), but this entry ends up
 	// acting as a co-ownership and we want to prevent this.
 	// NOTE: fieldV1Map cannot be empty, so we add metadata.name which will be cleaned up at the first SSA patch.
-	fieldV1Map := map[string]interface{}{
-		"f:metadata": map[string]interface{}{
-			"f:name": map[string]interface{}{},
+	fieldV1Map := map[string]any{
+		"f:metadata": map[string]any{
+			"f:name": map[string]any{},
 		},
 	}
 	fieldV1, err := json.Marshal(fieldV1Map)

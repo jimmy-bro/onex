@@ -47,7 +47,7 @@ var AuthzProviderSet = wire.NewSet(NewAuthz, wire.Bind(new(AuthzInterface), new(
 
 // AuthzInterface defines the interface for authorization.
 type AuthzInterface interface {
-	Authorize(rvals ...interface{}) (bool, error)
+	Authorize(rvals ...any) (bool, error)
 }
 
 type authzImpl struct {
@@ -119,6 +119,6 @@ func NewAuthz(db *gorm.DB, redisOpts *genericoptions.RedisOptions, logger clog.L
 }
 
 // Authorize checks whether the given request values satisfy the authorization policy.
-func (a *authzImpl) Authorize(rvals ...interface{}) (bool, error) {
+func (a *authzImpl) Authorize(rvals ...any) (bool, error) {
 	return a.enforcer.Enforce(rvals...)
 }

@@ -48,7 +48,7 @@ var defaultOptions = options{
 	expired:       2 * time.Hour,
 	signingMethod: jwt.SigningMethodHS256,
 	signingKey:    []byte(defaultKey),
-	keyfunc: func(t *jwt.Token) (interface{}, error) {
+	keyfunc: func(t *jwt.Token) (any, error) {
 		if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, ErrTokenInvalid
 		}
@@ -58,12 +58,12 @@ var defaultOptions = options{
 
 type options struct {
 	signingMethod jwt.SigningMethod
-	signingKey    interface{}
+	signingKey    any
 	keyfunc       jwt.Keyfunc
 	issuer        string
 	expired       time.Duration
 	tokenType     string
-	tokenHeader   map[string]interface{}
+	tokenHeader   map[string]any
 }
 
 // Option is jwt option.
@@ -84,7 +84,7 @@ func WithIssuer(issuer string) Option {
 }
 
 // WithSigningKey set the signature key.
-func WithSigningKey(key interface{}) Option {
+func WithSigningKey(key any) Option {
 	return func(o *options) {
 		o.signingKey = key
 	}
@@ -105,7 +105,7 @@ func WithExpired(expired time.Duration) Option {
 }
 
 // WithTokenHeader set the customer tokenHeader for client side.
-func WithTokenHeader(header map[string]interface{}) Option {
+func WithTokenHeader(header map[string]any) Option {
 	return func(o *options) {
 		o.tokenHeader = header
 	}

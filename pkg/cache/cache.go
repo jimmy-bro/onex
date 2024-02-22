@@ -33,7 +33,7 @@ func (ct CacheType) String() string {
 }
 
 // KeyFunc knows how to make a key from an object. Implementations should be deterministic.
-type KeyFunc func(obj interface{}) (string, error)
+type KeyFunc func(obj any) (string, error)
 
 // Cache represents the interface for all caches (aggregates, metric, memory, redis, ...)
 type Cache[T any] interface {

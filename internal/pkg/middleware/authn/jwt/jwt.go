@@ -42,7 +42,7 @@ var (
 // Server is a server auth middleware. Check the token and extract the info from token.
 func Server(a authn.Authenticator) middleware.Middleware {
 	return func(handler middleware.Handler) middleware.Handler {
-		return func(ctx context.Context, rq interface{}) (interface{}, error) {
+		return func(ctx context.Context, rq any) (any, error) {
 			if tr, ok := transport.FromServerContext(ctx); ok {
 				auths := strings.SplitN(tr.RequestHeader().Get(authorizationKey), " ", 2)
 				if len(auths) != 2 || !strings.EqualFold(auths[0], bearerWord) {
@@ -69,7 +69,7 @@ func Server(a authn.Authenticator) middleware.Middleware {
 // WithSignToken is a client jwt middleware used to sign a jwt token.
 func WithSignToken(a authn.Authenticator, userID string) middleware.Middleware {
 	return func(handler middleware.Handler) middleware.Handler {
-		return func(ctx context.Context, rq interface{}) (interface{}, error) {
+		return func(ctx context.Context, rq any) (any, error) {
 			accessToken, err := a.Sign(ctx, userID)
 			if err != nil {
 				return nil, err
@@ -87,7 +87,7 @@ func WithSignToken(a authn.Authenticator, userID string) middleware.Middleware {
 // WithToken is a client jwt middleware.
 func WithToken(token string) middleware.Middleware {
 	return func(handler middleware.Handler) middleware.Handler {
-		return func(ctx context.Context, rq interface{}) (interface{}, error) {
+		return func(ctx context.Context, rq any) (any, error) {
 			if clientContext, ok := transport.FromClientContext(ctx); ok {
 				clientContext.RequestHeader().Set(authorizationKey, fmt.Sprintf(bearerFormat, token))
 				return handler(ctx, rq)

@@ -78,7 +78,7 @@ func (m *UserReply) validate(all bool) error {
 	// no validation rules for Secrets
 
 	if all {
-		switch v := interface{}(m.GetCreatedAt()).(type) {
+		switch v := any(m.GetCreatedAt()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, UserReplyValidationError{
@@ -96,7 +96,7 @@ func (m *UserReply) validate(all bool) error {
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetCreatedAt()).(interface{ Validate() error }); ok {
+	} else if v, ok := any(m.GetCreatedAt()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UserReplyValidationError{
 				field:  "CreatedAt",
@@ -107,7 +107,7 @@ func (m *UserReply) validate(all bool) error {
 	}
 
 	if all {
-		switch v := interface{}(m.GetUpdatedAt()).(type) {
+		switch v := any(m.GetUpdatedAt()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, UserReplyValidationError{
@@ -125,7 +125,7 @@ func (m *UserReply) validate(all bool) error {
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetUpdatedAt()).(interface{ Validate() error }); ok {
+	} else if v, ok := any(m.GetUpdatedAt()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return UserReplyValidationError{
 				field:  "UpdatedAt",
@@ -1078,7 +1078,7 @@ func (m *ListUserResponse) validate(all bool) error {
 		_, _ = idx, item
 
 		if all {
-			switch v := interface{}(item).(type) {
+			switch v := any(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
 					errors = append(errors, ListUserResponseValidationError{
@@ -1096,7 +1096,7 @@ func (m *ListUserResponse) validate(all bool) error {
 					})
 				}
 			}
-		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+		} else if v, ok := any(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListUserResponseValidationError{
 					field:  fmt.Sprintf("Users[%v]", idx),
@@ -1540,7 +1540,7 @@ func (m *SecretReply) validate(all bool) error {
 	// no validation rules for Description
 
 	if all {
-		switch v := interface{}(m.GetCreatedAt()).(type) {
+		switch v := any(m.GetCreatedAt()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, SecretReplyValidationError{
@@ -1558,7 +1558,7 @@ func (m *SecretReply) validate(all bool) error {
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetCreatedAt()).(interface{ Validate() error }); ok {
+	} else if v, ok := any(m.GetCreatedAt()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return SecretReplyValidationError{
 				field:  "CreatedAt",
@@ -1569,7 +1569,7 @@ func (m *SecretReply) validate(all bool) error {
 	}
 
 	if all {
-		switch v := interface{}(m.GetUpdatedAt()).(type) {
+		switch v := any(m.GetUpdatedAt()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, SecretReplyValidationError{
@@ -1587,7 +1587,7 @@ func (m *SecretReply) validate(all bool) error {
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetUpdatedAt()).(interface{ Validate() error }); ok {
+	} else if v, ok := any(m.GetUpdatedAt()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return SecretReplyValidationError{
 				field:  "UpdatedAt",
@@ -2157,7 +2157,7 @@ func (m *ListSecretResponse) validate(all bool) error {
 		_, _ = idx, item
 
 		if all {
-			switch v := interface{}(item).(type) {
+			switch v := any(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
 					errors = append(errors, ListSecretResponseValidationError{
@@ -2175,7 +2175,7 @@ func (m *ListSecretResponse) validate(all bool) error {
 					})
 				}
 			}
-		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+		} else if v, ok := any(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListSecretResponseValidationError{
 					field:  fmt.Sprintf("Secrets[%v]", idx),

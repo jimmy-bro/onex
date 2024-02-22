@@ -16,14 +16,14 @@ type ListOption func(*ListOptions)
 
 type ListOptions struct {
 	// Filters specify the equality where conditions.
-	Filters map[string]interface{}
+	Filters map[string]any
 	Offset  int
 	Limit   int
 }
 
 func NewListOptions(opts ...ListOption) ListOptions {
 	los := ListOptions{
-		Filters: map[string]interface{}{},
+		Filters: map[string]any{},
 		Offset:  0,
 		Limit:   defaultLimit,
 	}
@@ -35,7 +35,7 @@ func NewListOptions(opts ...ListOption) ListOptions {
 	return los
 }
 
-func WithFilter(filter map[string]interface{}) ListOption {
+func WithFilter(filter map[string]any) ListOption {
 	return func(o *ListOptions) {
 		o.Filters = filter
 	}

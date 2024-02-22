@@ -30,7 +30,7 @@ type Message struct {
 type WebSocketSource struct {
 	ctx        context.Context
 	connection *websocket.Conn
-	out        chan interface{}
+	out        chan any
 }
 
 // NewWebSocketSource creates and returns a new WebSocketSource using the default dialer.
@@ -48,7 +48,7 @@ func NewWebSocketSourceWithDialer(ctx context.Context, url string, dialer *webso
 	source := &WebSocketSource{
 		ctx:        ctx,
 		connection: conn,
-		out:        make(chan interface{}),
+		out:        make(chan any),
 	}
 
 	go source.init()
@@ -99,7 +99,7 @@ func (wsock *WebSocketSource) Via(_flow streams.Flow) streams.Flow {
 }
 
 // Out returns an output channel for sending data.
-func (wsock *WebSocketSource) Out() <-chan interface{} {
+func (wsock *WebSocketSource) Out() <-chan any {
 	return wsock.out
 }
 
@@ -107,7 +107,7 @@ func (wsock *WebSocketSource) Out() <-chan interface{} {
 type WebSocketSink struct {
 	ctx        context.Context
 	connection *websocket.Conn
-	in         chan interface{}
+	in         chan any
 }
 
 // NewWebSocketSink creates and returns a new WebSocketSink using the default dialer.
@@ -125,7 +125,7 @@ func NewWebSocketSinkWithDialer(ctx context.Context, url string, dialer *websock
 	sink := &WebSocketSink{
 		ctx:        ctx,
 		connection: conn,
-		in:         make(chan interface{}),
+		in:         make(chan any),
 	}
 
 	go sink.init()
@@ -160,6 +160,6 @@ func (wsock *WebSocketSink) init() {
 }
 
 // In returns an input channel for receiving data.
-func (wsock *WebSocketSink) In() chan<- interface{} {
+func (wsock *WebSocketSink) In() chan<- any {
 	return wsock.in
 }

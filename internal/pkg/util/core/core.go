@@ -302,7 +302,7 @@ func refersTo(ref *metav1.OwnerReference, obj client.Object) bool {
 
 // UnstructuredUnmarshalField is a wrapper around json and unstructured objects to decode and copy a specific field
 // value into an object.
-func UnstructuredUnmarshalField(obj *unstructured.Unstructured, v interface{}, fields ...string) error {
+func UnstructuredUnmarshalField(obj *unstructured.Unstructured, v any, fields ...string) error {
 	if obj == nil || obj.Object == nil {
 		return errors.Errorf("failed to unmarshal unstructured object: object is nil")
 	}
@@ -515,7 +515,7 @@ func LowestNonZeroInt32(i, j int32) int32 {
 }
 
 // IsNil returns an error if the passed interface is equal to nil or if it has an interface value of nil.
-func IsNil(i interface{}) bool {
+func IsNil(i any) bool {
 	if i == nil {
 		return true
 	}

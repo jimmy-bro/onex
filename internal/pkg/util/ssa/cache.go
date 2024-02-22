@@ -45,7 +45,7 @@ type Cache interface {
 // NewCache creates a new cache.
 func NewCache() Cache {
 	r := &ssaCache{
-		Store: cache.NewTTLStore(func(obj interface{}) (string, error) {
+		Store: cache.NewTTLStore(func(obj any) (string, error) {
 			// We only add strings to the cache, so it's safe to cast to string.
 			return obj.(string), nil
 		}, ttl),

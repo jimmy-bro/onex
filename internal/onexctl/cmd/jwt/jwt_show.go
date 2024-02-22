@@ -118,7 +118,7 @@ func (o *ShowOptions) Run(args []string) error {
 }
 
 // printJSON print a json object in accordance with the prophecy (or the command line options).
-func printJSON(compact bool, j interface{}) error {
+func printJSON(compact bool, j any) error {
 	var out []byte
 	var err error
 

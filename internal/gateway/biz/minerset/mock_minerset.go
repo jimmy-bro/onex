@@ -51,7 +51,7 @@ func (m *MockMinerSetBiz) Create(arg0 context.Context, arg1 string, arg2 *v1beta
 }
 
 // Create indicates an expected call of Create.
-func (mr *MockMinerSetBizMockRecorder) Create(arg0, arg1, arg2 interface{}) *gomock.Call {
+func (mr *MockMinerSetBizMockRecorder) Create(arg0, arg1, arg2 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockMinerSetBiz)(nil).Create), arg0, arg1, arg2)
 }
@@ -65,7 +65,7 @@ func (m *MockMinerSetBiz) Delete(arg0 context.Context, arg1, arg2 string) error 
 }
 
 // Delete indicates an expected call of Delete.
-func (mr *MockMinerSetBizMockRecorder) Delete(arg0, arg1, arg2 interface{}) *gomock.Call {
+func (mr *MockMinerSetBizMockRecorder) Delete(arg0, arg1, arg2 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockMinerSetBiz)(nil).Delete), arg0, arg1, arg2)
 }
@@ -80,7 +80,7 @@ func (m *MockMinerSetBiz) Get(arg0 context.Context, arg1, arg2 string) (*v1beta1
 }
 
 // Get indicates an expected call of Get.
-func (mr *MockMinerSetBizMockRecorder) Get(arg0, arg1, arg2 interface{}) *gomock.Call {
+func (mr *MockMinerSetBizMockRecorder) Get(arg0, arg1, arg2 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Get", reflect.TypeOf((*MockMinerSetBiz)(nil).Get), arg0, arg1, arg2)
 }
@@ -95,7 +95,7 @@ func (m *MockMinerSetBiz) List(arg0 context.Context, arg1 string, arg2 *v1.ListM
 }
 
 // List indicates an expected call of List.
-func (mr *MockMinerSetBizMockRecorder) List(arg0, arg1, arg2 interface{}) *gomock.Call {
+func (mr *MockMinerSetBizMockRecorder) List(arg0, arg1, arg2 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockMinerSetBiz)(nil).List), arg0, arg1, arg2)
 }
@@ -109,7 +109,7 @@ func (m *MockMinerSetBiz) Scale(arg0 context.Context, arg1, arg2 string, arg3 in
 }
 
 // Scale indicates an expected call of Scale.
-func (mr *MockMinerSetBizMockRecorder) Scale(arg0, arg1, arg2, arg3 interface{}) *gomock.Call {
+func (mr *MockMinerSetBizMockRecorder) Scale(arg0, arg1, arg2, arg3 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Scale", reflect.TypeOf((*MockMinerSetBiz)(nil).Scale), arg0, arg1, arg2, arg3)
 }
@@ -123,7 +123,7 @@ func (m *MockMinerSetBiz) Update(arg0 context.Context, arg1 string, arg2 *v1beta
 }
 
 // Update indicates an expected call of Update.
-func (mr *MockMinerSetBizMockRecorder) Update(arg0, arg1, arg2 interface{}) *gomock.Call {
+func (mr *MockMinerSetBizMockRecorder) Update(arg0, arg1, arg2 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockMinerSetBiz)(nil).Update), arg0, arg1, arg2)
 }

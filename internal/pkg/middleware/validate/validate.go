@@ -21,13 +21,13 @@ type validator interface {
 
 // IValidator defines methods to implement a custom validator.
 type IValidator interface {
-	Validate(ctx context.Context, rq interface{}) error
+	Validate(ctx context.Context, rq any) error
 }
 
 // Validator is a validator middleware.
 func Validator(vd IValidator) middleware.Middleware {
 	return func(handler middleware.Handler) middleware.Handler {
-		return func(ctx context.Context, rq interface{}) (reply interface{}, err error) {
+		return func(ctx context.Context, rq any) (reply any, err error) {
 			if v, ok := rq.(validator); ok {
 				// Kratos validation method
 				if err := v.Validate(); err != nil {

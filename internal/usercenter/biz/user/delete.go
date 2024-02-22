@@ -16,7 +16,7 @@ import (
 
 // Delete deletes a user from the database.
 func (b *userBiz) Delete(ctx context.Context, rq *v1.DeleteUserRequest) error {
-	filters := map[string]interface{}{"username": rq.Username}
+	filters := map[string]any{"username": rq.Username}
 	if !validationutil.IsAdminUser(onexx.FromUserID(ctx)) {
 		filters["user_id"] = onexx.FromUserID(ctx)
 	}

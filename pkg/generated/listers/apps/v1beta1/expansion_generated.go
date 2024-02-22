@@ -9,32 +9,32 @@ package v1beta1
 
 // ChainListerExpansion allows custom methods to be added to
 // ChainLister.
-type ChainListerExpansion interface{}
+type ChainListerExpansion any
 
 // ChainNamespaceListerExpansion allows custom methods to be added to
 // ChainNamespaceLister.
-type ChainNamespaceListerExpansion interface{}
+type ChainNamespaceListerExpansion any
 
 // ChargeRequestListerExpansion allows custom methods to be added to
 // ChargeRequestLister.
-type ChargeRequestListerExpansion interface{}
+type ChargeRequestListerExpansion any
 
 // ChargeRequestNamespaceListerExpansion allows custom methods to be added to
 // ChargeRequestNamespaceLister.
-type ChargeRequestNamespaceListerExpansion interface{}
+type ChargeRequestNamespaceListerExpansion any
 
 // MinerListerExpansion allows custom methods to be added to
 // MinerLister.
-type MinerListerExpansion interface{}
+type MinerListerExpansion any
 
 // MinerNamespaceListerExpansion allows custom methods to be added to
 // MinerNamespaceLister.
-type MinerNamespaceListerExpansion interface{}
+type MinerNamespaceListerExpansion any
 
 // MinerSetListerExpansion allows custom methods to be added to
 // MinerSetLister.
-type MinerSetListerExpansion interface{}
+type MinerSetListerExpansion any
 
 // MinerSetNamespaceListerExpansion allows custom methods to be added to
 // MinerSetNamespaceLister.
-type MinerSetNamespaceListerExpansion interface{}
+type MinerSetNamespaceListerExpansion any

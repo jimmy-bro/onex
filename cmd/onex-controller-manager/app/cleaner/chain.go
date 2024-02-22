@@ -50,7 +50,7 @@ func (c *Chain) Sync(ctx context.Context) error {
 		key := client.ObjectKey{Namespace: chain.Namespace, Name: chain.Name}
 		if err := c.client.Get(ctx, key, &ch); err != nil {
 			if apierrors.IsNotFound(err) {
-				filter := map[string]interface{}{"namespace": chain.Namespace, "name": chain.Name}
+				filter := map[string]any{"namespace": chain.Namespace, "name": chain.Name}
 				if derr := c.ds.Chains().Delete(ctx, filter); derr != nil {
 					klog.V(1).InfoS("Failed to delete chain", "chain", klog.KRef(chain.Namespace, chain.Name), "err", derr)
 					continue

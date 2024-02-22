@@ -179,7 +179,7 @@ func file_errors_proto_rawDescGZIP() []byte {
 
 var (
 	file_errors_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-	file_errors_proto_goTypes  = []interface{}{
+	file_errors_proto_goTypes  = []any{
 		(*Error)(nil),                         // 0: errors.Error
 		nil,                                   // 1: errors.Error.MetadataEntry
 		(*descriptorpb.EnumOptions)(nil),      // 2: google.protobuf.EnumOptions
@@ -204,7 +204,7 @@ func file_errors_proto_init() {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_errors_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_errors_proto_msgTypes[0].Exporter = func(v any, i int) any {
 			switch v := v.(*Error); i {
 			case 0:
 				return &v.state

@@ -51,7 +51,7 @@ func (m *MockSecretBiz) Create(arg0 context.Context, arg1 *v1.CreateSecretReques
 }
 
 // Create indicates an expected call of Create.
-func (mr *MockSecretBizMockRecorder) Create(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockSecretBizMockRecorder) Create(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockSecretBiz)(nil).Create), arg0, arg1)
 }
@@ -65,7 +65,7 @@ func (m *MockSecretBiz) Delete(arg0 context.Context, arg1 *v1.DeleteSecretReques
 }
 
 // Delete indicates an expected call of Delete.
-func (mr *MockSecretBizMockRecorder) Delete(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockSecretBizMockRecorder) Delete(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockSecretBiz)(nil).Delete), arg0, arg1)
 }
@@ -80,7 +80,7 @@ func (m *MockSecretBiz) Get(arg0 context.Context, arg1 *v1.GetSecretRequest) (*v
 }
 
 // Get indicates an expected call of Get.
-func (mr *MockSecretBizMockRecorder) Get(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockSecretBizMockRecorder) Get(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Get", reflect.TypeOf((*MockSecretBiz)(nil).Get), arg0, arg1)
 }
@@ -95,7 +95,7 @@ func (m *MockSecretBiz) List(arg0 context.Context, arg1 *v1.ListSecretRequest) (
 }
 
 // List indicates an expected call of List.
-func (mr *MockSecretBizMockRecorder) List(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockSecretBizMockRecorder) List(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockSecretBiz)(nil).List), arg0, arg1)
 }
@@ -109,7 +109,7 @@ func (m *MockSecretBiz) Update(arg0 context.Context, arg1 *v1.UpdateSecretReques
 }
 
 // Update indicates an expected call of Update.
-func (mr *MockSecretBizMockRecorder) Update(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockSecretBizMockRecorder) Update(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockSecretBiz)(nil).Update), arg0, arg1)
 }

@@ -8,6 +8,7 @@ package user
 
 import (
 	"context"
+	"time"
 
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
@@ -108,8 +109,8 @@ func (o *ListOptions) Run(f cmdutil.Factory, args []string) error {
 			user.Nickname,
 			user.Email,
 			user.Phone,
-			user.CreatedAt.AsTime().Format("2006-01-02 15:04:05"),
-			user.UpdatedAt.AsTime().Format("2006-01-02 15:04:05"),
+			user.CreatedAt.AsTime().Format(time.DateTime),
+			user.UpdatedAt.AsTime().Format(time.DateTime),
 		})
 	}
 

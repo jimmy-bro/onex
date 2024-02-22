@@ -89,8 +89,7 @@ func (b *orderBiz) List(ctx context.Context, rq *v1.ListOrderRequest) (*v1.ListO
 	var m sync.Map
 	eg, ctx := errgroup.WithContext(ctx)
 	// 使用 goroutine 提高接口性能
-	for _, item := range list {
-		order := item
+	for _, order := range list {
 		eg.Go(func() error {
 			select {
 			case <-ctx.Done():

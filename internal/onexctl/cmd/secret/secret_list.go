@@ -108,8 +108,8 @@ func (o *ListOptions) Run(f cmdutil.Factory, args []string) error {
 			strconv.FormatInt(int64(secret.Status), 10),
 			secret.SecretID,
 			secret.SecretKey,
-			time.Unix(secret.Expires, 0).Format("2006-01-02 15:04:05"),
-			secret.CreatedAt.AsTime().Format("2006-01-02 15:04:05"),
+			time.Unix(secret.Expires, 0).Format(time.DateTime),
+			secret.CreatedAt.AsTime().Format(time.DateTime),
 		})
 	}
 

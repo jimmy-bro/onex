@@ -213,7 +213,7 @@ func ToUnstructured(rawyaml []byte) ([]unstructured.Unstructured, error) {
 			break
 		}
 
-		var m map[string]interface{}
+		var m map[string]any
 		if err := yaml.Unmarshal(b, &m); err != nil {
 			return nil, errors.Wrapf(err, "failed to unmarshal the %s yaml document: %q", util.Ordinalize(count), string(b))
 		}

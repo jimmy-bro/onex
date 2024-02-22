@@ -30,8 +30,7 @@ func (b *userBiz) List(ctx context.Context, rq *v1.ListUserRequest) (*v1.ListUse
 	var m sync.Map
 	eg, ctx := errgroup.WithContext(ctx)
 	// Use goroutine to improve interface performance
-	for _, item := range list {
-		user := item
+	for _, user := range list {
 		eg.Go(func() error {
 			select {
 			case <-ctx.Done():

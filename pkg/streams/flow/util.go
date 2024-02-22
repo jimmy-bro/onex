@@ -24,7 +24,7 @@ func DoStream(outlet streams.Outlet, inlet streams.Inlet) {
 }
 
 // Split splits the stream into two flows according to the given boolean predicate.
-func Split(outlet streams.Outlet, predicate func(interface{}) bool) [2]streams.Flow {
+func Split(outlet streams.Outlet, predicate func(any) bool) [2]streams.Flow {
 	condTrue := NewPassThrough()
 	condFalse := NewPassThrough()
 

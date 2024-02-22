@@ -51,7 +51,7 @@ func (m *MockAuthBiz) Authenticate(arg0 context.Context, arg1 string) (*v1.Authe
 }
 
 // Authenticate indicates an expected call of Authenticate.
-func (mr *MockAuthBizMockRecorder) Authenticate(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockAuthBizMockRecorder) Authenticate(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Authenticate", reflect.TypeOf((*MockAuthBiz)(nil).Authenticate), arg0, arg1)
 }
@@ -66,7 +66,7 @@ func (m *MockAuthBiz) Authorize(arg0 context.Context, arg1, arg2, arg3 string) (
 }
 
 // Authorize indicates an expected call of Authorize.
-func (mr *MockAuthBizMockRecorder) Authorize(arg0, arg1, arg2, arg3 interface{}) *gomock.Call {
+func (mr *MockAuthBizMockRecorder) Authorize(arg0, arg1, arg2, arg3 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Authorize", reflect.TypeOf((*MockAuthBiz)(nil).Authorize), arg0, arg1, arg2, arg3)
 }
@@ -81,7 +81,7 @@ func (m *MockAuthBiz) Login(arg0 context.Context, arg1 *v1.LoginRequest) (*v1.Lo
 }
 
 // Login indicates an expected call of Login.
-func (mr *MockAuthBizMockRecorder) Login(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockAuthBizMockRecorder) Login(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Login", reflect.TypeOf((*MockAuthBiz)(nil).Login), arg0, arg1)
 }
@@ -95,7 +95,7 @@ func (m *MockAuthBiz) Logout(arg0 context.Context, arg1 *v1.LogoutRequest) error
 }
 
 // Logout indicates an expected call of Logout.
-func (mr *MockAuthBizMockRecorder) Logout(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockAuthBizMockRecorder) Logout(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Logout", reflect.TypeOf((*MockAuthBiz)(nil).Logout), arg0, arg1)
 }
@@ -110,7 +110,7 @@ func (m *MockAuthBiz) RefreshToken(arg0 context.Context, arg1 *v1.RefreshTokenRe
 }
 
 // RefreshToken indicates an expected call of RefreshToken.
-func (mr *MockAuthBizMockRecorder) RefreshToken(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockAuthBizMockRecorder) RefreshToken(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RefreshToken", reflect.TypeOf((*MockAuthBiz)(nil).RefreshToken), arg0, arg1)
 }

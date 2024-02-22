@@ -35,7 +35,7 @@ type NetSource struct {
 	conn     net.Conn
 	listener net.Listener
 	connType ConnType
-	out      chan interface{}
+	out      chan any
 }
 
 // NewNetSource returns a new instance of NetSource.
@@ -43,7 +43,7 @@ func NewNetSource(ctx context.Context, connType ConnType, address string) (*NetS
 	var err error
 	var conn net.Conn
 	var listener net.Listener
-	out := make(chan interface{})
+	out := make(chan any)
 
 	switch connType {
 	case TCP:
@@ -91,7 +91,7 @@ func (ns *NetSource) listenCtx() {
 }
 
 // acceptConnections accepts new TCP connections.
-func acceptConnections(listener net.Listener, out chan<- interface{}) {
+func acceptConnections(listener net.Listener, out chan<- any) {
 	for {
 		// accept a new connection
 		conn, err := listener.Accept()
@@ -106,7 +106,7 @@ func acceptConnections(listener net.Listener, out chan<- interface{}) {
 }
 
 // handleConnection handles new connections.
-func handleConnection(conn net.Conn, out chan<- interface{}) {
+func handleConnection(conn net.Conn, out chan<- any) {
 	log.Printf("NetSource connected on: %v", conn.LocalAddr())
 	reader := bufio.NewReader(conn)
 
@@ -133,7 +133,7 @@ func (ns *NetSource) Via(_flow streams.Flow) streams.Flow {
 }
 
 // Out returns an output channel for sending data.
-func (ns *NetSource) Out() <-chan interface{} {
+func (ns *NetSource) Out() <-chan any {
 	return ns.out
 }
 
@@ -141,7 +141,7 @@ func (ns *NetSource) Out() <-chan interface{} {
 type NetSink struct {
 	conn     net.Conn
 	connType ConnType
-	in       chan interface{}
+	in       chan any
 }
 
 // NewNetSink returns a new instance of NetSink.
@@ -157,7 +157,7 @@ func NewNetSink(connType ConnType, address string) (*NetSink, error) {
 	sink := &NetSink{
 		conn:     conn,
 		connType: connType,
-		in:       make(chan interface{}),
+		in:       make(chan any),
 	}
 
 	go sink.init()
@@ -186,6 +186,6 @@ func (ns *NetSink) init() {
 }
 
 // In returns an input channel for receiving data.
-func (ns *NetSink) In() chan<- interface{} {
+func (ns *NetSink) In() chan<- any {
 	return ns.in
 }

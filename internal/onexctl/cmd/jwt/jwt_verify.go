@@ -104,7 +104,7 @@ func (o *VerifyOptions) Run(args []string) error {
 	tokenData = regexp.MustCompile(`\s*$`).ReplaceAll(tokenData, []byte{})
 
 	// Parse the token. Load the key from command line option
-	token, err := jwt.Parse(string(tokenData), func(t *jwt.Token) (interface{}, error) {
+	token, err := jwt.Parse(string(tokenData), func(t *jwt.Token) (any, error) {
 		return []byte(args[0]), nil
 	})
 

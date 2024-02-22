@@ -9,6 +9,7 @@ package minerset
 import (
 	"context"
 	"strconv"
+	"time"
 
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
@@ -106,7 +107,7 @@ func (o *ListOptions) Run(f cmdutil.Factory, args []string) error {
 			minerset.Name,
 			strconv.FormatInt(int64(minerset.Replicas), 10),
 			minerset.DisplayName,
-			minerset.CreatedAt.AsTime().Format("2006-01-02 15:04:05"),
+			minerset.CreatedAt.AsTime().Format(time.DateTime),
 		})
 	}
 

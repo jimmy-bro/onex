@@ -30,7 +30,7 @@ func New(cv any) *validator {
 	return &validator{registry: GetValidateFuncs(cv)}
 }
 
-func (vd *validator) Validate(ctx context.Context, rq interface{}) error {
+func (vd *validator) Validate(ctx context.Context, rq any) error {
 	m, ok := vd.registry[reflect.TypeOf(rq).Elem().Name()]
 	if !ok {
 		return nil
@@ -44,7 +44,7 @@ func (vd *validator) Validate(ctx context.Context, rq interface{}) error {
 	return nil
 }
 
-func GetValidateFuncs(cv interface{}) map[string]reflect.Value {
+func GetValidateFuncs(cv any) map[string]reflect.Value {
 	funcs := make(map[string]reflect.Value)
 	typeOf := reflect.TypeOf(cv)
 	valueOf := reflect.ValueOf(cv)

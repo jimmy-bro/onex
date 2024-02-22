@@ -292,7 +292,7 @@ func (m *MinerSet) validate(all bool) error {
 	// no validation rules for DeletePolicy
 
 	if all {
-		switch v := interface{}(m.GetMinerTemplate()).(type) {
+		switch v := any(m.GetMinerTemplate()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, MinerSetValidationError{
@@ -310,7 +310,7 @@ func (m *MinerSet) validate(all bool) error {
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetMinerTemplate()).(interface{ Validate() error }); ok {
+	} else if v, ok := any(m.GetMinerTemplate()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return MinerSetValidationError{
 				field:  "MinerTemplate",
@@ -321,7 +321,7 @@ func (m *MinerSet) validate(all bool) error {
 	}
 
 	if all {
-		switch v := interface{}(m.GetCreatedAt()).(type) {
+		switch v := any(m.GetCreatedAt()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, MinerSetValidationError{
@@ -339,7 +339,7 @@ func (m *MinerSet) validate(all bool) error {
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetCreatedAt()).(interface{ Validate() error }); ok {
+	} else if v, ok := any(m.GetCreatedAt()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return MinerSetValidationError{
 				field:  "CreatedAt",
@@ -350,7 +350,7 @@ func (m *MinerSet) validate(all bool) error {
 	}
 
 	if all {
-		switch v := interface{}(m.GetUpdatedAt()).(type) {
+		switch v := any(m.GetUpdatedAt()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, MinerSetValidationError{
@@ -368,7 +368,7 @@ func (m *MinerSet) validate(all bool) error {
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetUpdatedAt()).(interface{ Validate() error }); ok {
+	} else if v, ok := any(m.GetUpdatedAt()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return MinerSetValidationError{
 				field:  "UpdatedAt",
@@ -590,7 +590,7 @@ func (m *CreateMinerSetRequest) validate(all bool) error {
 	// no validation rules for DeletePolicy
 
 	if all {
-		switch v := interface{}(m.GetMinerTemplate()).(type) {
+		switch v := any(m.GetMinerTemplate()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, CreateMinerSetRequestValidationError{
@@ -608,7 +608,7 @@ func (m *CreateMinerSetRequest) validate(all bool) error {
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetMinerTemplate()).(interface{ Validate() error }); ok {
+	} else if v, ok := any(m.GetMinerTemplate()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return CreateMinerSetRequestValidationError{
 				field:  "MinerTemplate",
@@ -832,7 +832,7 @@ func (m *ListMinerSetResponse) validate(all bool) error {
 		_, _ = idx, item
 
 		if all {
-			switch v := interface{}(item).(type) {
+			switch v := any(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
 					errors = append(errors, ListMinerSetResponseValidationError{
@@ -850,7 +850,7 @@ func (m *ListMinerSetResponse) validate(all bool) error {
 					})
 				}
 			}
-		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+		} else if v, ok := any(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListMinerSetResponseValidationError{
 					field:  fmt.Sprintf("MinerSets[%v]", idx),
@@ -1402,7 +1402,7 @@ func (m *Miner) validate(all bool) error {
 	// no validation rules for Status
 
 	if all {
-		switch v := interface{}(m.GetCreatedAt()).(type) {
+		switch v := any(m.GetCreatedAt()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, MinerValidationError{
@@ -1420,7 +1420,7 @@ func (m *Miner) validate(all bool) error {
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetCreatedAt()).(interface{ Validate() error }); ok {
+	} else if v, ok := any(m.GetCreatedAt()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return MinerValidationError{
 				field:  "CreatedAt",
@@ -1431,7 +1431,7 @@ func (m *Miner) validate(all bool) error {
 	}
 
 	if all {
-		switch v := interface{}(m.GetUpdatedAt()).(type) {
+		switch v := any(m.GetUpdatedAt()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, MinerValidationError{
@@ -1449,7 +1449,7 @@ func (m *Miner) validate(all bool) error {
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetUpdatedAt()).(interface{ Validate() error }); ok {
+	} else if v, ok := any(m.GetUpdatedAt()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return MinerValidationError{
 				field:  "UpdatedAt",
@@ -1778,7 +1778,7 @@ func (m *ListMinerResponse) validate(all bool) error {
 		_, _ = idx, item
 
 		if all {
-			switch v := interface{}(item).(type) {
+			switch v := any(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
 					errors = append(errors, ListMinerResponseValidationError{
@@ -1796,7 +1796,7 @@ func (m *ListMinerResponse) validate(all bool) error {
 					})
 				}
 			}
-		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+		} else if v, ok := any(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ListMinerResponseValidationError{
 					field:  fmt.Sprintf("Miners[%v]", idx),

@@ -28,7 +28,7 @@ type logger struct {
 	v int32
 }
 
-func (l *logger) Printf(format string, args ...interface{}) {
+func (l *logger) Printf(format string, args ...any) {
 	klog.V(klog.Level(l.v)).Infof(format, args...)
 }
 

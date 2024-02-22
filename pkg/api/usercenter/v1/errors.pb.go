@@ -141,7 +141,7 @@ func file_usercenter_v1_errors_proto_rawDescGZIP() []byte {
 }
 
 var file_usercenter_v1_errors_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_usercenter_v1_errors_proto_goTypes = []interface{}{
+var file_usercenter_v1_errors_proto_goTypes = []any{
 	(ErrorReason)(0), // 0: usercenter.v1.ErrorReason
 }
 var file_usercenter_v1_errors_proto_depIdxs = []int32{

@@ -112,7 +112,7 @@ func _UserCenter_Login0_HTTP_Handler(srv UserCenterHTTPServer) func(ctx http.Con
 			return err
 		}
 		http.SetOperation(ctx, OperationUserCenterLogin)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.Login(ctx, req.(*LoginRequest))
 		})
 		out, err := h(ctx, &in)
@@ -134,7 +134,7 @@ func _UserCenter_Logout0_HTTP_Handler(srv UserCenterHTTPServer) func(ctx http.Co
 			return err
 		}
 		http.SetOperation(ctx, OperationUserCenterLogout)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.Logout(ctx, req.(*LogoutRequest))
 		})
 		out, err := h(ctx, &in)
@@ -156,7 +156,7 @@ func _UserCenter_RefreshToken0_HTTP_Handler(srv UserCenterHTTPServer) func(ctx h
 			return err
 		}
 		http.SetOperation(ctx, OperationUserCenterRefreshToken)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.RefreshToken(ctx, req.(*RefreshTokenRequest))
 		})
 		out, err := h(ctx, &in)
@@ -178,7 +178,7 @@ func _UserCenter_Authenticate0_HTTP_Handler(srv UserCenterHTTPServer) func(ctx h
 			return err
 		}
 		http.SetOperation(ctx, OperationUserCenterAuthenticate)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.Authenticate(ctx, req.(*AuthenticateRequest))
 		})
 		out, err := h(ctx, &in)
@@ -200,7 +200,7 @@ func _UserCenter_Authorize0_HTTP_Handler(srv UserCenterHTTPServer) func(ctx http
 			return err
 		}
 		http.SetOperation(ctx, OperationUserCenterAuthorize)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.Authorize(ctx, req.(*AuthorizeRequest))
 		})
 		out, err := h(ctx, &in)
@@ -222,7 +222,7 @@ func _UserCenter_Auth0_HTTP_Handler(srv UserCenterHTTPServer) func(ctx http.Cont
 			return err
 		}
 		http.SetOperation(ctx, OperationUserCenterAuth)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.Auth(ctx, req.(*AuthRequest))
 		})
 		out, err := h(ctx, &in)
@@ -244,7 +244,7 @@ func _UserCenter_CreateUser0_HTTP_Handler(srv UserCenterHTTPServer) func(ctx htt
 			return err
 		}
 		http.SetOperation(ctx, OperationUserCenterCreateUser)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.CreateUser(ctx, req.(*CreateUserRequest))
 		})
 		out, err := h(ctx, &in)
@@ -263,7 +263,7 @@ func _UserCenter_ListUser0_HTTP_Handler(srv UserCenterHTTPServer) func(ctx http.
 			return err
 		}
 		http.SetOperation(ctx, OperationUserCenterListUser)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.ListUser(ctx, req.(*ListUserRequest))
 		})
 		out, err := h(ctx, &in)
@@ -285,7 +285,7 @@ func _UserCenter_GetUser0_HTTP_Handler(srv UserCenterHTTPServer) func(ctx http.C
 			return err
 		}
 		http.SetOperation(ctx, OperationUserCenterGetUser)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.GetUser(ctx, req.(*GetUserRequest))
 		})
 		out, err := h(ctx, &in)
@@ -310,7 +310,7 @@ func _UserCenter_UpdateUser0_HTTP_Handler(srv UserCenterHTTPServer) func(ctx htt
 			return err
 		}
 		http.SetOperation(ctx, OperationUserCenterUpdateUser)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.UpdateUser(ctx, req.(*UpdateUserRequest))
 		})
 		out, err := h(ctx, &in)
@@ -332,7 +332,7 @@ func _UserCenter_DeleteUser0_HTTP_Handler(srv UserCenterHTTPServer) func(ctx htt
 			return err
 		}
 		http.SetOperation(ctx, OperationUserCenterDeleteUser)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.DeleteUser(ctx, req.(*DeleteUserRequest))
 		})
 		out, err := h(ctx, &in)
@@ -357,7 +357,7 @@ func _UserCenter_UpdatePassword0_HTTP_Handler(srv UserCenterHTTPServer) func(ctx
 			return err
 		}
 		http.SetOperation(ctx, OperationUserCenterUpdatePassword)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.UpdatePassword(ctx, req.(*UpdatePasswordRequest))
 		})
 		out, err := h(ctx, &in)
@@ -379,7 +379,7 @@ func _UserCenter_CreateSecret0_HTTP_Handler(srv UserCenterHTTPServer) func(ctx h
 			return err
 		}
 		http.SetOperation(ctx, OperationUserCenterCreateSecret)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.CreateSecret(ctx, req.(*CreateSecretRequest))
 		})
 		out, err := h(ctx, &in)
@@ -398,7 +398,7 @@ func _UserCenter_ListSecret0_HTTP_Handler(srv UserCenterHTTPServer) func(ctx htt
 			return err
 		}
 		http.SetOperation(ctx, OperationUserCenterListSecret)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.ListSecret(ctx, req.(*ListSecretRequest))
 		})
 		out, err := h(ctx, &in)
@@ -420,7 +420,7 @@ func _UserCenter_GetSecret0_HTTP_Handler(srv UserCenterHTTPServer) func(ctx http
 			return err
 		}
 		http.SetOperation(ctx, OperationUserCenterGetSecret)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.GetSecret(ctx, req.(*GetSecretRequest))
 		})
 		out, err := h(ctx, &in)
@@ -445,7 +445,7 @@ func _UserCenter_UpdateSecret0_HTTP_Handler(srv UserCenterHTTPServer) func(ctx h
 			return err
 		}
 		http.SetOperation(ctx, OperationUserCenterUpdateSecret)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.UpdateSecret(ctx, req.(*UpdateSecretRequest))
 		})
 		out, err := h(ctx, &in)
@@ -467,7 +467,7 @@ func _UserCenter_DeleteSecret0_HTTP_Handler(srv UserCenterHTTPServer) func(ctx h
 			return err
 		}
 		http.SetOperation(ctx, OperationUserCenterDeleteSecret)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.DeleteSecret(ctx, req.(*DeleteSecretRequest))
 		})
 		out, err := h(ctx, &in)

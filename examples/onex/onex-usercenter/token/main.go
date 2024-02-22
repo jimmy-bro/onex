@@ -17,7 +17,7 @@ import (
 )
 
 func main() {
-	headers := make(map[string]interface{})
+	headers := make(map[string]any)
 	headers["kid"] = "8b5228a5-b3d2-4165-aaac-58a052629846"
 
 	opts := []jwtauthn.Option{

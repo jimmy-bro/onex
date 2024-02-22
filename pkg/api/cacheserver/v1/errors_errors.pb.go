@@ -27,7 +27,7 @@ func IsOrderNotFound(err error) bool {
 }
 
 // 订单找不到 ，可能是订单不存在或输入的订单标识有误
-func ErrorOrderNotFound(format string, args ...interface{}) *errors.Error {
+func ErrorOrderNotFound(format string, args ...any) *errors.Error {
 	return errors.New(404, ErrorReason_OrderNotFound.String(), fmt.Sprintf(format, args...))
 }
 
@@ -41,7 +41,7 @@ func IsOrderAlreadyExists(err error) bool {
 }
 
 // 订单已存在，无法创建用户
-func ErrorOrderAlreadyExists(format string, args ...interface{}) *errors.Error {
+func ErrorOrderAlreadyExists(format string, args ...any) *errors.Error {
 	return errors.New(409, ErrorReason_OrderAlreadyExists.String(), fmt.Sprintf(format, args...))
 }
 
@@ -55,6 +55,6 @@ func IsOrderCreateFailed(err error) bool {
 }
 
 // 创建订单失败，可能是由于服务器或其他问题导致的创建过程中的错误
-func ErrorOrderCreateFailed(format string, args ...interface{}) *errors.Error {
+func ErrorOrderCreateFailed(format string, args ...any) *errors.Error {
 	return errors.New(541, ErrorReason_OrderCreateFailed.String(), fmt.Sprintf(format, args...))
 }

@@ -42,9 +42,9 @@ func (m *MockAuthProvider) EXPECT() *MockAuthProviderMockRecorder {
 }
 
 // Authorize mocks base method.
-func (m *MockAuthProvider) Authorize(arg0 ...interface{}) (bool, error) {
+func (m *MockAuthProvider) Authorize(arg0 ...any) (bool, error) {
 	m.ctrl.T.Helper()
-	varargs := []interface{}{}
+	varargs := []any{}
 	for _, a := range arg0 {
 		varargs = append(varargs, a)
 	}
@@ -55,7 +55,7 @@ func (m *MockAuthProvider) Authorize(arg0 ...interface{}) (bool, error) {
 }
 
 // Authorize indicates an expected call of Authorize.
-func (mr *MockAuthProviderMockRecorder) Authorize(arg0 ...interface{}) *gomock.Call {
+func (mr *MockAuthProviderMockRecorder) Authorize(arg0 ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Authorize", reflect.TypeOf((*MockAuthProvider)(nil).Authorize), arg0...)
 }
@@ -70,7 +70,7 @@ func (m *MockAuthProvider) Sign(arg0 context.Context, arg1 string) (authn.IToken
 }
 
 // Sign indicates an expected call of Sign.
-func (mr *MockAuthProviderMockRecorder) Sign(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockAuthProviderMockRecorder) Sign(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Sign", reflect.TypeOf((*MockAuthProvider)(nil).Sign), arg0, arg1)
 }
@@ -85,7 +85,7 @@ func (m *MockAuthProvider) Verify(arg0 string) (string, error) {
 }
 
 // Verify indicates an expected call of Verify.
-func (mr *MockAuthProviderMockRecorder) Verify(arg0 interface{}) *gomock.Call {
+func (mr *MockAuthProviderMockRecorder) Verify(arg0 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Verify", reflect.TypeOf((*MockAuthProvider)(nil).Verify), arg0)
 }
@@ -114,9 +114,9 @@ func (m *MockAuthzInterface) EXPECT() *MockAuthzInterfaceMockRecorder {
 }
 
 // Authorize mocks base method.
-func (m *MockAuthzInterface) Authorize(arg0 ...interface{}) (bool, error) {
+func (m *MockAuthzInterface) Authorize(arg0 ...any) (bool, error) {
 	m.ctrl.T.Helper()
-	varargs := []interface{}{}
+	varargs := []any{}
 	for _, a := range arg0 {
 		varargs = append(varargs, a)
 	}
@@ -127,7 +127,7 @@ func (m *MockAuthzInterface) Authorize(arg0 ...interface{}) (bool, error) {
 }
 
 // Authorize indicates an expected call of Authorize.
-func (mr *MockAuthzInterfaceMockRecorder) Authorize(arg0 ...interface{}) *gomock.Call {
+func (mr *MockAuthzInterfaceMockRecorder) Authorize(arg0 ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Authorize", reflect.TypeOf((*MockAuthzInterface)(nil).Authorize), arg0...)
 }
@@ -165,7 +165,7 @@ func (m *MockAuthnInterface) Sign(arg0 context.Context, arg1 string) (authn.ITok
 }
 
 // Sign indicates an expected call of Sign.
-func (mr *MockAuthnInterfaceMockRecorder) Sign(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockAuthnInterfaceMockRecorder) Sign(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Sign", reflect.TypeOf((*MockAuthnInterface)(nil).Sign), arg0, arg1)
 }
@@ -180,7 +180,7 @@ func (m *MockAuthnInterface) Verify(arg0 string) (string, error) {
 }
 
 // Verify indicates an expected call of Verify.
-func (mr *MockAuthnInterfaceMockRecorder) Verify(arg0 interface{}) *gomock.Call {
+func (mr *MockAuthnInterfaceMockRecorder) Verify(arg0 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Verify", reflect.TypeOf((*MockAuthnInterface)(nil).Verify), arg0)
 }

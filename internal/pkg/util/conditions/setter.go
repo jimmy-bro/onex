@@ -76,7 +76,7 @@ func TrueCondition(t v1beta1.ConditionType) *v1beta1.Condition {
 }
 
 // FalseCondition returns a condition with Status=False and the given type.
-func FalseCondition(t v1beta1.ConditionType, reason string, severity v1beta1.ConditionSeverity, messageFormat string, messageArgs ...interface{}) *v1beta1.Condition {
+func FalseCondition(t v1beta1.ConditionType, reason string, severity v1beta1.ConditionSeverity, messageFormat string, messageArgs ...any) *v1beta1.Condition {
 	return &v1beta1.Condition{
 		Type:     t,
 		Status:   corev1.ConditionFalse,
@@ -87,7 +87,7 @@ func FalseCondition(t v1beta1.ConditionType, reason string, severity v1beta1.Con
 }
 
 // UnknownCondition returns a condition with Status=Unknown and the given type.
-func UnknownCondition(t v1beta1.ConditionType, reason string, messageFormat string, messageArgs ...interface{}) *v1beta1.Condition {
+func UnknownCondition(t v1beta1.ConditionType, reason string, messageFormat string, messageArgs ...any) *v1beta1.Condition {
 	return &v1beta1.Condition{
 		Type:    t,
 		Status:  corev1.ConditionUnknown,
@@ -102,12 +102,12 @@ func MarkTrue(to Setter, t v1beta1.ConditionType) {
 }
 
 // MarkUnknown sets Status=Unknown for the condition with the given type.
-func MarkUnknown(to Setter, t v1beta1.ConditionType, reason, messageFormat string, messageArgs ...interface{}) {
+func MarkUnknown(to Setter, t v1beta1.ConditionType, reason, messageFormat string, messageArgs ...any) {
 	Set(to, UnknownCondition(t, reason, messageFormat, messageArgs...))
 }
 
 // MarkFalse sets Status=False for the condition with the given type.
-func MarkFalse(to Setter, t v1beta1.ConditionType, reason string, severity v1beta1.ConditionSeverity, messageFormat string, messageArgs ...interface{}) {
+func MarkFalse(to Setter, t v1beta1.ConditionType, reason string, severity v1beta1.ConditionSeverity, messageFormat string, messageArgs ...any) {
 	Set(to, FalseCondition(t, reason, severity, messageFormat, messageArgs...))
 }
 

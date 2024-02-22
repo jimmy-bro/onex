@@ -33,7 +33,7 @@ func idempotentBlacklist() selector.MatchFunc {
 func Idempotent(idt *idempotent.Idempotent) middleware.Middleware {
 	return selector.Server(
 		func(handler middleware.Handler) middleware.Handler {
-			return func(ctx context.Context, rq interface{}) (rp interface{}, err error) {
+			return func(ctx context.Context, rq any) (rp any, err error) {
 				if tr, ok := transport.FromServerContext(ctx); ok {
 					token := tr.RequestHeader().Get("X-Idempotent-ID")
 					if token != "" {

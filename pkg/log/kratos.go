@@ -14,10 +14,10 @@ import (
 
 type KratosLogger interface {
 	// Log implements is used to github.com/go-kratos/kratos/v2/log.Logger interface.
-	Log(level krtlog.Level, keyvals ...interface{}) error
+	Log(level krtlog.Level, keyvals ...any) error
 }
 
-func (l *zapLogger) Log(level krtlog.Level, keyvals ...interface{}) error {
+func (l *zapLogger) Log(level krtlog.Level, keyvals ...any) error {
 	keylen := len(keyvals)
 	if keylen == 0 || keylen%2 != 0 {
 		l.z.Warn(fmt.Sprint("Keyvalues must appear in pairs: ", keyvals))

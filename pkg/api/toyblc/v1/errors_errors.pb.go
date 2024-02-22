@@ -27,6 +27,6 @@ func IsPageNotFound(err error) bool {
 }
 
 // 页面未找到错误，请求的页面不存在
-func ErrorPageNotFound(format string, args ...interface{}) *errors.Error {
+func ErrorPageNotFound(format string, args ...any) *errors.Error {
 	return errors.New(404, ErrorReason_PageNotFound.String(), fmt.Sprintf(format, args...))
 }

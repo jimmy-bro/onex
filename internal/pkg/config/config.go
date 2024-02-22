@@ -35,7 +35,7 @@ func (cn ConfigurationName) NamespacedName() types.NamespacedName {
 	return types.NamespacedName{Name: cn.String(), Namespace: metav1.NamespaceSystem}
 }
 
-func (cn ConfigurationName) GetConfig(cli interface{}) (*corev1.ConfigMap, error) {
+func (cn ConfigurationName) GetConfig(cli any) (*corev1.ConfigMap, error) {
 	var err error
 	cm := new(corev1.ConfigMap)
 

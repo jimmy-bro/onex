@@ -36,7 +36,7 @@ func AddOwners(ctx context.Context, obj metav1.Object) (context.Context, logr.Lo
 	}
 
 	// Add owners as k/v pairs.
-	keysAndValues := []interface{}{}
+	keysAndValues := []any{}
 	addedKinds := sets.Set[string]{}
 	for _, owner := range owners {
 		// Don't add duplicate kinds.
@@ -64,7 +64,7 @@ func AddWithMinerSetOwners(ctx context.Context, c client.Client, obj metav1.Obje
 	}
 
 	// Add owners as k/v pairs.
-	keysAndValues := []interface{}{}
+	keysAndValues := []any{}
 	addedKinds := sets.Set[string]{}
 	for _, owner := range owners {
 		// Don't add duplicate kinds.

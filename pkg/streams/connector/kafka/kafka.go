@@ -22,14 +22,14 @@ import (
 // KafkaSource represents an Apache Kafka source connector.
 type KafkaSource struct {
 	r         *kafka.Reader
-	out       chan interface{}
+	out       chan any
 	ctx       context.Context
 	cancelCtx context.CancelFunc
 }
 
 // NewKafkaSource returns a new KafkaSource instance.
 func NewKafkaSource(ctx context.Context, config kafka.ReaderConfig) (*KafkaSource, error) {
-	out := make(chan interface{})
+	out := make(chan any)
 	cctx, cancel := context.WithCancel(ctx)
 
 	sink := &KafkaSource{
@@ -77,7 +77,7 @@ func (ks *KafkaSource) Via(_flow streams.Flow) streams.Flow {
 }
 
 // Out returns an output channel for sending data.
-func (ks *KafkaSource) Out() <-chan interface{} {
+func (ks *KafkaSource) Out() <-chan any {
 	return ks.out
 }
 
@@ -85,7 +85,7 @@ func (ks *KafkaSource) Out() <-chan interface{} {
 type KafkaSink struct {
 	ctx context.Context
 	w   *kafka.Writer
-	in  chan interface{}
+	in  chan any
 }
 
 // NewKafkaSink returns a new KafkaSink instance.
@@ -93,7 +93,7 @@ func NewKafkaSink(ctx context.Context, config kafka.WriterConfig) (*KafkaSink, e
 	sink := &KafkaSink{
 		ctx: ctx,
 		w:   kafka.NewWriter(config),
-		in:  make(chan interface{}),
+		in:  make(chan any),
 	}
 
 	go sink.init()
@@ -124,6 +124,6 @@ func (ks *KafkaSink) init() {
 }
 
 // In returns an input channel for receiving data.
-func (ks *KafkaSink) In() chan<- interface{} {
+func (ks *KafkaSink) In() chan<- any {
 	return ks.in
 }

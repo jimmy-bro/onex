@@ -50,7 +50,7 @@ func (m *MockIBiz) Namespace(arg0 string) namespaced.NamespacedBiz {
 }
 
 // Namespace indicates an expected call of Namespace.
-func (mr *MockIBizMockRecorder) Namespace(arg0 interface{}) *gomock.Call {
+func (mr *MockIBizMockRecorder) Namespace(arg0 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Namespace", reflect.TypeOf((*MockIBiz)(nil).Namespace), arg0)
 }

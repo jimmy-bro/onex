@@ -27,7 +27,7 @@ func IsUserLoginFailed(err error) bool {
 }
 
 // 用户登录失败，可能是用户名或密码不对
-func ErrorUserLoginFailed(format string, args ...interface{}) *errors.Error {
+func ErrorUserLoginFailed(format string, args ...any) *errors.Error {
 	return errors.New(401, ErrorReason_UserLoginFailed.String(), fmt.Sprintf(format, args...))
 }
 
@@ -41,7 +41,7 @@ func IsUserAlreadyExists(err error) bool {
 }
 
 // 用户已存在错误
-func ErrorUserAlreadyExists(format string, args ...interface{}) *errors.Error {
+func ErrorUserAlreadyExists(format string, args ...any) *errors.Error {
 	return errors.New(409, ErrorReason_UserAlreadyExists.String(), fmt.Sprintf(format, args...))
 }
 
@@ -55,7 +55,7 @@ func IsUserNotFound(err error) bool {
 }
 
 // 用户未找到错误
-func ErrorUserNotFound(format string, args ...interface{}) *errors.Error {
+func ErrorUserNotFound(format string, args ...any) *errors.Error {
 	return errors.New(404, ErrorReason_UserNotFound.String(), fmt.Sprintf(format, args...))
 }
 
@@ -69,6 +69,6 @@ func IsUserCreateFailed(err error) bool {
 }
 
 // 创建用户失败错误
-func ErrorUserCreateFailed(format string, args ...interface{}) *errors.Error {
+func ErrorUserCreateFailed(format string, args ...any) *errors.Error {
 	return errors.New(541, ErrorReason_UserCreateFailed.String(), fmt.Sprintf(format, args...))
 }

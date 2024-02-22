@@ -27,11 +27,11 @@ type UserStore interface {
 	// Update modifies an existing user record.
 	Update(ctx context.Context, user *model.UserM) error
 	// Delete removes a user record using the provided filters.
-	Delete(ctx context.Context, filters map[string]interface{}) error
+	Delete(ctx context.Context, filters map[string]any) error
 
 	// Extensions
 	// Fetch retrieves a user record using provided filters.
-	Fetch(ctx context.Context, filters map[string]interface{}) (*model.UserM, error)
+	Fetch(ctx context.Context, filters map[string]any) (*model.UserM, error)
 	// GetByUsername retrieves a user record using username as the query condition.
 	GetByUsername(ctx context.Context, username string) (*model.UserM, error)
 }
@@ -76,7 +76,7 @@ func (d *userStore) List(ctx context.Context, opts ...meta.ListOption) (count in
 }
 
 // Fetch retrieves a user record from the database using the provided filters.
-func (d *userStore) Fetch(ctx context.Context, filters map[string]interface{}) (*model.UserM, error) {
+func (d *userStore) Fetch(ctx context.Context, filters map[string]any) (*model.UserM, error) {
 	user := &model.UserM{}
 	if err := d.db(ctx).Where(filters).First(&user).Error; err != nil {
 		return nil, err
@@ -87,12 +87,12 @@ func (d *userStore) Fetch(ctx context.Context, filters map[string]interface{}) (
 
 // Get retrieves a user record by userID and username.
 func (d *userStore) Get(ctx context.Context, userID string, username string) (*model.UserM, error) {
-	return d.Fetch(ctx, map[string]interface{}{"user_id": userID, "username": username})
+	return d.Fetch(ctx, map[string]any{"user_id": userID, "username": username})
 }
 
 // GetByUsername retrieves a user record using the provided username.
 func (d *userStore) GetByUsername(ctx context.Context, username string) (*model.UserM, error) {
-	return d.Fetch(ctx, map[string]interface{}{"username": username})
+	return d.Fetch(ctx, map[string]any{"username": username})
 }
 
 // Update modifies an existing user record in the database.
@@ -102,7 +102,7 @@ func (d *userStore) Update(ctx context.Context, user *model.UserM) error {
 
 // Delete removes a user record from the database using the provided filters.
 // It returns an error if the deletion process encounters an issue other than a missing record.
-func (d *userStore) Delete(ctx context.Context, filters map[string]interface{}) error {
+func (d *userStore) Delete(ctx context.Context, filters map[string]any) error {
 	err := d.db(ctx).Where(filters).Delete(&model.UserM{}).Error
 	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 		return err

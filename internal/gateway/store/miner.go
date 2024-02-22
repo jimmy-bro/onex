@@ -19,9 +19,9 @@ import (
 // MinerStore defines the miner storage interface.
 type MinerStore interface {
 	Create(ctx context.Context, miner *model.MinerM) error
-	Delete(ctx context.Context, filters map[string]interface{}) error
+	Delete(ctx context.Context, filters map[string]any) error
 	Update(ctx context.Context, miner *model.MinerM) error
-	Get(ctx context.Context, filters map[string]interface{}) (*model.MinerM, error)
+	Get(ctx context.Context, filters map[string]any) (*model.MinerM, error)
 	List(ctx context.Context, namespace string, opts ...meta.ListOption) (int64, []*model.MinerM, error)
 }
 
@@ -44,7 +44,7 @@ func (d *minerStore) Create(ctx context.Context, miner *model.MinerM) error {
 }
 
 // Delete delete an miner record.
-func (d *minerStore) Delete(ctx context.Context, filters map[string]interface{}) error {
+func (d *minerStore) Delete(ctx context.Context, filters map[string]any) error {
 	err := d.db(ctx).Where(filters).Delete(&model.MinerM{}).Error
 	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 		return err
@@ -59,7 +59,7 @@ func (d *minerStore) Update(ctx context.Context, miner *model.MinerM) error {
 }
 
 // Get get an miner record.
-func (d *minerStore) Get(ctx context.Context, filters map[string]interface{}) (*model.MinerM, error) {
+func (d *minerStore) Get(ctx context.Context, filters map[string]any) (*model.MinerM, error) {
 	miner := &model.MinerM{}
 	if err := d.db(ctx).Where(filters).First(&miner).Error; err != nil {
 		return nil, err

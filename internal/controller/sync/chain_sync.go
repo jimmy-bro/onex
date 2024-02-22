@@ -52,12 +52,12 @@ func (r *ChainSyncReconciler) Reconcile(ctx context.Context, rq ctrl.Request) (c
 	ch := &v1beta1.Chain{}
 	if err := r.client.Get(ctx, rq.NamespacedName, ch); err != nil {
 		if apierrors.IsNotFound(err) {
-			return ctrl.Result{}, r.Store.Chains().Delete(ctx, map[string]interface{}{"namespace": rq.Namespace, "name": rq.Name})
+			return ctrl.Result{}, r.Store.Chains().Delete(ctx, map[string]any{"namespace": rq.Namespace, "name": rq.Name})
 		}
 		return ctrl.Result{}, err
 	}
 
-	chr, err := r.Store.Chains().Get(ctx, map[string]interface{}{"namespace": rq.Namespace, "name": rq.Name})
+	chr, err := r.Store.Chains().Get(ctx, map[string]any{"namespace": rq.Namespace, "name": rq.Name})
 	if err != nil {
 		// chain record not exist, create it.
 		if errors.Is(err, gorm.ErrRecordNotFound) {

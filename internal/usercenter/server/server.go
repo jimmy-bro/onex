@@ -48,7 +48,7 @@ func NewServers(hs *http.Server, gs *grpc.Server) []transport.Server {
 func NewMiddlewares(logger krtlog.Logger, a authn.Authenticator, v validate.IValidator) []middleware.Middleware {
 	return []middleware.Middleware{
 		recovery.Recovery(
-			recovery.WithHandler(func(ctx context.Context, rq, err interface{}) error {
+			recovery.WithHandler(func(ctx context.Context, rq, err any) error {
 				data, _ := json.Marshal(rq)
 				log.C(ctx).Errorw(err.(error), "Catching a panic", "rq", string(data))
 				return nil

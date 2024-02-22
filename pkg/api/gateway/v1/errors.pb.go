@@ -117,7 +117,7 @@ func file_gateway_v1_errors_proto_rawDescGZIP() []byte {
 }
 
 var file_gateway_v1_errors_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_gateway_v1_errors_proto_goTypes = []interface{}{
+var file_gateway_v1_errors_proto_goTypes = []any{
 	(ErrorReason)(0), // 0: gateway.v1.ErrorReason
 }
 var file_gateway_v1_errors_proto_depIdxs = []int32{

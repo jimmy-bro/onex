@@ -50,7 +50,7 @@ func (m *MockSecretBiz) Del(arg0 context.Context, arg1 *v1.DelSecretRequest) err
 }
 
 // Del indicates an expected call of Del.
-func (mr *MockSecretBizMockRecorder) Del(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockSecretBizMockRecorder) Del(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Del", reflect.TypeOf((*MockSecretBiz)(nil).Del), arg0, arg1)
 }
@@ -65,7 +65,7 @@ func (m *MockSecretBiz) Get(arg0 context.Context, arg1 *v1.GetSecretRequest) (*v
 }
 
 // Get indicates an expected call of Get.
-func (mr *MockSecretBizMockRecorder) Get(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockSecretBizMockRecorder) Get(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Get", reflect.TypeOf((*MockSecretBiz)(nil).Get), arg0, arg1)
 }
@@ -79,7 +79,7 @@ func (m *MockSecretBiz) Set(arg0 context.Context, arg1 *v1.SetSecretRequest) err
 }
 
 // Set indicates an expected call of Set.
-func (mr *MockSecretBizMockRecorder) Set(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockSecretBizMockRecorder) Set(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Set", reflect.TypeOf((*MockSecretBiz)(nil).Set), arg0, arg1)
 }

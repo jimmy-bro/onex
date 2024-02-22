@@ -14,7 +14,7 @@ import (
 )
 
 type mockCache[T any] struct {
-	storage map[interface{}]T
+	storage map[any]T
 }
 
 func (m *mockCache[T]) Set(ctx context.Context, key any, obj T) error {
@@ -55,7 +55,7 @@ func (m *mockCache[T]) Del(ctx context.Context, key any) error {
 }
 
 func (m *mockCache[T]) Clear(ctx context.Context) error {
-	m.storage = make(map[interface{}]T)
+	m.storage = make(map[any]T)
 	return nil
 }
 
@@ -65,7 +65,7 @@ func (m *mockCache[T]) Wait(ctx context.Context) {
 
 func TestCacheSetAndGet(t *testing.T) {
 	// Create a mock cache
-	cache := &mockCache[any]{storage: make(map[interface{}]any)}
+	cache := &mockCache[any]{storage: make(map[any]any)}
 
 	// Test Set and Get operations
 	key := "testKey"
@@ -86,7 +86,7 @@ func TestCacheSetAndGet(t *testing.T) {
 
 func TestCacheSetWithTTLAndGetWithTTL(t *testing.T) {
 	// Create a mock cache
-	cache := &mockCache[any]{storage: make(map[interface{}]any)}
+	cache := &mockCache[any]{storage: make(map[any]any)}
 
 	// Test SetWithTTL and GetWithTTL operations
 	key := "testKey"
@@ -111,7 +111,7 @@ func TestCacheSetWithTTLAndGetWithTTL(t *testing.T) {
 
 func TestCacheDel(t *testing.T) {
 	// Create a mock cache
-	cache := &mockCache[any]{storage: make(map[interface{}]any)}
+	cache := &mockCache[any]{storage: make(map[any]any)}
 
 	// Test Del operation
 	key := "testKey"
@@ -131,7 +131,7 @@ func TestCacheDel(t *testing.T) {
 
 func TestCacheClear(t *testing.T) {
 	// Create a mock cache
-	cache := &mockCache[any]{storage: make(map[interface{}]any)}
+	cache := &mockCache[any]{storage: make(map[any]any)}
 
 	// Test Clear operation
 	key := "testKey"

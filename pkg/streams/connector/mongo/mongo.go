@@ -29,7 +29,7 @@ type MongoSink struct {
 	ctx  context.Context
 	conf SinkConfig
 	db   *mongo.Database
-	in   chan interface{}
+	in   chan any
 }
 
 // NewMongoSink returns a new MongoSink instance.
@@ -38,7 +38,7 @@ func NewMongoSink(ctx context.Context, db *mongo.Database, conf SinkConfig) (*Mo
 		ctx:  ctx,
 		conf: conf,
 		db:   db,
-		in:   make(chan interface{}),
+		in:   make(chan any),
 	}
 
 	go sink.init()
@@ -128,6 +128,6 @@ func (ms *MongoSink) collectionExists(name string) (bool, error) {
 }
 
 // In returns an input channel for receiving data.
-func (ks *MongoSink) In() chan<- interface{} {
+func (ks *MongoSink) In() chan<- any {
 	return ks.in
 }

@@ -133,7 +133,7 @@ func file_zerrors_zerrors_proto_rawDescGZIP() []byte {
 }
 
 var file_zerrors_zerrors_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_zerrors_zerrors_proto_goTypes = []interface{}{
+var file_zerrors_zerrors_proto_goTypes = []any{
 	(ErrorReason)(0), // 0: zerrors.ErrorReason
 }
 var file_zerrors_zerrors_proto_depIdxs = []int32{

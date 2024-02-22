@@ -68,7 +68,7 @@ func (m *SetRequest) validate(all bool) error {
 	// no validation rules for Key
 
 	if all {
-		switch v := interface{}(m.GetValue()).(type) {
+		switch v := any(m.GetValue()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, SetRequestValidationError{
@@ -86,7 +86,7 @@ func (m *SetRequest) validate(all bool) error {
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetValue()).(interface{ Validate() error }); ok {
+	} else if v, ok := any(m.GetValue()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return SetRequestValidationError{
 				field:  "Value",
@@ -99,7 +99,7 @@ func (m *SetRequest) validate(all bool) error {
 	if m.Expire != nil {
 
 		if all {
-			switch v := interface{}(m.GetExpire()).(type) {
+			switch v := any(m.GetExpire()).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
 					errors = append(errors, SetRequestValidationError{
@@ -117,7 +117,7 @@ func (m *SetRequest) validate(all bool) error {
 					})
 				}
 			}
-		} else if v, ok := interface{}(m.GetExpire()).(interface{ Validate() error }); ok {
+		} else if v, ok := any(m.GetExpire()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return SetRequestValidationError{
 					field:  "Expire",
@@ -332,7 +332,7 @@ func (m *GetResponse) validate(all bool) error {
 	var errors []error
 
 	if all {
-		switch v := interface{}(m.GetValue()).(type) {
+		switch v := any(m.GetValue()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, GetResponseValidationError{
@@ -350,7 +350,7 @@ func (m *GetResponse) validate(all bool) error {
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetValue()).(interface{ Validate() error }); ok {
+	} else if v, ok := any(m.GetValue()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return GetResponseValidationError{
 				field:  "Value",
@@ -361,7 +361,7 @@ func (m *GetResponse) validate(all bool) error {
 	}
 
 	if all {
-		switch v := interface{}(m.GetExpire()).(type) {
+		switch v := any(m.GetExpire()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, GetResponseValidationError{
@@ -379,7 +379,7 @@ func (m *GetResponse) validate(all bool) error {
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetExpire()).(interface{ Validate() error }); ok {
+	} else if v, ok := any(m.GetExpire()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return GetResponseValidationError{
 				field:  "Expire",
@@ -618,7 +618,7 @@ func (m *SetSecretRequest) validate(all bool) error {
 	if m.Expire != nil {
 
 		if all {
-			switch v := interface{}(m.GetExpire()).(type) {
+			switch v := any(m.GetExpire()).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
 					errors = append(errors, SetSecretRequestValidationError{
@@ -636,7 +636,7 @@ func (m *SetSecretRequest) validate(all bool) error {
 					})
 				}
 			}
-		} else if v, ok := interface{}(m.GetExpire()).(interface{ Validate() error }); ok {
+		} else if v, ok := any(m.GetExpire()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return SetSecretRequestValidationError{
 					field:  "Expire",
@@ -967,7 +967,7 @@ func (m *GetSecretResponse) validate(all bool) error {
 	// no validation rules for Description
 
 	if all {
-		switch v := interface{}(m.GetCreatedAt()).(type) {
+		switch v := any(m.GetCreatedAt()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, GetSecretResponseValidationError{
@@ -985,7 +985,7 @@ func (m *GetSecretResponse) validate(all bool) error {
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetCreatedAt()).(interface{ Validate() error }); ok {
+	} else if v, ok := any(m.GetCreatedAt()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return GetSecretResponseValidationError{
 				field:  "CreatedAt",
@@ -996,7 +996,7 @@ func (m *GetSecretResponse) validate(all bool) error {
 	}
 
 	if all {
-		switch v := interface{}(m.GetUpdatedAt()).(type) {
+		switch v := any(m.GetUpdatedAt()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
 				errors = append(errors, GetSecretResponseValidationError{
@@ -1014,7 +1014,7 @@ func (m *GetSecretResponse) validate(all bool) error {
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetUpdatedAt()).(interface{ Validate() error }); ok {
+	} else if v, ok := any(m.GetUpdatedAt()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return GetSecretResponseValidationError{
 				field:  "UpdatedAt",

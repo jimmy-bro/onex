@@ -107,7 +107,7 @@ func MarshalData(src metav1.Object, dst metav1.Object) error {
 }
 
 // UnmarshalData tries to retrieve the data from the annotation and unmarshals it into the object passed as input.
-func UnmarshalData(from metav1.Object, to interface{}) (bool, error) {
+func UnmarshalData(from metav1.Object, to any) (bool, error) {
 	annotations := from.GetAnnotations()
 	data, ok := annotations[DataAnnotation]
 	if !ok {
@@ -125,8 +125,8 @@ func UnmarshalData(from metav1.Object, to interface{}) (bool, error) {
 func GetFuzzer(scheme *runtime.Scheme, funcs ...fuzzer.FuzzerFuncs) *fuzz.Fuzzer {
 	funcs = append([]fuzzer.FuzzerFuncs{
 		metafuzzer.Funcs,
-		func(_ runtimeserializer.CodecFactory) []interface{} {
-			return []interface{}{
+		func(_ runtimeserializer.CodecFactory) []any {
+			return []any{
 				// Custom fuzzer for metav1.Time pointers which weren't
 				// fuzzed and always resulted in `nil` values.
 				// This implementation is somewhat similar to the one provided

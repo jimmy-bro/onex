@@ -47,6 +47,6 @@ func (a *auth) Sign(ctx context.Context, userID string) (authn.IToken, error) {
 }
 
 // Authorize is a method that implements Authorize method of AuthzInterface.
-func (a *auth) Authorize(rvals ...interface{}) (bool, error) {
+func (a *auth) Authorize(rvals ...any) (bool, error) {
 	return a.authz.Authorize(rvals...)
 }

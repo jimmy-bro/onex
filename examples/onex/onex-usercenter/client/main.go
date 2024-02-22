@@ -24,7 +24,7 @@ var token = pflag.StringP("token", "t", "", "Access token used to access onex-ga
 
 func withToken(token string) middleware.Middleware {
 	return func(handler middleware.Handler) middleware.Handler {
-		return func(ctx context.Context, rq interface{}) (interface{}, error) {
+		return func(ctx context.Context, rq any) (any, error) {
 			if clientContext, ok := transport.FromClientContext(ctx); ok {
 				clientContext.RequestHeader().Set("Authorization", fmt.Sprintf("Bearer %s", token))
 				return handler(ctx, rq)

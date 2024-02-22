@@ -21,7 +21,7 @@ type RedisSource struct {
 	ctx     context.Context
 	redisdb *redis.Client
 	channel string
-	out     chan interface{}
+	out     chan any
 }
 
 // NewRedisSource returns a new RedisSource instance.
@@ -39,7 +39,7 @@ func NewRedisSource(ctx context.Context, config *redis.Options, channel string) 
 		ctx:     ctx,
 		redisdb: redisdb,
 		channel: channel,
-		out:     make(chan interface{}),
+		out:     make(chan any),
 	}
 
 	go source.init(pubsub.Channel())
@@ -71,7 +71,7 @@ func (rs *RedisSource) Via(_flow streams.Flow) streams.Flow {
 }
 
 // Out returns an output channel for sending data.
-func (rs *RedisSource) Out() <-chan interface{} {
+func (rs *RedisSource) Out() <-chan any {
 	return rs.out
 }
 
@@ -79,7 +79,7 @@ func (rs *RedisSource) Out() <-chan interface{} {
 type RedisSink struct {
 	redisdb *redis.Client
 	channel string
-	in      chan interface{}
+	in      chan any
 }
 
 // NewRedisSink returns a new RedisSink instance.
@@ -87,7 +87,7 @@ func NewRedisSink(config *redis.Options, channel string) *RedisSink {
 	sink := &RedisSink{
 		redisdb: redis.NewClient(config),
 		channel: channel,
-		in:      make(chan interface{}),
+		in:      make(chan any),
 	}
 
 	go sink.init()
@@ -114,6 +114,6 @@ func (rs *RedisSink) init() {
 }
 
 // In returns an input channel for receiving data.
-func (rs *RedisSink) In() chan<- interface{} {
+func (rs *RedisSink) In() chan<- any {
 	return rs.in
 }

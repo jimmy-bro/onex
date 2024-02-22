@@ -14,7 +14,7 @@ import (
 	"k8s.io/klog/v2"
 )
 
-func GetValidateFuncs(v interface{}) map[string]reflect.Value {
+func GetValidateFuncs(v any) map[string]reflect.Value {
 	funcs := make(map[string]reflect.Value)
 	typeOf := reflect.TypeOf(v)
 	valueOf := reflect.ValueOf(v)

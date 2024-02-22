@@ -26,12 +26,12 @@ func TestDropManagedFields(t *testing.T) {
 
 	ssaManager := "ssa-manager"
 
-	fieldV1Map := map[string]interface{}{
-		"f:metadata": map[string]interface{}{
-			"f:name":        map[string]interface{}{},
-			"f:labels":      map[string]interface{}{},
-			"f:annotations": map[string]interface{}{},
-			"f:finalizers":  map[string]interface{}{},
+	fieldV1Map := map[string]any{
+		"f:metadata": map[string]any{
+			"f:name":        map[string]any{},
+			"f:labels":      map[string]any{},
+			"f:annotations": map[string]any{},
+			"f:finalizers":  map[string]any{},
 		},
 	}
 	fieldV1, err := json.Marshal(fieldV1Map)

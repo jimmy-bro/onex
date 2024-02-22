@@ -17,7 +17,7 @@ import (
 
 // Update updates a user's information in the database.
 func (b *userBiz) Update(ctx context.Context, rq *v1.UpdateUserRequest) error {
-	filters := map[string]interface{}{"username": rq.Username}
+	filters := map[string]any{"username": rq.Username}
 	if !validationutil.IsAdminUser(onexx.FromUserID(ctx)) {
 		filters["user_id"] = onexx.FromUserID(ctx)
 	}

@@ -59,7 +59,7 @@ func _FakeServer_CreateOrder0_HTTP_Handler(srv FakeServerHTTPServer) func(ctx ht
 			return err
 		}
 		http.SetOperation(ctx, OperationFakeServerCreateOrder)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.CreateOrder(ctx, req.(*CreateOrderRequest))
 		})
 		out, err := h(ctx, &in)
@@ -78,7 +78,7 @@ func _FakeServer_ListOrder0_HTTP_Handler(srv FakeServerHTTPServer) func(ctx http
 			return err
 		}
 		http.SetOperation(ctx, OperationFakeServerListOrder)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.ListOrder(ctx, req.(*ListOrderRequest))
 		})
 		out, err := h(ctx, &in)
@@ -100,7 +100,7 @@ func _FakeServer_GetOrder0_HTTP_Handler(srv FakeServerHTTPServer) func(ctx http.
 			return err
 		}
 		http.SetOperation(ctx, OperationFakeServerGetOrder)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.GetOrder(ctx, req.(*GetOrderRequest))
 		})
 		out, err := h(ctx, &in)
@@ -125,7 +125,7 @@ func _FakeServer_UpdateOrder0_HTTP_Handler(srv FakeServerHTTPServer) func(ctx ht
 			return err
 		}
 		http.SetOperation(ctx, OperationFakeServerUpdateOrder)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.UpdateOrder(ctx, req.(*UpdateOrderRequest))
 		})
 		out, err := h(ctx, &in)
@@ -147,7 +147,7 @@ func _FakeServer_DeleteOrder0_HTTP_Handler(srv FakeServerHTTPServer) func(ctx ht
 			return err
 		}
 		http.SetOperation(ctx, OperationFakeServerDeleteOrder)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.DeleteOrder(ctx, req.(*DeleteOrderRequest))
 		})
 		out, err := h(ctx, &in)

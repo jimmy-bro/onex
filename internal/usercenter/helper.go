@@ -29,7 +29,7 @@ func NewAuthenticator(jwtOpts *genericoptions.JWTOptions, redisOpts *genericopti
 		// the key for verification.  The function receives the parsed,
 		// but unverified Token.  This allows you to use properties in the
 		// Header of the token (such as `kid`) to identify which key to use.
-		jwtauthn.WithKeyfunc(func(t *jwt.Token) (interface{}, error) {
+		jwtauthn.WithKeyfunc(func(t *jwt.Token) (any, error) {
 			// Verify that the signing method is HMAC.
 			if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
 				return nil, jwtauthn.ErrTokenInvalid

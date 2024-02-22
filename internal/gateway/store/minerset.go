@@ -19,9 +19,9 @@ import (
 // MinerSetStore defines the minerset storage interface.
 type MinerSetStore interface {
 	Create(ctx context.Context, ms *model.MinerSetM) error
-	Delete(ctx context.Context, filters map[string]interface{}) error
+	Delete(ctx context.Context, filters map[string]any) error
 	Update(ctx context.Context, ms *model.MinerSetM) error
-	Get(ctx context.Context, filters map[string]interface{}) (*model.MinerSetM, error)
+	Get(ctx context.Context, filters map[string]any) (*model.MinerSetM, error)
 	List(ctx context.Context, namespace string, opts ...meta.ListOption) (int64, []*model.MinerSetM, error)
 }
 
@@ -46,7 +46,7 @@ func (d *minerSetStore) Create(ctx context.Context, ms *model.MinerSetM) error {
 }
 
 // Delete deletes a minerset record from the database based on provided filters.
-func (d *minerSetStore) Delete(ctx context.Context, filters map[string]interface{}) error {
+func (d *minerSetStore) Delete(ctx context.Context, filters map[string]any) error {
 	err := d.db(ctx).Where(filters).Delete(&model.MinerSetM{}).Error
 	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 		return err
@@ -61,7 +61,7 @@ func (d *minerSetStore) Update(ctx context.Context, ms *model.MinerSetM) error {
 }
 
 // Get retrieves a single minerset record from the database based on provided filters.
-func (d *minerSetStore) Get(ctx context.Context, filters map[string]interface{}) (*model.MinerSetM, error) {
+func (d *minerSetStore) Get(ctx context.Context, filters map[string]any) (*model.MinerSetM, error) {
 	ms := &model.MinerSetM{}
 	if err := d.db(ctx).Where(filters).First(&ms).Error; err != nil {
 		return nil, err

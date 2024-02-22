@@ -25,7 +25,7 @@ func TestGetObjFieldsMap(t *testing.T) {
 	}
 
 	m := GetObjFieldsMap(org, []string{})
-	if !reflect.DeepEqual(m, map[string]interface{}{
+	if !reflect.DeepEqual(m, map[string]any{
 		"A": 1,
 		"B": 2,
 		"C": 3,
@@ -34,7 +34,7 @@ func TestGetObjFieldsMap(t *testing.T) {
 	}
 
 	m = GetObjFieldsMap(org, []string{"A"})
-	if !reflect.DeepEqual(m, map[string]interface{}{
+	if !reflect.DeepEqual(m, map[string]any{
 		"A": 1,
 	}) {
 		t.Fatalf("not equal")

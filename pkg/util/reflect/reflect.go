@@ -14,7 +14,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-func ToGormDBMap(obj interface{}, fields []string) (map[string]interface{}, error) {
+func ToGormDBMap(obj any, fields []string) (map[string]any, error) {
 	reflectType := reflect.ValueOf(obj).Type()
 	reflectValue := reflect.ValueOf(obj)
 	for reflectType.Kind() == reflect.Slice || reflectType.Kind() == reflect.Ptr {
@@ -22,7 +22,7 @@ func ToGormDBMap(obj interface{}, fields []string) (map[string]interface{}, erro
 		reflectValue = reflect.ValueOf(obj).Elem()
 	}
 
-	ret := make(map[string]interface{}, 0)
+	ret := make(map[string]any, 0)
 	for _, f := range fields {
 		fs, exist := reflectType.FieldByName(f)
 		if !exist {
@@ -60,8 +60,8 @@ func parseTagSetting(tags reflect.StructTag) map[string]string {
 	return setting
 }
 
-func GetObjFieldsMap(obj interface{}, fields []string) map[string]interface{} {
-	ret := make(map[string]interface{})
+func GetObjFieldsMap(obj any, fields []string) map[string]any {
+	ret := make(map[string]any)
 
 	modelReflect := reflect.ValueOf(obj)
 	if modelReflect.Kind() == reflect.Ptr {
@@ -70,7 +70,7 @@ func GetObjFieldsMap(obj interface{}, fields []string) map[string]interface{} {
 
 	modelRefType := modelReflect.Type()
 	fieldsCount := modelReflect.NumField()
-	var fieldData interface{}
+	var fieldData any
 	for i := 0; i < fieldsCount; i++ {
 		field := modelReflect.Field(i)
 		if len(fields) != 0 && !findString(fields, modelRefType.Field(i).Name) {
@@ -92,7 +92,7 @@ func GetObjFieldsMap(obj interface{}, fields []string) map[string]interface{} {
 	return ret
 }
 
-func CopyObj(from interface{}, to interface{}, fields []string) (changed bool, err error) {
+func CopyObj(from any, to any, fields []string) (changed bool, err error) {
 	fromMap := GetObjFieldsMap(from, fields)
 	toMap := GetObjFieldsMap(to, fields)
 	if reflect.DeepEqual(fromMap, toMap) {
@@ -108,7 +108,7 @@ func CopyObj(from interface{}, to interface{}, fields []string) (changed bool, e
 }
 
 // CopyObjViaYaml marshal "from" to yaml data, then unMarshal data to "to".
-func CopyObjViaYaml(to interface{}, from interface{}) error {
+func CopyObjViaYaml(to any, from any) error {
 	if from == nil || to == nil {
 		return nil
 	}
@@ -121,7 +121,7 @@ func CopyObjViaYaml(to interface{}, from interface{}) error {
 }
 
 // StructName used to get the struct name from the obj.
-func StructName(obj interface{}) string {
+func StructName(obj any) string {
 	t := reflect.TypeOf(obj)
 	if t.Kind() == reflect.Ptr {
 		return t.Elem().Name()

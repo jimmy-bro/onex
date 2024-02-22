@@ -41,10 +41,10 @@ func (m *MockIStore) EXPECT() *MockIStoreMockRecorder {
 }
 
 // Secrets mocks base method.
-func (m *MockIStore) Secrets() *cache.ChainCache[interface{}] {
+func (m *MockIStore) Secrets() *cache.ChainCache[any] {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Secrets")
-	ret0, _ := ret[0].(*cache.ChainCache[interface{}])
+	ret0, _ := ret[0].(*cache.ChainCache[any])
 	return ret0
 }
 

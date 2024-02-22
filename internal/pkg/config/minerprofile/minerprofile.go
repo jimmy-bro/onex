@@ -31,7 +31,7 @@ type MinerProfile struct {
 // cacher is a struct for caching MinerProfile data.
 type cacher struct {
 	mu     sync.Mutex
-	client interface{}
+	client any
 	data   *cache.DelegateCache[*MinerProfile]
 }
 
@@ -41,7 +41,7 @@ var (
 )
 
 // defaultCostFn is a function to calculate the cost of a cache item.
-var defaultCostFn = func(value interface{}) int64 {
+var defaultCostFn = func(value any) int64 {
 	size := int64(unsafe.Sizeof(MinerProfile{}))
 	//nolint: staticcheck
 	if mp, ok := value.(MinerProfile); ok {
@@ -100,7 +100,7 @@ func (c *cacher) loadMinerProfileData() error {
 }
 
 // Init initializes the cache with MinerProfile data.
-func Init(ctx context.Context, client interface{}) (err error) {
+func Init(ctx context.Context, client any) (err error) {
 	once.Do(func() {
 		tc := cacher{client: client}
 

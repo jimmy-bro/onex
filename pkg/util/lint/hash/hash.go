@@ -57,7 +57,7 @@ var Analyzer = &analysis.Analyzer{
 // b) the return value is used.
 //
 // The hash.Hash interface may be remedied in Go 2. See golang/go#21070.
-func run(pass *analysis.Pass) (interface{}, error) {
+func run(pass *analysis.Pass) (any, error) {
 	selectorIsHash := func(s *ast.SelectorExpr) bool {
 		tv, ok := pass.TypesInfo.Types[s.X]
 		if !ok {

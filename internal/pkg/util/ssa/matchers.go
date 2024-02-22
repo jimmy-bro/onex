@@ -30,7 +30,7 @@ type managedFieldMatcher struct {
 	operation metav1.ManagedFieldsOperationType
 }
 
-func (mf *managedFieldMatcher) Match(actual interface{}) (bool, error) {
+func (mf *managedFieldMatcher) Match(actual any) (bool, error) {
 	managedFieldsEntry, ok := actual.(metav1.ManagedFieldsEntry)
 	if !ok {
 		return false, fmt.Errorf("expecting metav1.ManagedFieldsEntry got %T", actual)
@@ -39,13 +39,13 @@ func (mf *managedFieldMatcher) Match(actual interface{}) (bool, error) {
 	return managedFieldsEntry.Manager == mf.manager && managedFieldsEntry.Operation == mf.operation, nil
 }
 
-func (mf *managedFieldMatcher) FailureMessage(actual interface{}) string {
+func (mf *managedFieldMatcher) FailureMessage(actual any) string {
 	managedFieldsEntry := actual.(metav1.ManagedFieldsEntry)
 	return fmt.Sprintf("Expected ManagedFieldsEntry to match Manager:%s and Operation:%s, got Manager:%s, Operation:%s",
 		mf.manager, mf.operation, managedFieldsEntry.Manager, managedFieldsEntry.Operation)
 }
 
-func (mf *managedFieldMatcher) NegatedFailureMessage(actual interface{}) string {
+func (mf *managedFieldMatcher) NegatedFailureMessage(actual any) string {
 	managedFieldsEntry := actual.(metav1.ManagedFieldsEntry)
 	return fmt.Sprintf("Expected ManagedFieldsEntry to not match Manager:%s and Operation:%s, got Manager:%s, Operation:%s",
 		mf.manager, mf.operation, managedFieldsEntry.Manager, managedFieldsEntry.Operation)
@@ -68,14 +68,14 @@ type fieldOwnershipMatcher struct {
 	operation metav1.ManagedFieldsOperationType
 }
 
-func (fom *fieldOwnershipMatcher) Match(actual interface{}) (bool, error) {
+func (fom *fieldOwnershipMatcher) Match(actual any) (bool, error) {
 	managedFields, ok := actual.([]metav1.ManagedFieldsEntry)
 	if !ok {
 		return false, fmt.Errorf("expecting []metav1.ManagedFieldsEntry got %T", actual)
 	}
 	for _, managedFieldsEntry := range managedFields {
 		if managedFieldsEntry.Manager == fom.manager && managedFieldsEntry.Operation == fom.operation {
-			fieldsV1 := map[string]interface{}{}
+			fieldsV1 := map[string]any{}
 			if err := json.Unmarshal(managedFieldsEntry.FieldsV1.Raw, &fieldsV1); err != nil {
 				return false, errors.Wrap(err, "failed to parse managedFieldsEntry.FieldsV1")
 			}
@@ -90,13 +90,13 @@ func (fom *fieldOwnershipMatcher) Match(actual interface{}) (bool, error) {
 	return false, nil
 }
 
-func (fom *fieldOwnershipMatcher) FailureMessage(actual interface{}) string {
+func (fom *fieldOwnershipMatcher) FailureMessage(actual any) string {
 	managedFields := actual.([]metav1.ManagedFieldsEntry)
 	return fmt.Sprintf("Expected Path %s to be owned by Manager:%s and Operation:%s, did not find correct ownership: %s",
 		fom.path, fom.manager, fom.operation, managedFields)
 }
 
-func (fom *fieldOwnershipMatcher) NegatedFailureMessage(actual interface{}) string {
+func (fom *fieldOwnershipMatcher) NegatedFailureMessage(actual any) string {
 	managedFields := actual.([]metav1.ManagedFieldsEntry)
 	return fmt.Sprintf("Expected Path %s to not be owned by Manager:%s and Operation:%s, did not find correct ownership: %s",
 		fom.path, fom.manager, fom.operation, managedFields)

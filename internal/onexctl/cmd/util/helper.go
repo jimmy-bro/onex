@@ -34,7 +34,7 @@ const (
 )
 
 type debugError interface {
-	DebugError() (msg string, args []interface{})
+	DebugError() (msg string, args []any)
 }
 
 var fatalErrHandler = fatal
@@ -190,7 +190,7 @@ func messageForError(err error) string {
 }
 
 // UsageErrorf returns error with command path.
-func UsageErrorf(cmd *cobra.Command, format string, args ...interface{}) error {
+func UsageErrorf(cmd *cobra.Command, format string, args ...any) error {
 	msg := fmt.Sprintf(format, args...)
 	return fmt.Errorf("%s\nSee '%s -h' for help and examples", msg, cmd.CommandPath())
 }
@@ -378,7 +378,7 @@ func SignToken(secretID string, secretKey string) (string, error) {
 	opts := []jwtauthn.Option{
 		jwtauthn.WithSigningMethod(jwt.GetSigningMethod("HS256")),
 		jwtauthn.WithIssuer("onexctl"),
-		jwtauthn.WithTokenHeader(map[string]interface{}{"kid": secretID}),
+		jwtauthn.WithTokenHeader(map[string]any{"kid": secretID}),
 		jwtauthn.WithExpired(2 * time.Hour),
 		jwtauthn.WithSigningKey([]byte(secretKey)),
 	}

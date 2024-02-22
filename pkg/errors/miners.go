@@ -28,7 +28,7 @@ func (e *MinerError) Error() string {
 // construct the Message.
 
 // InvalidMinerConfiguration creates a new error when a Miner has invalid configuration.
-func InvalidMinerConfiguration(msg string, args ...interface{}) *MinerError {
+func InvalidMinerConfiguration(msg string, args ...any) *MinerError {
 	return &MinerError{
 		Reason:  InvalidConfigurationMinerError,
 		Message: fmt.Sprintf(msg, args...),
@@ -36,7 +36,7 @@ func InvalidMinerConfiguration(msg string, args ...interface{}) *MinerError {
 }
 
 // CreateMiner creates a new error for when creating a Miner.
-func CreateMiner(msg string, args ...interface{}) *MinerError {
+func CreateMiner(msg string, args ...any) *MinerError {
 	return &MinerError{
 		Reason:  CreateMinerError,
 		Message: fmt.Sprintf(msg, args...),
@@ -44,7 +44,7 @@ func CreateMiner(msg string, args ...interface{}) *MinerError {
 }
 
 // UpdateMiner creates a new error for when updating a Miner.
-func UpdateMiner(msg string, args ...interface{}) *MinerError {
+func UpdateMiner(msg string, args ...any) *MinerError {
 	return &MinerError{
 		Reason:  UpdateMinerError,
 		Message: fmt.Sprintf(msg, args...),
@@ -52,7 +52,7 @@ func UpdateMiner(msg string, args ...interface{}) *MinerError {
 }
 
 // DeleteMiner creates a new error for when deleting a Miner.
-func DeleteMiner(msg string, args ...interface{}) *MinerError {
+func DeleteMiner(msg string, args ...any) *MinerError {
 	return &MinerError{
 		Reason:  DeleteMinerError,
 		Message: fmt.Sprintf(msg, args...),

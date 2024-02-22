@@ -19,9 +19,9 @@ import (
 // ChainStore defines the chain storage interface.
 type ChainStore interface {
 	Create(ctx context.Context, ch *model.ChainM) error
-	Delete(ctx context.Context, filters map[string]interface{}) error
+	Delete(ctx context.Context, filters map[string]any) error
 	Update(ctx context.Context, ch *model.ChainM) error
-	Get(ctx context.Context, filters map[string]interface{}) (*model.ChainM, error)
+	Get(ctx context.Context, filters map[string]any) (*model.ChainM, error)
 	List(ctx context.Context, namespace string, opts ...meta.ListOption) (int64, []*model.ChainM, error)
 }
 
@@ -46,7 +46,7 @@ func (d *chainStore) Create(ctx context.Context, ch *model.ChainM) error {
 }
 
 // Delete deletes a chain record from the database based on provided filters.
-func (d *chainStore) Delete(ctx context.Context, filters map[string]interface{}) error {
+func (d *chainStore) Delete(ctx context.Context, filters map[string]any) error {
 	err := d.db(ctx).Where(filters).Delete(&model.ChainM{}).Error
 	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 		return err
@@ -61,7 +61,7 @@ func (d *chainStore) Update(ctx context.Context, ch *model.ChainM) error {
 }
 
 // Get retrieves a single chain record from the database based on provided filters.
-func (d *chainStore) Get(ctx context.Context, filters map[string]interface{}) (*model.ChainM, error) {
+func (d *chainStore) Get(ctx context.Context, filters map[string]any) (*model.ChainM, error) {
 	chain := &model.ChainM{}
 	if err := d.db(ctx).Where(filters).First(&chain).Error; err != nil {
 		return nil, err

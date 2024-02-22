@@ -86,7 +86,7 @@ func (a *authnImpl) Sign(ctx context.Context, userID string) (authn.IToken, erro
 	opts := []jwtauthn.Option{
 		jwtauthn.WithSigningMethod(jwt.SigningMethodHS512),
 		jwtauthn.WithIssuer("onex-usercenter"),
-		jwtauthn.WithTokenHeader(map[string]interface{}{"kid": secret.SecretID}),
+		jwtauthn.WithTokenHeader(map[string]any{"kid": secret.SecretID}),
 		jwtauthn.WithExpired(known.AccessTokenExpire),
 		jwtauthn.WithSigningKey([]byte(secret.SecretKey)),
 	}
@@ -102,7 +102,7 @@ func (a *authnImpl) Sign(ctx context.Context, userID string) (authn.IToken, erro
 // Verify verifies the given access token and returns the userID associated with the token.
 func (a *authnImpl) Verify(accessToken string) (string, error) {
 	var secret *model.SecretM
-	token, err := jwt.ParseWithClaims(accessToken, &jwt.RegisteredClaims{}, func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.ParseWithClaims(accessToken, &jwt.RegisteredClaims{}, func(token *jwt.Token) (any, error) {
 		// Validate the alg is HMAC signature
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return "", jwtauthn.ErrUnSupportSigningMethod

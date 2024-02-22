@@ -14,10 +14,10 @@ func (s preparedServer) Run() error {
 	return nil
 }
 
-func tickerChan(repeat time.Duration) chan interface{} {
+func tickerChan(repeat time.Duration) chan any {
 	ticker := time.NewTicker(repeat)
 	oc := ticker.C
-	nc := make(chan interface{})
+	nc := make(chan any)
 	go func() {
 		for range oc {
 			nc <- &message{strconv.FormatInt(time.Now().UTC().UnixNano(), 10)}

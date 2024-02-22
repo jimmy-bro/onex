@@ -20,7 +20,7 @@ const loggerKeyForGin = "OneXLogger"
 type contextKey struct{}
 
 // WithContext returns a copy of context in which the log value is set.
-func WithContext(ctx context.Context, keyvals ...interface{}) context.Context {
+func WithContext(ctx context.Context, keyvals ...any) context.Context {
 	if l := FromContext(ctx); l != nil {
 		return l.(*zapLogger).WithContext(ctx, keyvals...)
 	}
@@ -28,7 +28,7 @@ func WithContext(ctx context.Context, keyvals ...interface{}) context.Context {
 	return std.WithContext(ctx, keyvals...)
 }
 
-func (l *zapLogger) WithContext(ctx context.Context, keyvals ...interface{}) context.Context {
+func (l *zapLogger) WithContext(ctx context.Context, keyvals ...any) context.Context {
 	with := func(l Logger) context.Context {
 		return context.WithValue(ctx, contextKey{}, l)
 	}
@@ -55,7 +55,7 @@ func (l *zapLogger) WithContext(ctx context.Context, keyvals ...interface{}) con
 }
 
 // FromContext returns a logger with predefined values from a context.Context.
-func FromContext(ctx context.Context, keyvals ...interface{}) Logger {
+func FromContext(ctx context.Context, keyvals ...any) Logger {
 	var key any = contextKey{}
 	if _, ok := ctx.(*gin.Context); ok {
 		key = loggerKeyForGin

@@ -50,7 +50,7 @@ func (c *Miner) Sync(ctx context.Context) error {
 		key := client.ObjectKey{Namespace: miner.Namespace, Name: miner.Name}
 		if err := c.client.Get(ctx, key, &m); err != nil {
 			if apierrors.IsNotFound(err) {
-				filter := map[string]interface{}{"namespace": miner.Namespace, "name": miner.Name}
+				filter := map[string]any{"namespace": miner.Namespace, "name": miner.Name}
 				if derr := c.ds.Miners().Delete(ctx, filter); derr != nil {
 					klog.V(1).InfoS("Failed to delete miner", "miner", klog.KRef(miner.Namespace, miner.Name), "err", derr)
 					continue

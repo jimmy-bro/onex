@@ -15,11 +15,11 @@ import (
 	scheme "k8s.io/client-go/kubernetes/scheme"
 )
 
-type ConfigMapExpansion interface{}
+type ConfigMapExpansion any
 
-type EventExpansion interface{}
+type EventExpansion any
 
-type SecretExpansion interface{}
+type SecretExpansion any
 
 // The NamespaceExpansion interface allows manually adding extra methods to the NamespaceInterface.
 type NamespaceExpansion interface {

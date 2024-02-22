@@ -362,7 +362,7 @@ func minerIsFailed(m *v1beta1.Miner) bool {
 
 // writer implements io.Writer interface as a pass-through for klog.
 type writer struct {
-	logFunc func(msg string, keysAndValues ...interface{})
+	logFunc func(msg string, keysAndValues ...any)
 }
 
 // Write passes string(p) into writer's logFunc and always returns len(p).

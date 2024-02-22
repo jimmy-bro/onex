@@ -120,7 +120,7 @@ func (o *SignOptions) Validate(cmd *cobra.Command, args []string) error {
 
 // Run executes a sign subcommand using the specified options.
 func (o *SignOptions) Run(args []string) error {
-	headers := make(map[string]interface{})
+	headers := make(map[string]any)
 	// add command line headers
 	if len(o.Header) > 0 {
 		for k, v := range o.Header {

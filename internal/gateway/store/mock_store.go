@@ -93,7 +93,7 @@ func (m *MockIStore) TX(arg0 context.Context, arg1 func(context.Context) error) 
 }
 
 // TX indicates an expected call of TX.
-func (mr *MockIStoreMockRecorder) TX(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockIStoreMockRecorder) TX(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "TX", reflect.TypeOf((*MockIStore)(nil).TX), arg0, arg1)
 }
@@ -130,13 +130,13 @@ func (m *MockChainStore) Create(arg0 context.Context, arg1 *model.ChainM) error 
 }
 
 // Create indicates an expected call of Create.
-func (mr *MockChainStoreMockRecorder) Create(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockChainStoreMockRecorder) Create(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockChainStore)(nil).Create), arg0, arg1)
 }
 
 // Delete mocks base method.
-func (m *MockChainStore) Delete(arg0 context.Context, arg1 map[string]interface{}) error {
+func (m *MockChainStore) Delete(arg0 context.Context, arg1 map[string]any) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Delete", arg0, arg1)
 	ret0, _ := ret[0].(error)
@@ -144,13 +144,13 @@ func (m *MockChainStore) Delete(arg0 context.Context, arg1 map[string]interface{
 }
 
 // Delete indicates an expected call of Delete.
-func (mr *MockChainStoreMockRecorder) Delete(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockChainStoreMockRecorder) Delete(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockChainStore)(nil).Delete), arg0, arg1)
 }
 
 // Get mocks base method.
-func (m *MockChainStore) Get(arg0 context.Context, arg1 map[string]interface{}) (*model.ChainM, error) {
+func (m *MockChainStore) Get(arg0 context.Context, arg1 map[string]any) (*model.ChainM, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Get", arg0, arg1)
 	ret0, _ := ret[0].(*model.ChainM)
@@ -159,7 +159,7 @@ func (m *MockChainStore) Get(arg0 context.Context, arg1 map[string]interface{}) 
 }
 
 // Get indicates an expected call of Get.
-func (mr *MockChainStoreMockRecorder) Get(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockChainStoreMockRecorder) Get(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Get", reflect.TypeOf((*MockChainStore)(nil).Get), arg0, arg1)
 }
@@ -167,7 +167,7 @@ func (mr *MockChainStoreMockRecorder) Get(arg0, arg1 interface{}) *gomock.Call {
 // List mocks base method.
 func (m *MockChainStore) List(arg0 context.Context, arg1 string, arg2 ...meta.ListOption) (int64, []*model.ChainM, error) {
 	m.ctrl.T.Helper()
-	varargs := []interface{}{arg0, arg1}
+	varargs := []any{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
 	}
@@ -179,9 +179,9 @@ func (m *MockChainStore) List(arg0 context.Context, arg1 string, arg2 ...meta.Li
 }
 
 // List indicates an expected call of List.
-func (mr *MockChainStoreMockRecorder) List(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+func (mr *MockChainStoreMockRecorder) List(arg0, arg1 any, arg2 ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{arg0, arg1}, arg2...)
+	varargs := append([]any{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockChainStore)(nil).List), varargs...)
 }
 
@@ -194,7 +194,7 @@ func (m *MockChainStore) Update(arg0 context.Context, arg1 *model.ChainM) error 
 }
 
 // Update indicates an expected call of Update.
-func (mr *MockChainStoreMockRecorder) Update(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockChainStoreMockRecorder) Update(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockChainStore)(nil).Update), arg0, arg1)
 }
@@ -231,13 +231,13 @@ func (m *MockMinerStore) Create(arg0 context.Context, arg1 *model.MinerM) error 
 }
 
 // Create indicates an expected call of Create.
-func (mr *MockMinerStoreMockRecorder) Create(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockMinerStoreMockRecorder) Create(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockMinerStore)(nil).Create), arg0, arg1)
 }
 
 // Delete mocks base method.
-func (m *MockMinerStore) Delete(arg0 context.Context, arg1 map[string]interface{}) error {
+func (m *MockMinerStore) Delete(arg0 context.Context, arg1 map[string]any) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Delete", arg0, arg1)
 	ret0, _ := ret[0].(error)
@@ -245,13 +245,13 @@ func (m *MockMinerStore) Delete(arg0 context.Context, arg1 map[string]interface{
 }
 
 // Delete indicates an expected call of Delete.
-func (mr *MockMinerStoreMockRecorder) Delete(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockMinerStoreMockRecorder) Delete(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockMinerStore)(nil).Delete), arg0, arg1)
 }
 
 // Get mocks base method.
-func (m *MockMinerStore) Get(arg0 context.Context, arg1 map[string]interface{}) (*model.MinerM, error) {
+func (m *MockMinerStore) Get(arg0 context.Context, arg1 map[string]any) (*model.MinerM, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Get", arg0, arg1)
 	ret0, _ := ret[0].(*model.MinerM)
@@ -260,7 +260,7 @@ func (m *MockMinerStore) Get(arg0 context.Context, arg1 map[string]interface{}) 
 }
 
 // Get indicates an expected call of Get.
-func (mr *MockMinerStoreMockRecorder) Get(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockMinerStoreMockRecorder) Get(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Get", reflect.TypeOf((*MockMinerStore)(nil).Get), arg0, arg1)
 }
@@ -268,7 +268,7 @@ func (mr *MockMinerStoreMockRecorder) Get(arg0, arg1 interface{}) *gomock.Call {
 // List mocks base method.
 func (m *MockMinerStore) List(arg0 context.Context, arg1 string, arg2 ...meta.ListOption) (int64, []*model.MinerM, error) {
 	m.ctrl.T.Helper()
-	varargs := []interface{}{arg0, arg1}
+	varargs := []any{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
 	}
@@ -280,9 +280,9 @@ func (m *MockMinerStore) List(arg0 context.Context, arg1 string, arg2 ...meta.Li
 }
 
 // List indicates an expected call of List.
-func (mr *MockMinerStoreMockRecorder) List(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+func (mr *MockMinerStoreMockRecorder) List(arg0, arg1 any, arg2 ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{arg0, arg1}, arg2...)
+	varargs := append([]any{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockMinerStore)(nil).List), varargs...)
 }
 
@@ -295,7 +295,7 @@ func (m *MockMinerStore) Update(arg0 context.Context, arg1 *model.MinerM) error 
 }
 
 // Update indicates an expected call of Update.
-func (mr *MockMinerStoreMockRecorder) Update(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockMinerStoreMockRecorder) Update(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockMinerStore)(nil).Update), arg0, arg1)
 }
@@ -332,13 +332,13 @@ func (m *MockMinerSetStore) Create(arg0 context.Context, arg1 *model.MinerSetM) 
 }
 
 // Create indicates an expected call of Create.
-func (mr *MockMinerSetStoreMockRecorder) Create(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockMinerSetStoreMockRecorder) Create(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockMinerSetStore)(nil).Create), arg0, arg1)
 }
 
 // Delete mocks base method.
-func (m *MockMinerSetStore) Delete(arg0 context.Context, arg1 map[string]interface{}) error {
+func (m *MockMinerSetStore) Delete(arg0 context.Context, arg1 map[string]any) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Delete", arg0, arg1)
 	ret0, _ := ret[0].(error)
@@ -346,13 +346,13 @@ func (m *MockMinerSetStore) Delete(arg0 context.Context, arg1 map[string]interfa
 }
 
 // Delete indicates an expected call of Delete.
-func (mr *MockMinerSetStoreMockRecorder) Delete(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockMinerSetStoreMockRecorder) Delete(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockMinerSetStore)(nil).Delete), arg0, arg1)
 }
 
 // Get mocks base method.
-func (m *MockMinerSetStore) Get(arg0 context.Context, arg1 map[string]interface{}) (*model.MinerSetM, error) {
+func (m *MockMinerSetStore) Get(arg0 context.Context, arg1 map[string]any) (*model.MinerSetM, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Get", arg0, arg1)
 	ret0, _ := ret[0].(*model.MinerSetM)
@@ -361,7 +361,7 @@ func (m *MockMinerSetStore) Get(arg0 context.Context, arg1 map[string]interface{
 }
 
 // Get indicates an expected call of Get.
-func (mr *MockMinerSetStoreMockRecorder) Get(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockMinerSetStoreMockRecorder) Get(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Get", reflect.TypeOf((*MockMinerSetStore)(nil).Get), arg0, arg1)
 }
@@ -369,7 +369,7 @@ func (mr *MockMinerSetStoreMockRecorder) Get(arg0, arg1 interface{}) *gomock.Cal
 // List mocks base method.
 func (m *MockMinerSetStore) List(arg0 context.Context, arg1 string, arg2 ...meta.ListOption) (int64, []*model.MinerSetM, error) {
 	m.ctrl.T.Helper()
-	varargs := []interface{}{arg0, arg1}
+	varargs := []any{arg0, arg1}
 	for _, a := range arg2 {
 		varargs = append(varargs, a)
 	}
@@ -381,9 +381,9 @@ func (m *MockMinerSetStore) List(arg0 context.Context, arg1 string, arg2 ...meta
 }
 
 // List indicates an expected call of List.
-func (mr *MockMinerSetStoreMockRecorder) List(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+func (mr *MockMinerSetStoreMockRecorder) List(arg0, arg1 any, arg2 ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	varargs := append([]interface{}{arg0, arg1}, arg2...)
+	varargs := append([]any{arg0, arg1}, arg2...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockMinerSetStore)(nil).List), varargs...)
 }
 
@@ -396,7 +396,7 @@ func (m *MockMinerSetStore) Update(arg0 context.Context, arg1 *model.MinerSetM) 
 }
 
 // Update indicates an expected call of Update.
-func (mr *MockMinerSetStoreMockRecorder) Update(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockMinerSetStoreMockRecorder) Update(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockMinerSetStore)(nil).Update), arg0, arg1)
 }

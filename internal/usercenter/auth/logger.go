@@ -34,7 +34,7 @@ type kafkaLogger struct {
 // AuditMessage is the message structure for log messages.
 type AuditMessage struct {
 	Matcher   string        `protobuf:"bytes,1,opt,name=matcher,proto3" json:"matcher,omitempty"`
-	Request   []interface{} `protobuf:"bytes,2,opt,name=request,proto3" json:"request,omitempty"`
+	Request   []any `protobuf:"bytes,2,opt,name=request,proto3" json:"request,omitempty"`
 	Result    bool          `protobuf:"bytes,3,opt,name=result,proto3" json:"result,omitempty"`
 	Explains  [][]string    `protobuf:"bytes,4,opt,name=explains,proto3" json:"explains,omitempty"`
 	Timestamp int64         `protobuf:"bytes,5,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
@@ -73,7 +73,7 @@ func (l *kafkaLogger) LogModel(model [][]string) {
 }
 
 // LogModel writes a log message for the policy model.
-func (l *kafkaLogger) LogEnforce(matcher string, request []interface{}, result bool, explains [][]string) {
+func (l *kafkaLogger) LogEnforce(matcher string, request []any, result bool, explains [][]string) {
 	if !l.IsEnabled() {
 		return
 	}

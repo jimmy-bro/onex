@@ -23,18 +23,18 @@ type Field = zapcore.Field
 
 // Logger 定义了 onex 项目的日志接口. 该接口只包含了支持的日志记录方法.
 type Logger interface {
-	Debugf(format string, args ...interface{})
-	Debugw(msg string, keyvals ...interface{})
-	Infof(format string, args ...interface{})
-	Infow(msg string, keyvals ...interface{})
-	Warnf(format string, args ...interface{})
-	Warnw(msg string, keyvals ...interface{})
-	Errorf(format string, args ...interface{})
-	Errorw(err error, msg string, keyvals ...interface{})
-	Panicf(format string, args ...interface{})
-	Panicw(msg string, keyvals ...interface{})
-	Fatalf(format string, args ...interface{})
-	Fatalw(msg string, keyvals ...interface{})
+	Debugf(format string, args ...any)
+	Debugw(msg string, keyvals ...any)
+	Infof(format string, args ...any)
+	Infow(msg string, keyvals ...any)
+	Warnf(format string, args ...any)
+	Warnw(msg string, keyvals ...any)
+	Errorf(format string, args ...any)
+	Errorw(err error, msg string, keyvals ...any)
+	Panicf(format string, args ...any)
+	Panicw(msg string, keyvals ...any)
+	Fatalf(format string, args ...any)
+	Fatalw(msg string, keyvals ...any)
 	With(fields ...Field) Logger
 	AddCallerSkip(skip int) Logger
 	Sync()
@@ -147,110 +147,110 @@ func (l *zapLogger) Sync() {
 }
 
 // Debugf 输出 debug 级别的日志.
-func Debugf(format string, args ...interface{}) {
+func Debugf(format string, args ...any) {
 	std.Debugf(format, args...)
 }
 
-func (l *zapLogger) Debugf(format string, args ...interface{}) {
+func (l *zapLogger) Debugf(format string, args ...any) {
 	l.z.Sugar().Debugf(format, args...)
 }
 
 // Debugw 输出 debug 级别的日志.
-func Debugw(msg string, keyvals ...interface{}) {
+func Debugw(msg string, keyvals ...any) {
 	std.Debugw(msg, keyvals...)
 }
 
-func (l *zapLogger) Debugw(msg string, keyvals ...interface{}) {
+func (l *zapLogger) Debugw(msg string, keyvals ...any) {
 	l.z.Sugar().Debugw(msg, keyvals...)
 }
 
 // Infof 输出 info 级别的日志.
-func Infof(format string, args ...interface{}) {
+func Infof(format string, args ...any) {
 	std.Infof(format, args...)
 }
 
-func (l *zapLogger) Infof(msg string, keyvals ...interface{}) {
+func (l *zapLogger) Infof(msg string, keyvals ...any) {
 	l.z.Sugar().Infof(msg, keyvals...)
 }
 
 // Infow 输出 info 级别的日志.
-func Infow(msg string, keyvals ...interface{}) {
+func Infow(msg string, keyvals ...any) {
 	std.Infow(msg, keyvals...)
 }
 
-func (l *zapLogger) Infow(msg string, keyvals ...interface{}) {
+func (l *zapLogger) Infow(msg string, keyvals ...any) {
 	l.z.Sugar().Infow(msg, keyvals...)
 }
 
 // Warnf 输出 warning 级别的日志.
-func Warnf(format string, args ...interface{}) {
+func Warnf(format string, args ...any) {
 	std.Warnf(format, args...)
 }
 
-func (l *zapLogger) Warnf(format string, args ...interface{}) {
+func (l *zapLogger) Warnf(format string, args ...any) {
 	l.z.Sugar().Warnf(format, args...)
 }
 
 // Warnw 输出 warning 级别的日志.
-func Warnw(msg string, keyvals ...interface{}) {
+func Warnw(msg string, keyvals ...any) {
 	std.Warnw(msg, keyvals...)
 }
 
-func (l *zapLogger) Warnw(msg string, keyvals ...interface{}) {
+func (l *zapLogger) Warnw(msg string, keyvals ...any) {
 	l.z.Sugar().Warnw(msg, keyvals...)
 }
 
 // Errorf 输出 error 级别的日志.
-func Errorf(format string, args ...interface{}) {
+func Errorf(format string, args ...any) {
 	std.Errorf(format, args...)
 }
 
-func (l *zapLogger) Errorf(format string, args ...interface{}) {
+func (l *zapLogger) Errorf(format string, args ...any) {
 	l.z.Sugar().Errorf(format, args...)
 }
 
 // Errorw 输出 error 级别的日志.
-func Errorw(err error, msg string, keyvals ...interface{}) {
+func Errorw(err error, msg string, keyvals ...any) {
 	std.Errorw(err, msg, keyvals...)
 }
 
-func (l *zapLogger) Errorw(err error, msg string, keyvals ...interface{}) {
+func (l *zapLogger) Errorw(err error, msg string, keyvals ...any) {
 	l.z.Sugar().Errorw(msg, append(keyvals, "err", err)...)
 }
 
 // Panicf 输出 panic 级别的日志.
-func Panicf(format string, args ...interface{}) {
+func Panicf(format string, args ...any) {
 	std.Panicf(format, args...)
 }
 
-func (l *zapLogger) Panicf(format string, args ...interface{}) {
+func (l *zapLogger) Panicf(format string, args ...any) {
 	l.z.Sugar().Panicf(format, args...)
 }
 
 // Panicw 输出 panic 级别的日志.
-func Panicw(msg string, keyvals ...interface{}) {
+func Panicw(msg string, keyvals ...any) {
 	std.Panicw(msg, keyvals...)
 }
 
-func (l *zapLogger) Panicw(msg string, keyvals ...interface{}) {
+func (l *zapLogger) Panicw(msg string, keyvals ...any) {
 	l.z.Sugar().Panicw(msg, keyvals...)
 }
 
 // Fatalf 输出 fatal 级别的日志.
-func Fatalf(format string, args ...interface{}) {
+func Fatalf(format string, args ...any) {
 	std.Fatalf(format, args...)
 }
 
-func (l *zapLogger) Fatalf(format string, args ...interface{}) {
+func (l *zapLogger) Fatalf(format string, args ...any) {
 	l.z.Sugar().Fatalf(format, args...)
 }
 
 // Fatalw 输出 fatal 级别的日志.
-func Fatalw(msg string, keyvals ...interface{}) {
+func Fatalw(msg string, keyvals ...any) {
 	std.Fatalw(msg, keyvals...)
 }
 
-func (l *zapLogger) Fatalw(msg string, keyvals ...interface{}) {
+func (l *zapLogger) Fatalw(msg string, keyvals ...any) {
 	l.z.Sugar().Fatalw(msg, keyvals...)
 }
 

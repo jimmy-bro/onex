@@ -45,7 +45,7 @@ func (t TTY) IsTerminalOut() bool {
 }
 
 // IsTerminal returns whether the passed object is a terminal or not.
-func IsTerminal(i interface{}) bool {
+func IsTerminal(i any) bool {
 	_, terminal := term.GetFdInfo(i)
 	return terminal
 }

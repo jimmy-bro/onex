@@ -27,7 +27,7 @@ func TestGetNestedRef(t *testing.T) {
 		g := NewWithT(t)
 
 		refObj := fooRefBuilder()
-		obj := &unstructured.Unstructured{Object: map[string]interface{}{}}
+		obj := &unstructured.Unstructured{Object: map[string]any{}}
 
 		err := SetNestedRef(obj, refObj, "spec", "machineTemplate", "infrastructureRef")
 		g.Expect(err).To(BeNil())
@@ -43,7 +43,7 @@ func TestGetNestedRef(t *testing.T) {
 	t.Run("getNestedRef fails if the nested ref does not exist", func(t *testing.T) {
 		g := NewWithT(t)
 
-		obj := &unstructured.Unstructured{Object: map[string]interface{}{}}
+		obj := &unstructured.Unstructured{Object: map[string]any{}}
 
 		ref, err := GetNestedRef(obj, "spec", "machineTemplate", "infrastructureRef")
 		g.Expect(err).To(HaveOccurred())
@@ -52,7 +52,7 @@ func TestGetNestedRef(t *testing.T) {
 	t.Run("getNestedRef fails if the nested ref exist but it is incomplete", func(t *testing.T) {
 		g := NewWithT(t)
 
-		obj := &unstructured.Unstructured{Object: map[string]interface{}{}}
+		obj := &unstructured.Unstructured{Object: map[string]any{}}
 
 		err := unstructured.SetNestedField(obj.UnstructuredContent(), "foo", "spec", "machineTemplate", "infrastructureRef", "kind")
 		g.Expect(err).ToNot(HaveOccurred())
@@ -73,7 +73,7 @@ func TestSetNestedRef(t *testing.T) {
 		g := NewWithT(t)
 
 		refObj := fooRefBuilder()
-		obj := &unstructured.Unstructured{Object: map[string]interface{}{}}
+		obj := &unstructured.Unstructured{Object: map[string]any{}}
 
 		err := SetNestedRef(obj, refObj, "spec", "machineTemplate", "infrastructureRef")
 		g.Expect(err).To(BeNil())

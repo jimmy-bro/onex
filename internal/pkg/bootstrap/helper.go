@@ -16,7 +16,7 @@ import (
 
 // traceID returns a traceid valuer.
 func traceID() krtlog.Valuer {
-	return func(ctx context.Context) interface{} {
+	return func(ctx context.Context) any {
 		if span := trace.SpanContextFromContext(ctx); span.HasTraceID() {
 			return span.TraceID().String()
 		}
@@ -26,7 +26,7 @@ func traceID() krtlog.Valuer {
 
 // spanID returns a spanid valuer.
 func spanID() krtlog.Valuer {
-	return func(ctx context.Context) interface{} {
+	return func(ctx context.Context) any {
 		if span := trace.SpanContextFromContext(ctx); span.HasSpanID() {
 			return span.SpanID().String()
 		}

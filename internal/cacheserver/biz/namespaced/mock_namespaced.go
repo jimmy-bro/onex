@@ -52,7 +52,7 @@ func (m *MockNamespacedBiz) Del(arg0 context.Context, arg1 string) error {
 }
 
 // Del indicates an expected call of Del.
-func (mr *MockNamespacedBizMockRecorder) Del(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockNamespacedBizMockRecorder) Del(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Del", reflect.TypeOf((*MockNamespacedBiz)(nil).Del), arg0, arg1)
 }
@@ -67,7 +67,7 @@ func (m *MockNamespacedBiz) Get(arg0 context.Context, arg1 string) (*v1.GetRespo
 }
 
 // Get indicates an expected call of Get.
-func (mr *MockNamespacedBizMockRecorder) Get(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockNamespacedBizMockRecorder) Get(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Get", reflect.TypeOf((*MockNamespacedBiz)(nil).Get), arg0, arg1)
 }
@@ -81,7 +81,7 @@ func (m *MockNamespacedBiz) Set(arg0 context.Context, arg1 string, arg2 *anypb.A
 }
 
 // Set indicates an expected call of Set.
-func (mr *MockNamespacedBizMockRecorder) Set(arg0, arg1, arg2, arg3 interface{}) *gomock.Call {
+func (mr *MockNamespacedBizMockRecorder) Set(arg0, arg1, arg2, arg3 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Set", reflect.TypeOf((*MockNamespacedBiz)(nil).Set), arg0, arg1, arg2, arg3)
 }

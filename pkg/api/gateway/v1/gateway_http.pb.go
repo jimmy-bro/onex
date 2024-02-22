@@ -94,7 +94,7 @@ func _Gateway_GetVersion0_HTTP_Handler(srv GatewayHTTPServer) func(ctx http.Cont
 			return err
 		}
 		http.SetOperation(ctx, OperationGatewayGetVersion)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.GetVersion(ctx, req.(*emptypb.Empty))
 		})
 		out, err := h(ctx, &in)
@@ -113,7 +113,7 @@ func _Gateway_GetIdempotentToken0_HTTP_Handler(srv GatewayHTTPServer) func(ctx h
 			return err
 		}
 		http.SetOperation(ctx, OperationGatewayGetIdempotentToken)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.GetIdempotentToken(ctx, req.(*emptypb.Empty))
 		})
 		out, err := h(ctx, &in)
@@ -135,7 +135,7 @@ func _Gateway_CreateMinerSet0_HTTP_Handler(srv GatewayHTTPServer) func(ctx http.
 			return err
 		}
 		http.SetOperation(ctx, OperationGatewayCreateMinerSet)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.CreateMinerSet(ctx, req.(*v1beta1.MinerSet))
 		})
 		out, err := h(ctx, &in)
@@ -154,7 +154,7 @@ func _Gateway_ListMinerSet0_HTTP_Handler(srv GatewayHTTPServer) func(ctx http.Co
 			return err
 		}
 		http.SetOperation(ctx, OperationGatewayListMinerSet)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.ListMinerSet(ctx, req.(*ListMinerSetRequest))
 		})
 		out, err := h(ctx, &in)
@@ -176,7 +176,7 @@ func _Gateway_GetMinerSet0_HTTP_Handler(srv GatewayHTTPServer) func(ctx http.Con
 			return err
 		}
 		http.SetOperation(ctx, OperationGatewayGetMinerSet)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.GetMinerSet(ctx, req.(*GetMinerSetRequest))
 		})
 		out, err := h(ctx, &in)
@@ -198,7 +198,7 @@ func _Gateway_UpdateMinerSet0_HTTP_Handler(srv GatewayHTTPServer) func(ctx http.
 			return err
 		}
 		http.SetOperation(ctx, OperationGatewayUpdateMinerSet)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.UpdateMinerSet(ctx, req.(*v1beta1.MinerSet))
 		})
 		out, err := h(ctx, &in)
@@ -220,7 +220,7 @@ func _Gateway_DeleteMinerSet0_HTTP_Handler(srv GatewayHTTPServer) func(ctx http.
 			return err
 		}
 		http.SetOperation(ctx, OperationGatewayDeleteMinerSet)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.DeleteMinerSet(ctx, req.(*DeleteMinerSetRequest))
 		})
 		out, err := h(ctx, &in)
@@ -245,7 +245,7 @@ func _Gateway_ScaleMinerSet0_HTTP_Handler(srv GatewayHTTPServer) func(ctx http.C
 			return err
 		}
 		http.SetOperation(ctx, OperationGatewayScaleMinerSet)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.ScaleMinerSet(ctx, req.(*ScaleMinerSetRequest))
 		})
 		out, err := h(ctx, &in)
@@ -267,7 +267,7 @@ func _Gateway_CreateMiner0_HTTP_Handler(srv GatewayHTTPServer) func(ctx http.Con
 			return err
 		}
 		http.SetOperation(ctx, OperationGatewayCreateMiner)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.CreateMiner(ctx, req.(*v1beta1.Miner))
 		})
 		out, err := h(ctx, &in)
@@ -286,7 +286,7 @@ func _Gateway_ListMiner0_HTTP_Handler(srv GatewayHTTPServer) func(ctx http.Conte
 			return err
 		}
 		http.SetOperation(ctx, OperationGatewayListMiner)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.ListMiner(ctx, req.(*ListMinerRequest))
 		})
 		out, err := h(ctx, &in)
@@ -308,7 +308,7 @@ func _Gateway_GetMiner0_HTTP_Handler(srv GatewayHTTPServer) func(ctx http.Contex
 			return err
 		}
 		http.SetOperation(ctx, OperationGatewayGetMiner)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.GetMiner(ctx, req.(*GetMinerRequest))
 		})
 		out, err := h(ctx, &in)
@@ -330,7 +330,7 @@ func _Gateway_UpdateMiner0_HTTP_Handler(srv GatewayHTTPServer) func(ctx http.Con
 			return err
 		}
 		http.SetOperation(ctx, OperationGatewayUpdateMiner)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.UpdateMiner(ctx, req.(*v1beta1.Miner))
 		})
 		out, err := h(ctx, &in)
@@ -352,7 +352,7 @@ func _Gateway_DeleteMiner0_HTTP_Handler(srv GatewayHTTPServer) func(ctx http.Con
 			return err
 		}
 		http.SetOperation(ctx, OperationGatewayDeleteMiner)
-		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+		h := ctx.Middleware(func(ctx context.Context, req any) (any, error) {
 			return srv.DeleteMiner(ctx, req.(*DeleteMinerRequest))
 		})
 		out, err := h(ctx, &in)

@@ -36,7 +36,7 @@ var (
 
 func init() {
 	oldRun := Analyzer.Run
-	Analyzer.Run = func(p *analysis.Pass) (interface{}, error) {
+	Analyzer.Run = func(p *analysis.Pass) (any, error) {
 		pass := *p
 		oldReport := p.Report
 		pass.Report = func(diag analysis.Diagnostic) {

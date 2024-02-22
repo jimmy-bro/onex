@@ -56,7 +56,7 @@ func (c *unstructuredWrapper) GetConditions() v1beta1.Conditions {
 //   - It's not possible to detect if the object has an empty condition list or if it does not implement conditions;
 //     in both cases the operation returns an empty slice is returned.
 func (c *unstructuredWrapper) SetConditions(conditions v1beta1.Conditions) {
-	v := make([]interface{}, 0, len(conditions))
+	v := make([]any, 0, len(conditions))
 	for i := range conditions {
 		m, err := runtime.DefaultUnstructuredConverter.ToUnstructured(&conditions[i])
 		if err != nil {
@@ -66,7 +66,7 @@ func (c *unstructuredWrapper) SetConditions(conditions v1beta1.Conditions) {
 		v = append(v, m)
 	}
 	// unstructured.SetNestedField returns an error only if value cannot be set because one of
-	// the nesting levels is not a map[string]interface{}; this is not the case so the error should never happen here.
+	// the nesting levels is not a map[string]any; this is not the case so the error should never happen here.
 	err := unstructured.SetNestedField(c.Unstructured.Object, v, "status", "conditions")
 	if err != nil {
 		log.Log.Error(err, "Failed to set Conditions on unstructured object. This error shouldn't have occurred, please file an issue.", "groupVersionKind", c.GroupVersionKind(), "name", c.GetName(), "namespace", c.GetNamespace())
